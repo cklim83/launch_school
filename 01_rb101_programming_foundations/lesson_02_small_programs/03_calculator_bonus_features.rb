@@ -7,18 +7,20 @@ MESSAGES = YAML.load_file("03b_calculator_messages.yml")
 LANGUAGES = { '1' => :en, '2' => :es }
 OPERATIONS = %w(1 2 3 4)
 COMPUTE_MESSAGE = {
-  :en => { '1' => 'Adding',
-           '2' => 'Subtracting',
-           '3' => 'Multiplying',
-           '4' => 'Dividing' },
-  :es => { '1' => 'Agregando',
-           '2' => 'Restando',
-           '3' => 'Multiplicar',
-           '4' => 'Divisor' }
+  en: { '1' => 'Adding',
+        '2' => 'Subtracting',
+        '3' => 'Multiplying',
+        '4' => 'Dividing' },
+  es: { '1' => 'Agregando',
+        '2' => 'Restando',
+        '3' => 'Multiplicar',
+        '4' => 'Divisor' }
 }
 
+CALCULATE_AGAIN = %w(yes y no n)
+
 # Methods
-def get_message(context, language=:en)
+def get_message(context, language)
   MESSAGES[language][context]
 end
 
@@ -37,13 +39,13 @@ def get_language
   LANGUAGES[language]
 end
 
-def get_name
+def get_name(language)
   name = ''
   loop do
     name = Kernel.gets().chomp()
 
     break unless name.empty?()
-    prompt(get_message(:invalid_name))
+    prompt(get_message(:invalid_name, language))
   end
 
   name
@@ -103,12 +105,28 @@ def compute(number1, number2, operation)
   result
 end
 
+def calculate_again?(language)
+  prompt(get_message(:new_calculation, language))
+
+  user_response = ''
+  loop do
+    user_response = Kernel.gets().chomp().downcase()
+
+    break if CALCULATE_AGAIN.include?(user_response)
+    prompt(get_message(:continue_or_not, language))
+  end
+
+  user_response == 'y' || user_response == 'yes'
+end
+
 # main
 prompt(get_message(:language, :na))
 language = get_language()
 
 prompt(get_message(:welcome, language))
-name = get_name().capitalize
+name = get_name(language).capitalize
+
+system("clear")
 prompt(format(get_message(:hi, language), field: name))
 
 loop do # main loop
@@ -130,9 +148,7 @@ loop do # main loop
     prompt(get_message(:div_zero, language))
   end
 
-  prompt(get_message(:new_calculation, language))
-  calculate_again = Kernel.gets().chomp()
-  break unless calculate_again.downcase == 'y'
+  break unless calculate_again?(language)
   system("clear")
 end
 

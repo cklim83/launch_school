@@ -28,7 +28,8 @@ calculator_messages = {
     computing: "%{field} the two numbers...",
     result: "The result is %{field}",
     new_calculation: "Do you want to perform another calculation?"\
-                     " ('Y' to continue, any other key to quit)",
+                     " ('y' to continue, 'n' to quit)",
+    continue_or_not: "Invalid response. Enter 'y' to continue, 'n' to quit!",
     thank_you: "Thank you for using the calculator. Good bye!"
   },
 
@@ -50,8 +51,10 @@ calculator_messages = {
     div_zero: "¡Cálculo no válido, se ha encontrado una división por cero!",
     computing: "%{field} los dos números...",
     result: "El resultado es %{field}",
-    new_calculation: "¿Quieres realizar otro cálculo?"\
-                     " ('Y' para continuar, cualquier otra tecla para salir)",
+    new_calculation: "¿Quieres realizar otro cálculo? "\
+                     "('y' para continuar, 'n' para salir)",
+    continue_or_not: "Respuesta invalida. Ingrese 'y' para continuar, "\
+                     "'n' para salir.",
     thank_you: "Gracias por usar la calculadora. ¡Adiós!"
   }
 }

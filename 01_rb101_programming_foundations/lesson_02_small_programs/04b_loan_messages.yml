@@ -8,15 +8,18 @@
   :input_message: What is annual percentage rate? (e.g. Enter 5 for 5%)
   :invalid_range: Annual percentage rate cannot be negative.Please try again!
   :non_numeric: This doesn't look like a number... Please try again!
-:loan_years:
-  :input_message: What is the loan duration in years?
+:loan_duration:
+  :input_message: 'Please enter loan duration in parenthesis in the following format:
+    (years, months)'
+  :invalid_format: 'Your loan duration is not in the right format. Please enter loan
+    duration in parenthesis in the following format: (years, months)'
   :invalid_range: Loan duration have to be a positive number. Please try again!
-  :non_numeric: This doesn't look like a number... Please try again!
-:loan_summary: "  *** Your Loan Summary ***\n    \n    Loan Principal: $%{loan_principal}\n
-  \   Annual Percentage Rate: %{annual_pct_rate} %\n    Loan Duration (years): %{loan_years}\n
-  \   \n    Monthly repayment: $%{monthly_repayment}\n    Monthly interest rate: %{monthly_pct_rate}
-  %\n    # of repayment months: %{loan_months}\n    Total interest: $%{total_interest}\n
-  \   \n    *** END ***\n    \n"
+  :non_numeric: One or more of the duration inputs doesn't look like a number... Please
+    try again!
+:loan_summary: "  *** Your Loan Summary ***\n    \n    Loan Principal: $%.2f\n    Annual
+  Percentage Rate: %.4g %\n    Loan Duration: %.4g years, %.4g months\n    \n    Monthly
+  repayment: $%.2f\n    Monthly interest rate: %.4g %\n    # of repayment months:
+  %.4g\n    Total interest: $%.2f\n    \n    *** END ***\n    \n"
 :continue:
   :continue_message: Would you like to calculate again? ('y' to continue, 'n' to quit)
   :invalid_message: Invalid response. Enter 'y' to continue, 'n' to quit!

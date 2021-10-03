@@ -108,6 +108,38 @@ def valid_range?(input_type, value)
   end
 end
 
+def parse_string(string)
+  string.gsub(/[()]/, "").split(',')
+end
+
+def non_numeric_elements?(array)
+  !(numeric?(array[0]) && numeric?(array[1]))
+end
+
+def duration_in_years(array)
+  array[0].to_f + (array[1].to_f / 12)
+end
+
+def get_duration_years
+  duration_years = loop do
+    prompt(MESSAGES[:loan_duration][:input_message])
+    duration_string = gets.chomp
+    duration_array = parse_string(duration_string)
+
+    if duration_array.size != 2
+      prompt(MESSAGES[:loan_duration][:invalid_format])
+    elsif non_numeric_elements? duration_array
+      prompt(MESSAGES[:loan_duration][:non_numeric])
+    elsif duration_in_years(duration_array) <= 0
+      prompt(MESSAGES[:loan_duration][:invalid_range])
+    else
+      break duration_in_years(duration_array)
+    end
+  end
+
+  duration_years
+end
+
 def get_input(input_type)
   input_value = nil
   loop do
@@ -139,11 +171,7 @@ def calculate_again?
     prompt(MESSAGES[:continue][:invalid_message])
   end
 
-  if user_response == 'y' || user_response == 'yes'
-    true
-  else
-    false
-  end
+  user_response == 'y' || user_response == 'yes'
 end
 
 def compute_monthly_payment(loan_principal, monthly_pct_rate, loan_months)
@@ -165,23 +193,26 @@ prompt(MESSAGES[:welcome])
 loop do
   loan_principal = get_input(:loan_principal)
   annual_pct_rate = get_input(:annual_pct_rate) / 100
-  loan_years = get_input(:loan_years)
+  duration_in_years = get_duration_years
+  year_component = duration_in_years.floor
+  month_component = (duration_in_years - year_component) * 12
 
   monthly_pct_rate = annual_pct_rate / MONTHS_IN_YEAR
-  loan_months = loan_years * MONTHS_IN_YEAR
+  duration_in_months = duration_in_years * MONTHS_IN_YEAR
   monthly_repayment = compute_monthly_payment(loan_principal,
                                               monthly_pct_rate,
-                                              loan_months)
-  total_interest = monthly_repayment * loan_months - loan_principal
+                                              duration_in_months)
+  total_interest = monthly_repayment * duration_in_months - loan_principal
 
   prompt(format(MESSAGES[:loan_summary],
-                loan_principal: loan_principal.round(PRECISION),
-                annual_pct_rate: (annual_pct_rate * 100).round(PRECISION),
-                loan_years: loan_years.round(PRECISION),
-                monthly_repayment: monthly_repayment.round(PRECISION),
-                monthly_pct_rate: (monthly_pct_rate * 100).round(PRECISION),
-                loan_months: loan_months.round(PRECISION),
-                total_interest: total_interest.round(PRECISION)))
+                loan_principal,
+                (annual_pct_rate * 100),
+                year_component,
+                month_component,
+                monthly_repayment,
+                (monthly_pct_rate * 100),
+                duration_in_months,
+                total_interest))
 
   break unless calculate_again?
   system("clear")

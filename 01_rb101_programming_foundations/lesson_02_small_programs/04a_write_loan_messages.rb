@@ -16,24 +16,29 @@ LOAN_MESSAGES = {
     non_numeric: "This doesn't look like a number... Please try again!"
   },
 
-  loan_years: {
-    input_message: "What is the loan duration in years?",
+  loan_duration: {
+    input_message: "Please enter loan duration in parenthesis in the "\
+                   "following format: (years, months)",
+    invalid_format: "Your loan duration is not in the right format. "\
+                   "Please enter loan duration in parenthesis in the "\
+                   "following format: (years, months)",
     invalid_range: "Loan duration have to be a positive number. "\
                    "Please try again!",
-    non_numeric: "This doesn't look like a number... Please try again!"
+    non_numeric: "One or more of the duration inputs doesn't look like "\
+                 "a number... Please try again!"
   },
 
   loan_summary: <<-MSG,
   *** Your Loan Summary ***
     
-    Loan Principal: $%{loan_principal}
-    Annual Percentage Rate: %{annual_pct_rate} \%
-    Loan Duration (years): %{loan_years}
+    Loan Principal: $%.2f
+    Annual Percentage Rate: %.4g \%
+    Loan Duration: %.4g years, %.4g months
     
-    Monthly repayment: $%{monthly_repayment}
-    Monthly interest rate: %{monthly_pct_rate} \%
-    # of repayment months: %{loan_months}
-    Total interest: $%{total_interest}
+    Monthly repayment: $%.2f
+    Monthly interest rate: %.4g \%
+    # of repayment months: %.4g
+    Total interest: $%.2f
     
     *** END ***
     

@@ -22,7 +22,7 @@ LOAN_MESSAGES = {
     invalid_format: "Your loan duration is not in the right format. "\
                    "Please enter loan duration in parenthesis in the "\
                    "following format: (years, months)",
-    invalid_range: "Loan duration have to be a positive number. "\
+    invalid_range: "Loan duration have to be at least 1 month. "\
                    "Please try again!",
     non_numeric: "One or more of the duration inputs doesn't look like "\
                  "a number... Please try again!"

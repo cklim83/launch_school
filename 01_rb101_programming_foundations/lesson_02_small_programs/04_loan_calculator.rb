@@ -29,8 +29,9 @@ Problem
   - loan_principal: Assume >= 0 since negative loans does not make sense
   - annual_pct_rate: Assume >= 0 since it doesnt make sense to have negative
     rates. For rates = 0, monthly repayment will need new computation.
-  - loan_years: Assume > 0 since loan duration of 0 leads to a division by
-                zero error
+  - loan_years: Has to be at least 1 month. A value of 0 leads to a division by
+                zero error. Less than 1 month cause monthly repayment to be
+                extrapolated and bigger than amount loan even if interest is 0.
 
 Examples
   1) loan_principal = 100_000, annual_pct_rate = 10, loan_years = 10
@@ -65,11 +66,15 @@ Algorithm
       Exit loop if annual_pct_rate is a valid numeric and >= 0
       Print invalid annual_pct_rate message and go back to start of loop
   - Loop
-      Prompt user to enter loan_years
-      Exit loop if loan_years is a valid numeric and > 0
-      Print invalid loan_years message and go back to start of loop
+      Prompt user to enter duration_in_years in format (year, month)
+      Parse the year and month input
+      Exit loop if
+        input is in correct format &&
+        all arguments are numeric &&
+        duration_in_years >= 1 month 
+      Print invalid duration_in_years message and go back to start of loop
   - Compute monthly_pct_rate by dividing annual_pct_rate by 12
-  - Compute loan_months by multiplying loan_years by 12
+  - Compute duration_in_months by multiplying duration_in_years by 12
   - Compute monthly_repayment using above formula
   - Print out loan summary
   - Prompt user if they like another calculate
@@ -120,24 +125,33 @@ def duration_in_years(array)
   array[0].to_f + (array[1].to_f / 12)
 end
 
+def duration_errors?(duration_array)
+  has_error = true
+
+  if duration_array.size != 2
+    prompt(MESSAGES[:loan_duration][:invalid_format])
+  elsif non_numeric_elements? duration_array
+    prompt(MESSAGES[:loan_duration][:non_numeric])
+  elsif duration_in_years(duration_array) * MONTHS_IN_YEAR < 1
+    prompt(MESSAGES[:loan_duration][:invalid_range])
+  else
+    has_error = false
+  end
+
+  has_error
+end
+
 def get_duration_years
-  duration_years = loop do
+  duration_array = nil
+  loop do
     prompt(MESSAGES[:loan_duration][:input_message])
     duration_string = gets.chomp
     duration_array = parse_string(duration_string)
 
-    if duration_array.size != 2
-      prompt(MESSAGES[:loan_duration][:invalid_format])
-    elsif non_numeric_elements? duration_array
-      prompt(MESSAGES[:loan_duration][:non_numeric])
-    elsif duration_in_years(duration_array) <= 0
-      prompt(MESSAGES[:loan_duration][:invalid_range])
-    else
-      break duration_in_years(duration_array)
-    end
+    break unless duration_errors?(duration_array)
   end
 
-  duration_years
+  duration_in_years(duration_array)
 end
 
 def get_input(input_type)

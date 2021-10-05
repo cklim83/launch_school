@@ -71,7 +71,7 @@ Algorithm
       Exit loop if
         input is in correct format &&
         all arguments are numeric &&
-        duration_in_years >= 1 month 
+        duration_in_years >= 1 month
       Print invalid duration_in_years message and go back to start of loop
   - Compute monthly_pct_rate by dividing annual_pct_rate by 12
   - Compute duration_in_months by multiplying duration_in_years by 12

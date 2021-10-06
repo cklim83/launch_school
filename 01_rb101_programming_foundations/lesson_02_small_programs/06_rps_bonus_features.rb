@@ -57,9 +57,9 @@ Welcome to the Universe of Rock, Paper, Scissor, Lizard and Spock!
 Rules Of This Universe
   - Rock crushes both Lizard and Scissor
   - Paper covers Rock and disproves Spock
-  - Scissors cuts Paper and decapitates Lizard
-  - Lizard eats Paper and Posions Spock
-  - Spock smashes Scissor and Vaporizes Rock
+  - Scissors cuts Paper and kills Lizard
+  - Lizard eats Paper and posions Spock
+  - Spock smashes Scissor and vaporizes Rock
 
 You will battle our AI enabled computer. The first player to reach 
 3 points wins the game!

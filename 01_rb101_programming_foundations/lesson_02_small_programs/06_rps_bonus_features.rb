@@ -44,6 +44,20 @@ Algorithm
 # Constants
 GAME_ITEMS = { r: 'Rock', p: 'Paper', sc: 'Scissor',
                l: 'Lizard', sp: 'Spock' }
+
+CHOICE_MAP = {
+  r: :r,
+  rock: :r,
+  p: :p,
+  paper: :p,
+  sc: :sc,
+  scissor: :sc,
+  l: :l,
+  lizard: :l,
+  sp: :sp,
+  spock: :sp
+}
+
 RULES = {
   r: [:sc, :l],
   p: [:r, :sp],
@@ -85,7 +99,7 @@ def get_user_choice
   loop do
     prompt(CHOICE_MESSAGE)
     user_choice = gets.chomp.strip.downcase.to_sym
-
+    user_choice = CHOICE_MAP[user_choice]
     break if valid_input?(user_choice)
     prompt("Invalid input. Choose one of the keys in bracket.")
   end
@@ -122,6 +136,14 @@ def print_round_result(winner)
   end
 end
 
+def update_scores!(winner, scores)
+  if winner == 'user'
+    scores[:user] += 1
+  elsif winner == 'computer'
+    scores[:computer] += 1
+  end
+end
+
 def print_score(user, computer)
   prompt("Your Score:  #{user}")
   prompt("Computer Score: #{computer}")
@@ -139,27 +161,23 @@ def print_winner(user_score)
   end
 end
 
-def game_play(user_score, computer_score)
-  while user_score < 3 && computer_score < 3
+def game_play
+  scores = { user: 0, computer: 0 }
+
+  while scores[:user] < 3 && scores[:computer] < 3
     user_choice = get_user_choice
     computer_choice = GAME_ITEMS.keys.sample
-
     print_selection(user_choice, computer_choice)
 
     winner = get_winner(user_choice, computer_choice)
     print_round_result(winner)
 
-    if winner == 'user'
-      user_score += 1
-    elsif winner == 'computer'
-      computer_score += 1
-    end
-
-    print_score(user_score, computer_score)
+    update_scores!(winner, scores)
+    print_score(scores[:user], scores[:computer])
     print_newline
   end
 
-  print_winner(user_score)
+  print_winner(scores[:user])
 end
 
 def play_again?
@@ -183,10 +201,7 @@ _ = gets
 
 loop do # main loop
   clear_screen
-  user_score = 0
-  computer_score = 0
-
-  game_play(user_score, computer_score)
+  game_play
 
   break unless play_again?
 end

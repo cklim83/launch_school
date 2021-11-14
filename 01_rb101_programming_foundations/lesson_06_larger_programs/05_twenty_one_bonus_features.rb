@@ -1,4 +1,5 @@
 DEALER_THRESHOLD = 18
+GAME_THRESHOLD = 21
 
 # rubocop:disable Metrics/MethodLength
 def welcome
@@ -64,8 +65,8 @@ def display_dealer_card(cards)
 end
 
 def best_point(points)
-  return points.min if points.min > 21
-  points.select { |num| num <= 21 }.max
+  return points.min if points.min > GAME_THRESHOLD
+  points.select { |num| num <= GAME_THRESHOLD }.max
 end
 
 def calculate_points(cards)
@@ -105,12 +106,12 @@ def hit_or_stay
   choice
 end
 
-def player_turn!(player_cards, deck)
+def player_turn!(player_cards, points, deck)
   loop do
     display_cards(player_cards, "Player")
-    points = calculate_points(player_cards)
-    display_points(points)
-    break if points > 21
+    points[:player] = calculate_points(player_cards)
+    display_points(points[:player])
+    break if points[:player] > GAME_THRESHOLD
 
     choice = hit_or_stay
     break unless choice == 'hit' || choice == 'h'
@@ -119,37 +120,75 @@ def player_turn!(player_cards, deck)
   end
 end
 
-def bust?(cards)
-  calculate_points(cards) > 21
+def bust?(points)
+  points > GAME_THRESHOLD
 end
 
-def dealer_turn!(cards, deck)
+def dealer_turn!(cards, points, deck)
   loop do
     display_cards(cards, "Dealer")
-    points = calculate_points(cards)
-    display_points(points)
+    points[:dealer] = calculate_points(cards)
+    display_points(points[:dealer])
 
-    break unless points < DEALER_THRESHOLD
+    break unless points[:dealer] < DEALER_THRESHOLD
     hit!(cards, deck)
     display_cards(cards, "Dealer", "last")
   end
 end
 
-def display_winner(player_cards, dealer_cards)
-  return prompt "You bust, Dealer win!" if bust?(player_cards)
-  return prompt "Dealer bust, You win!" if bust?(dealer_cards)
+def determine_winner(round_points)
+  if bust?(round_points[:player])
+    :dealer
+  elsif bust?(round_points[:dealer])
+    :player
+  elsif round_points[:dealer] > round_points[:player]
+    :dealer
+  elsif round_points[:dealer] < round_points[:player]
+    :player
+  end # return nil if scores are tied
+end
 
-  player_points = calculate_points(player_cards)
-  dealer_points = calculate_points(dealer_cards)
-  prompt "You have #{player_points} points!"
-  prompt "Dealer have #{dealer_points} points!"
+def display_score(score)
+  puts ""
+  puts "-------------------"
+  puts "   Current Score   "
+  puts "-------------------"
+  puts "  You      Dealer  "
+  puts "   #{score[:player]}    :    #{score[:dealer]}    "
+  puts ""
+end
 
-  if dealer_points > player_points
-    prompt "Dealer wins!"
-  elsif dealer_points < player_points
-    prompt "You win!"
+def update_score!(score, round_points)
+  winner = determine_winner(round_points)
+  if winner == :dealer
+    score[:dealer] += 1
+  elsif winner == :player
+    score[:player] += 1
+  end
+end
+
+def display_round_winner(points)
+  return prompt "You bust, Dealer won this round!" if bust?(points[:player])
+  return prompt "Dealer bust, you won this round!" if bust?(points[:dealer])
+
+  prompt "You have #{points[:player]} points!"
+  prompt "Dealer have #{points[:dealer]} points!"
+
+  winner = determine_winner(points)
+  if winner == :dealer
+    prompt "Dealer won this round!"
+  elsif winner == :player
+    prompt "You won this round!"
   else
-    prompt "Its a tie!"
+    prompt "It's a tie!"
+  end
+end
+
+def display_grand_winner(score)
+  if score[:dealer] == 5
+    prompt "Dealer is the overall winner!"
+  else
+    prompt "Congrats, you are the overall winner!"
   end
 end
 
@@ -168,21 +207,36 @@ welcome
 _ = gets
 
 loop do
-  system "clear"
-  prompt "Initializing the card deck ..."
-  deck = initialize_deck
+  score = { player: 0, dealer: 0 }
 
-  prompt "Dealing ..."
-  player_cards = deal!(deck)
-  dealer_cards = deal!(deck)
-  display_dealer_card(dealer_cards)
+  loop do
+    system "clear"
+    prompt "Initializing the card deck ..."
+    deck = initialize_deck
+    points = { player: 0, dealer: 0 }
 
-  player_turn!(player_cards, deck)
+    prompt "Dealing ..."
+    player_cards = deal!(deck)
+    dealer_cards = deal!(deck)
+    display_dealer_card(dealer_cards)
 
-  dealer_turn!(dealer_cards, deck) unless bust?(player_cards)
+    player_turn!(player_cards, points, deck)
 
-  display_winner(player_cards, dealer_cards)
+    dealer_turn!(dealer_cards, points, deck) unless bust?(points[:player])
+
+    update_score!(score, points)
+    display_round_winner(points)
+    display_score(score)
+
+    break if score[:dealer] == 5 || score[:player] == 5
+
+    prompt "Press any button to start the next round ..."
+    _ = gets
+  end
+
+  display_grand_winner(score)
+
   break unless play_again?
 end
 
-prompt "Thenk you for playing. Goodbye!"
+prompt "Thank you for playing. Goodbye!"

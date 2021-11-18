@@ -1,11 +1,11 @@
-require 'pry'
-
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # horizontal
                 [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # vertical
                 [[1, 5, 9], [3, 5, 7]]              # diagonal
+WINNING_SCORE = 5
+CENTER_SQUARE = 5
 
 def prompt(message)
   puts "=> #{message}"
@@ -92,15 +92,25 @@ def joinor(array, delimiter=', ', end_separator='or')
   end
 end
 
+def integer?(string)
+  !!/^[1-9]+[0-9]*$/.match(string)
+end
+
 def player_turn(brd)
   square = nil
   available_squares = empty_squares(brd)
 
   loop do
     prompt "Please choose a square: (#{joinor(available_squares)})"
-    square = gets.chomp.to_i
+    square = gets.chomp
+    if integer?(square)
+      square = square.to_i
+    else
+      prompt "You have not entered an integer. Please try again"
+      next
+    end
     break if available_squares.include?(square)
-    prompt "Your choice is invalid. Please try again!"
+    prompt "You have not selected an available square. Please try again!"
   end
 
   brd[square] = PLAYER_MARKER
@@ -114,7 +124,7 @@ def moves(brd, move_type, available_squares)
   WINNING_LINES.each do |line|
     lines << line if brd.values_at(*line).count(detect_symbol) == 2
   end
-  # binding.pry
+
   (lines.flatten) & available_squares
 end
 
@@ -126,7 +136,7 @@ def smart_move(brd)
 
   return offense_moves.first if offense_moves.size > 0
   return defense_moves.first if defense_moves.size > 0
-  return 5 if available_squares.include?(5)
+  return CENTER_SQUARE if available_squares.include?(CENTER_SQUARE)
   available_squares.sample
 end
 
@@ -196,10 +206,11 @@ def display_score(score)
 end
 
 def display_winner(score)
-  if score[PLAYER_MARKER] == 5
+  if score[PLAYER_MARKER] == WINNING_SCORE
     prompt "Congratulations, you have emerged victorious!!!"
   else
-    prompt "Computer has got to 5 first. Computer is the overall winner!"
+    prompt "Computer has got to #{WINNING_SCORE} first."\
+           " Computer is the overall winner!"
   end
 end
 
@@ -236,8 +247,9 @@ loop do
     display_round_result(result)
     update_score!(score, result)
     display_score(score)
-    break if score[PLAYER_MARKER] == 5 || score[COMPUTER_MARKER] == 5
-    prompt "Press any key to start the next game ..."
+    break if score[PLAYER_MARKER] == WINNING_SCORE || \
+             score[COMPUTER_MARKER] == WINNING_SCORE
+    prompt "Press enter to start the next game ..."
     _ = gets
     round_starter = alternate_player(round_starter)
   end

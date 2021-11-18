@@ -1,5 +1,7 @@
 DEALER_THRESHOLD = 18
 GAME_THRESHOLD = 21
+WINNING_SCORE = 5
+SLEEP_TIME = 1.5
 
 # rubocop:disable Metrics/MethodLength
 def welcome
@@ -9,7 +11,7 @@ def welcome
 -------------------------------------------------------------------------
 Welcome to the TWENTY-ONE poker game. As the name suggests, the objective 
 of the game is to get the highest points from the cards at hand without
-breeching 21 points. Cards with numerics are worth the points printed.
+breeching #{GAME_THRESHOLD} points. Cards with numerics are worth the points printed.
 'J', 'Q', 'K' are worth 10 points each while 'A' are worth either 1 or 11
 points, depending on which is more advantageous based on the cards on hand.
 Player and dealer will each begin with two cards. They can then choose "hit"
@@ -18,8 +20,6 @@ If their point total exceeds 21 at any point after hitting, they are
 deemed to have gone "bust" and loses the game. 
 
 Have fun and good luck!
-
-Press any key to start the game ...
 
   TXT
 
@@ -32,11 +32,20 @@ def prompt(message)
   puts "=> #{message}"
 end
 
+def enter_to_continue
+  prompt "Press enter to continue"
+  _ = gets
+end
+
 def initialize_deck
   numbers = (2..10).to_a + ['J', 'Q', 'K', 'A']
   shapes = ['Diamond', 'Club', 'Heart', 'Spade']
   deck = numbers.product(shapes)
-  deck.shuffle
+  deck.shuffle!
+
+  deck.map do |card|
+    { value: card[0], suit: card[1] }
+  end
 end
 
 def hit!(current_hand, deck)
@@ -51,11 +60,18 @@ end
 
 def display_cards(cards, player, extent="all")
   if extent == "first"
-    prompt "#{cards.first.first}, #{cards.first.last}"
+    puts ""
+    puts "#{cards.first[:value]} of #{cards.first[:suit]}"
+    puts ""
   elsif extent == 'last'
-    prompt "#{player} draw: #{cards.last.first}, #{cards.last.last}"
+    prompt "#{player} draw: #{cards.last[:value]} of #{cards.last[:suit]}"
   else
-    prompt "#{player} cards: #{cards}"
+    prompt "#{player}'s cards as follow:"
+    puts ""
+    cards.each do |card|
+      puts "#{card[:value]} of #{card[:suit]}"
+    end
+    puts ""
   end
 end
 
@@ -74,12 +90,12 @@ def calculate_points(cards)
   subtotal_points = 0
 
   cards.each do |card|
-    if card[0] == 'A'
+    if card[:value] == 'A'
       ace_count += 1
-    elsif %w(J Q K).include?(card[0])
+    elsif %w(J Q K).include?(card[:value])
       subtotal_points += 10
     else
-      subtotal_points += card[0]
+      subtotal_points += card[:value]
     end
   end
 
@@ -132,8 +148,10 @@ def dealer_turn!(cards, points, deck)
 
     break unless points[:dealer] < DEALER_THRESHOLD
     hit!(cards, deck)
+    sleep SLEEP_TIME
     display_cards(cards, "Dealer", "last")
   end
+  sleep SLEEP_TIME
 end
 
 def determine_winner(round_points)
@@ -185,7 +203,7 @@ def display_round_winner(points)
 end
 
 def display_grand_winner(score)
-  if score[:dealer] == 5
+  if score[:dealer] == WINNING_SCORE
     prompt "Dealer is the overall winner!"
   else
     prompt "Congrats, you are the overall winner!"
@@ -204,7 +222,7 @@ def play_again?
 end
 
 welcome
-_ = gets
+enter_to_continue
 
 loop do
   score = { player: 0, dealer: 0 }
@@ -228,10 +246,9 @@ loop do
     display_round_winner(points)
     display_score(score)
 
-    break if score[:dealer] == 5 || score[:player] == 5
+    break if score[:dealer] == WINNING_SCORE || score[:player] == WINNING_SCORE
 
-    prompt "Press any button to start the next round ..."
-    _ = gets
+    enter_to_continue
   end
 
   display_grand_winner(score)

@@ -39,7 +39,7 @@ Examples
   - Any signs + or -. Assume no
   - Any decimals? Assume no?
   - Assume no non-numeric characters
-  - Edge case: What happens when input is empty string? raise ArgumentError?
+  - Edge case: What happens when input is empty string? return 0
 
 Data Structure
 - input: String

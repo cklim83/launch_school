@@ -15,7 +15,7 @@ Course: RB109
 [Array Sorting](#array-sorting)\
 [Summary Table of Common Collection Methods](#summary-table-of-common-collection-methods)\
 [Dup, Clone and Freezing](#dup-clone-and-freezing)\
-[Examples](#examples)
+[Tips & Practice Examples](#tips-and-practice-examples)
 
 ---
 
@@ -416,7 +416,53 @@ b[0].object_id		# => 70216084941500, same as a[0] object_id
 
 ---
 
-### Practice Examples
+### Tips and Practice Examples
+#### Tips
+- Learn the correct terminology
+	```Ruby
+	[false, false, false].select { |num| 100 }
+	# => [false, false, false]
+	```
+	- Common errors:
+		- When the element is `falsey`, it is not selected (It is not about the truthiness of element but that of the return value of block)
+		- When the block returns `true` (The return value of the block may be truthy but not `true` and the element will still get included)
+		- When the block is truthy (We are talking about truthiness of the return value of the block, not the block itself)
+
+	```Ruby
+	def test(str)
+  	  str += '!!!'
+  	  str.upcase!
+	end
+
+	test_str = "Something"
+	test(test_str)
+
+	puts test_str
+	```
+	- Common errors:
+		- `str` variable is mutated (wrong because variables do not get mutated, it is the object being referenced that gets mutated)
+		- we call method `upcase!` on `str` (wrong because we can't call methods on variables)
+	
+- Be precise. Do not approach each question by describing what each line of the code does. Start at execution points e.g. method invocation, then the arguments passed, and relevant lines in method definition that resulted in observed output
+	
+	```Ruby
+	def test(str)
+  	  str += '!!!'
+  	  str.upcase!
+	end
+
+	test_str = "Something"
+	test(test_str)
+
+	puts test_str
+	```
+	- Key points:
+		- `test_str` was initialized with string `"Something"` on line 6
+		- We invoke the method `test` and pass `test_str` in as an argument
+		- `str` and `test_str` now reference same string `"Something"`
+		- `str += '!!!'` caused `str` to be **reassigned** to **new string** `"Something!!!"`
+		- `str` and `test_str` are pointing to different objects and `test` can no longer mutate the object referenced by `test_str`. Hence `puts test_str` outputs `"Something"``
+
 #### Local Variable Scope
 ```Ruby
 greeting = 'Hello'
@@ -506,44 +552,7 @@ end
 # => [["1", "8", "9"], ["1", "8", "11"], ["2", "6", "13"], ["2", "12", "15"]]
 ```
 
-#### Common Mistakes
-```Ruby
-[false, false, false].select { |num| 100 }
-# => [false, false, false]
-```
-- Wrong Descriptions:
-	- When the element is `falsey`, it is not selected (It is not about the truthiness of element but that of the return value of block)
-	- When the block returns `true` (The return value of the block may not be `true`, e.g. `1` and the element will still get included)
-	- When the block is truthy (We are talking about truthiness of the return value of the block, not the block itself)
-- Correct Descriptions:
-	- When the return value of the block `evaluates to true` or is `truthy`
-	- The return value is a **new array** when we use `select`
-
-
-```Ruby
-def test(str)
-  str += '!!!'
-  str.upcase!
-end
-
-test_str = "Something"
-test(test_str)
-
-puts test_str
-```
-- Wrong Descriptions:
-	- `str` variable is mutated (wrong because variables do not get mutated, its the object being referenced that gets mutated)
-	- we call method `upcase!` on `str` (wrong because we can't call methods on variables)
-- Correct Description:
-	- The string referenced by `str` was mutated
-	
-#### Other Tips
-- Learn the correct terminology, be precise
-- Do not describe line by line, focus only on those relevant to question being asked. For example, instead of describing a method definition line by line, start with method invocation and the argument passed in, then delve into code segments within the method definition that led to the observed output or return value
-
-[Back to top](#sections)
-
-### Template Collection Answers
+#### Template Collection Answers
 We have a `object_value/type` calling the method `method_name` with a block having `param_name` as its parameter. `method_name` iterates through each element in the caller, and assigns each element to `param_name` for block execution. In each iteration, ... [output/mutate/reassign] and the block returns `...` to `method_name`. `method_name` [ignores/use ...] and returns [the original caller/new array/hash].
 
 In 1st iteration, `param_name` is assigned to `...` and `code_segment` [output/mutate/reassign] ... and the block returns `block_return_value`
@@ -551,5 +560,5 @@ In 1st iteration, `param_name` is assigned to `...` and `code_segment` [output/m
 In similar fashion, subsequent iterations output ... and the block returns ... respectively
 `method_name` then include these block return values in [new_array|original object] to return 
 
-
+[Back to top](#sections)
 

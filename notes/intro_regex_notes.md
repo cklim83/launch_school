@@ -307,7 +307,7 @@ Like `\s` and `\S`, `\d` and `\D` can be used both inside and outside square bra
 |"cat"| match | match | match |
 |"catastrophe"| match | no match | no match |
 |"wildcat"| no match | match | no match |
-|"\<cat\>""| no match | no match | no match|
+|"\<cat\>"| no match | no match | no match|
 	
 	
 - `^` and `$` serve as anchors when outside square brackets `[]` but have different meaning inside.

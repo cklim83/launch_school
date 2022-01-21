@@ -52,3 +52,34 @@ p fibonacci(2) == 1
 p fibonacci(20) == 6765
 p fibonacci(100) == 354224848179261915075
 p fibonacci(100_001) # => 4202692702.....8285979669707537501
+
+
+=begin
+Solution
+
+def fibonacci(nth)
+  first, last = [1, 1]
+  3.upto(nth) do
+    first, last = [last, first + last]
+  end
+
+  last
+end
+
+Discussion
+
+If you remembered that we previously encountered a procedural treatment
+of the Fibonacci series in the easy exercises, you may have stolen most
+of your solution from there. That's fine - we did too. However, we didn't
+stop at that point; we did a bit of refactoring after removing the indexing
+code, and ended up with a nice simple solution to the problem.
+
+This method starts out with an array of two numbers, [1, 1], to represent
+the first 2 numbers in the Fibonacci sequence. It then proceeds to calculate
+each of the Fibonacci numbers in turn, updating the array in each iteration
+to include the two most recent Fibonacci numbers.
+
+This solution is extremely fast; it will compute the 100,001st Fibonacci
+number - a 20,899-digit number - in about a second. That's a huge improvement
+over the recursive solution.
+=end

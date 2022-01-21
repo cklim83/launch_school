@@ -171,3 +171,57 @@ end
 
 # minilang('6 PUSH')
 # # (nothing printed; no PRINT commands)
+
+
+=begin
+Solution
+
+def minilang(program)
+  stack = []
+  register = 0
+  program.split.each do |token|
+    case token
+    when 'ADD'   then register += stack.pop
+    when 'DIV'   then register /= stack.pop
+    when 'MULT'  then register *= stack.pop
+    when 'MOD'   then register %= stack.pop
+    when 'SUB'   then register -= stack.pop
+    when 'PUSH'  then stack.push(register)
+    when 'POP'   then register = stack.pop
+    when 'PRINT' then puts register
+    else              register = token.to_i
+    end
+  end
+end
+
+Discussion
+
+This exercise takes a lot of time to explain, but is not that difficult to
+implement. Once you understand what is expected, it's simply a matter of
+setting up a processing loop, and doing the necessary processing.
+
+We start by creating our stack and register, and then just walk through
+each "token" in the program, performing the appropriate action during each
+iteration. A token is one of the words or values in the language.
+
+We use a case statement for the body of our loop. The one thing that might
+trip you up is remembering to put integer tokens into the register; an easy
+step to do, an easy step to forget.
+
+Further Exploration
+
+Try writing a minilang program to evaluate and print the result of this
+expression:
+
+(3 + (4 * 5) - 7) / (5 % 3)
+
+The answer should be 8. This is trickier than it sounds! Note that we aren't
+asking you to modify the #minilang method; we want you to write a Minilang
+program that can be passed to #minilang and evaluated.
+
+Add some error handling to your method. In particular, have the method detect
+empty stack conditions, and invalid tokens in the program, and report those.
+Ideally, the method should return an error message if an error occurs, and nil
+if the program runs successfully.
+
+=end

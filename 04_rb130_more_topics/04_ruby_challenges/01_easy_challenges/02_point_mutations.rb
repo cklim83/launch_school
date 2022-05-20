@@ -92,23 +92,29 @@ Solution
 
     We will be given two strands of DNA.
     We need to count the differences between them.
-    If one strand is shorter than the other, we only need to check for differences for the length of the shorter strand.
+    If one strand is shorter than the other, we only need to check for 
+    differences for the length of the shorter strand.
 
 
 2. Examples
 
-  From the test cases shown above, we can see that we need to create a DNA class. The class should have 2 methods as follows:
+  From the test cases shown above, we can see that we need to create a DNA
+  class. The class should have 2 methods as follows:
 
-    A constructor that accepts a DNA strand string as argument. The constructor does not raise any errors.
+    A constructor that accepts a DNA strand string as argument. The constructor
+    does not raise any errors.
 
-    A method that accepts a second DNA strand string as an argument and returns the differences between the two strands — the Hamming distance.
+    A method that accepts a second DNA strand string as an argument and returns
+    the differences between the two strands — the Hamming distance.
 
- We may also want to create some helper methods to assist us, but those are optional.
+ We may also want to create some helper methods to assist us, but those are
+ optional.
 
  
 3. Data Structures
 
-  We're given the DNA strands as strings. Additionally, we may want to use a collection to help us iterate through each character of the DNA strand.
+  We're given the DNA strands as strings. Additionally, we may want to use a
+  collection to help us iterate through each character of the DNA strand.
 
 
 4. Hints or Questions
@@ -125,10 +131,12 @@ Solution
         Accept a DNA strand string as an argument.
         Save it for later use.
 
-    Method: Compute Hamming Distance (Ruby: hamming_distance; JavaScript: hammingDistance)
+    Method: Compute Hamming Distance (Ruby: hamming_distance; 
+                                      JavaScript: hammingDistance)
         Compare the lengths of both DNA strands to determine which is shorter.
         Set a counter to 0.
-        Based on the shorter strand's length, iterate through both DNA strand strings, at the same index, and compare each character.
+        Based on the shorter strand's length, iterate through both DNA strand
+        strings, at the same index, and compare each character.
             If the characters are different, increase the counter.
             Continue to the next index position.
         Return the counter.
@@ -153,10 +161,11 @@ end
 
 In the constructor, we simply save the first DNA strand string for later use.
 
-In hamming_distance, we use a ternary operator to determine which of the two strands
-— original strand or the comparison — is shorter. We then initialize a counter —
-differences — to 0. Next, we use the shorter's length to determine the amount of
-iterations we need to perform. We then use the parameter index to compare the proper
-locations in both DNA strands. If the characters differ, we increase differences. We
-then return the amount of differences at the end.
+In hamming_distance, we use a ternary operator to determine which of the two
+strands — original strand or the comparison — is shorter. 
+We then initialize a counter — differences — to 0. Next, we use the shorter's
+length to determine the amount of iterations we need to perform. We then use
+the parameter index to compare the proper locations in both DNA strands. If
+the characters differ, we increase differences. We then return the amount of
+differences at the end.
 =end

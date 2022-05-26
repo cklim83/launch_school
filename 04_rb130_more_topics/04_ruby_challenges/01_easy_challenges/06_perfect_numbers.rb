@@ -1,3 +1,4 @@
+# rubocop:disable all
 =begin
 
 Perfect Number
@@ -83,28 +84,29 @@ valid?(number)
 1. return number.instance_of Integer && number >= 1 
 
 =end
+# rubocop:enable all
 
 class PerfectNumber
   def self.classify(number)
     raise StandardError unless valid?(number)
-    
+
     factors = []
-    (1..(number/2)).each do |curr_num| 
+    (1..(number / 2)).each do |curr_num|
       factors << curr_num if number % curr_num == 0
     end
-    
+
     category(factors, number)
   end
-  
+
   private
-  
+
   def self.valid?(number)
     number.instance_of?(Integer) && number >= 1
   end
-  
+
   def self.category(factors, number)
-    factors_sum = factors.sum  # factors_sum is 0 if factors = []
-    
+    factors_sum = factors.sum # factors_sum is 0 if factors = []
+
     if factors_sum > number
       'abundant'
     elsif factors_sum == number
@@ -115,7 +117,7 @@ class PerfectNumber
   end
 end
 
-
+# rubocop:disable all
 =begin
 PEDAC Solution
 
@@ -245,7 +247,7 @@ Back in classify, we use this sum to determine the classification of the number.
 
 =begin
 
-CONCEPT
+CONCEPT (IMPORTANT)
 - We CANNOT define a private class method using the typical
 
 class ClassName

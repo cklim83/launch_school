@@ -1,3 +1,4 @@
+# rubocop:disable all
 =begin
 
 Triangles
@@ -52,13 +53,15 @@ Algorithm
      when isosceles? then :isosceles
      else :scalene
 =end
+# rubocop:enable all
 
 class Triangle
   attr_reader :sides
+
   def initialize(a, b, c)
     @sides = validate(a, b, c)
   end
-  
+
   def kind
     case sides.uniq.size
     when 1 then 'equilateral'
@@ -66,21 +69,21 @@ class Triangle
     else 'scalene'
     end
   end
-  
+
   private
-  
+
   def validate(*lengths)
     lengths.sort!
-    
+
     invalid_check = lengths.any? { |length| length <= 0 } ||
                     lengths[0] + lengths[1] <= lengths[2]
     raise ArgumentError if invalid_check
-    
+
     lengths
   end
 end
 
-
+# rubocop:disable all
 =begin
 Solution
 

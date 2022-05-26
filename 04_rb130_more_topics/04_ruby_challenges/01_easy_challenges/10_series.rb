@@ -1,3 +1,4 @@
+# rubocop:disable all
 =begin
 
 Series
@@ -66,34 +67,36 @@ Algorithm
    return true if all characters are numbers
 =end
 
+# rubocop:enable all
 
 class Series
   attr_reader :number_string
+
   def initialize(number_string)
     @number_string = number_string if valid_string?(number_string)
   end
-  
+
   def slices(n)
     raise ArgumentError if n > number_string.length || n < 1
-    
+
     result = []
     digits_array = number_string.chars.map(&:to_i)
     digits_array.each_index do |index|
       result << digits_array[index, n]
       break if index + n + 1 > digits_array.size
     end
-    
+
     result
   end
-  
+
   private
-  
+
   def valid_string?(number_string)
     number_string.chars.all? { |char| char =~ /[0-9]/ }
-  end  
+  end
 end
 
-
+# rubocop:disable all
 =begin
 PEDAC Solution
 

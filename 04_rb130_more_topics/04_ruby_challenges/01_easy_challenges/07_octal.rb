@@ -1,3 +1,4 @@
+# rubocop:disable all
 =begin
 
 Octal
@@ -101,37 +102,38 @@ Algorithm
   - all characters between? '0'..'7'
 =end
 
+# rubocop:enable all
 
 class Octal
   OCTAL_BASE = 8
-  
+
   def initialize(value_string)
     @value = value_string
   end
-  
+
   def to_decimal
     return 0 unless valid?
-    
+
     value = 0
     reverse_digits.each_with_index do |digit, index|
-      value += digit * (OCTAL_BASE ** index)
-    end  
-    
+      value += digit * (OCTAL_BASE**index)
+    end
+
     value
   end
-  
-  private 
-  
+
+  private
+
   def reverse_digits
-    @value.reverse.chars.map(&:to_i)  # use @value.to_i.digits
+    @value.reverse.chars.map(&:to_i) # use @value.to_i.digits
   end
-  
+
   def valid?
     @value.chars.all? { |char| char.between?('0', '7') }
   end
 end
 
-
+# rubocop:disable all
 =begin
 PEDAC Solution
 

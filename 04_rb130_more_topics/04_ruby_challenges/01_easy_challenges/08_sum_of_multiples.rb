@@ -1,3 +1,4 @@
+# rubocop:disable all
 =begin
 
 Sum of Multiples
@@ -67,12 +68,13 @@ Algorithm
 - to instance method
   call ::to(upper_limit, @numbers initialized in constructor)
 =end
+# rubocop:enable all
 
 class SumOfMultiples
   def initialize(*numbers)
     @numbers = numbers
   end
-  
+
   def self.to(upper_limit, numbers=[3, 5])
     multiples = []
     numbers.each do |number|
@@ -82,16 +84,16 @@ class SumOfMultiples
         multiples << value
       end
     end
-    
+
     multiples.uniq.sum
   end
-  
+
   def to(upper_limit)
     self.class.to(upper_limit, @numbers)
   end
 end
 
-
+# rubocop:disable all
 =begin
 PEDAC solution
 

@@ -1,3 +1,4 @@
+# rubocop:disable all
 =begin
 
 Roman Numerals
@@ -123,6 +124,7 @@ Algorithm
       - curr_number = remainder
   4. Return roman_string 
 =end
+# rubocop:enable all
 
 class RomanNumeral
   ROMAN_NUMERALS = {
@@ -140,28 +142,28 @@ class RomanNumeral
     "CM" => 900,
     "M" => 1000
   }
-  
+
   def initialize(number)
     @number = number
   end
-  
+
   def to_roman
     remainder = @number
     roman_string = ""
-    
-    # sort to descending value to avoid #each depending on the ROMAN_NUMERAL 
+
+    # sort to descending value to avoid #each depending on the ROMAN_NUMERAL
     # hash order returning smaller values first.
-    symbol_array = ROMAN_NUMERALS.sort_by { |symbol, value| -value }  
+    symbol_array = ROMAN_NUMERALS.sort_by { |_, value| -value }
     symbol_array.each do |symbol, value|
-      count, remainder =  remainder.divmod(value)
+      count, remainder = remainder.divmod(value)
       roman_string << symbol * count
     end
-    
+
     roman_string
   end
 end
 
-
+# rubocop:disable all
 =begin
 
 1. Problem

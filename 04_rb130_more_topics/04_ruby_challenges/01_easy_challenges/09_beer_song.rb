@@ -1,3 +1,4 @@
+# rubocop:disable all
 =begin
 
 Beer Song
@@ -77,59 +78,60 @@ Algorithm
   call ::verses(99, 0)
   
 =end
+# rubocop:enable all
 
 class BeerSong
   LYRICS_LINE = {
-    2 => <<~LINE, 
+    2 => <<~LINE,
     2 bottles of beer on the wall, 2 bottles of beer.
     Take one down and pass it around, 1 bottle of beer on the wall.
     LINE
-    
-    1 => <<~LINE, 
+
+    1 => <<~LINE,
     1 bottle of beer on the wall, 1 bottle of beer.
     Take it down and pass it around, no more bottles of beer on the wall.
     LINE
-    
-    0 =>  <<~LINE, 
+
+    0 => <<~LINE
     No more bottles of beer on the wall, no more bottles of beer.
     Go to the store and buy some more, 99 bottles of beer on the wall.
     LINE
   }
-  
+
   def self.verse(line)
     raise ArgumentError, "Invalid verse" unless line.between?(0, 99)
-    
+
     case line
     when 0..2 then LYRICS_LINE[line]
     else
-      message =  <<~LINE 
+      <<~LINE
       #{line} bottles of beer on the wall, #{line} bottles of beer.
       Take one down and pass it around, #{line - 1} bottles of beer on the wall.
       LINE
     end
   end
-  
+
   def self.verses(start_line, end_line)
     raise ArgumentError, "start_line == end_line" if start_line == end_line
-    
+
     start_line, end_line = end_line, start_line if start_line < end_line
-    
+
     verses = ""
-    
+
     start_line.downto(end_line) do |line|
       verses << verse(line)
       verses << "\n" if line > end_line
     end
-    
+
     verses
   end
-  
+
   def self.lyrics
     verses(99, 0)
   end
 end
 
-
+# rubocop:disable all
 =begin
 PEDAC Solution
 

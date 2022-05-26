@@ -1,3 +1,4 @@
+# rubocop:disable all
 =begin
 
 Anagrams
@@ -73,30 +74,30 @@ anagram?(test_word)
 2. Convert word to array of chars and sort them.
 3. Compare equality of array of seed_word with array of test_words
 =end
-
+# rubocop:enable all
 
 class Anagram
   def initialize(seed_word)
     @seed_word = seed_word
   end
-  
+
   def match(words)
     words.select { |word| anagram?(word) }
   end
-  
+
   private
-  
+
   def anagram?(word)
     seed_word = @seed_word.downcase
     word = word.downcase
-    
+
     return false if seed_word == word
-    
+
     seed_word.chars.sort == word.chars.sort
   end
 end
 
-
+# rubocop:disable all
 =begin
 PEDAC Solution
 

@@ -1,3 +1,4 @@
+# rubocop:disable all
 =begin
 
 Point Mutations
@@ -62,27 +63,27 @@ Algorithm
      index += 1
 5. Return difference_count
 =end
-
+# rubocop:enable all
 
 class DNA
   def initialize(strand)
     @strand = strand
   end
-  
+
   def hamming_distance(other_strand)
     difference_count = index = 0
     common_size = [@strand.size, other_strand.size].min
-    
+
     while index < common_size
       difference_count += 1 if @strand[index] != other_strand[index]
       index += 1
     end
-    
+
     difference_count
   end
 end
 
-
+# rubocop:disable all
 =begin
 Solution
 

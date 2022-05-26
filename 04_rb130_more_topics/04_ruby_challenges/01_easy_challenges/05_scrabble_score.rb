@@ -1,3 +1,4 @@
+# rubocop:disable all
 =begin
 
 Scrabble Score
@@ -88,6 +89,7 @@ Algorithm
     - reduce values by summing them together
     - return sum
 =end
+# rubocop:enable all
 
 class Scrabble
   LETTER_VALUE = {
@@ -118,26 +120,26 @@ class Scrabble
     "Q" => 10,
     "Z" => 10
   }
-  
+
   def self.score(tiles)
     tiles = tiles.strip.upcase if tiles
-    
+
     return 0 if tiles.nil? || tiles.empty?
-    
+
     values = tiles.chars.map { |char| LETTER_VALUE.fetch(char, 0) }
     values.reduce(:+)
   end
-  
+
   def initialize(tiles)
     @tiles = tiles
   end
-  
+
   def score
     self.class.score(@tiles)
   end
 end
-   
-    
+
+# rubocop:disable all
 =begin
 PEDAC solution
 

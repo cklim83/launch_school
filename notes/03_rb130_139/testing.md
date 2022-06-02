@@ -6,6 +6,7 @@
 [Why Write Tests?](#why-write-tests)\
 [Setting up Minitest](#setting-up-minitest)\
 [Using Minitest](#using-minitest)\
+[Terminologies](#Terminologies)\
 [Important Notes on Testing](#important-notes-on-testing)\
 [Assertions](#assertions)\
 [SEAT Approach](#seat-approach)\
@@ -71,6 +72,7 @@ Finished in 0.001034s, 967.2303 runs/s, 967.2303 assertions/s.
 1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
 ```
 
+[Back to Top](#section-links)
 
 ## Using Minitest
 ### Steps Overview
@@ -87,10 +89,11 @@ Finished in 0.001034s, 967.2303 runs/s, 967.2303 assertions/s.
 
 - Minitest lets us use normal Ruby syntax but RSpec is a Domain Specific Language (DSL) and uses code that reads like natural English
 
-### Terminology
+### Terminologies
 - **Test Suite**: The **entire set of tests** that accompanies the program or application.
 - **Test**: A situation or context in which verification checks are made. For example, making sure we get an error messafe after trying to log in with the wrong password. A test may contain 1 or more assertions.
 - **Assertion**: Actual verification step to confirm that results returned by a program or application match the expected results. 
+- **Unit Testing**: Automated tests that are designed and run in order to ensure that the smallest possible "unit" of a program is functioning as intended. In OOP, this "unit" usually consists of a singe interface, as in that of a class. The goal of unit testing is to ensure that each isolated piece of a program is functioning correctly.By using individual **assertions**, it provides a written contract that the interface in question must satisfy. We can build "units" based on this contract. Once all the tests pass, we consider the interface in question to be complete. Further, we can run these tests each time a change is made, to ensure that the unit in question continually fulfills its obligations and no [regression](#why-write-tests) occurs.
 
 ### Components of a Test file?
 ```ruby

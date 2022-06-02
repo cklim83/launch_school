@@ -5,12 +5,13 @@
 [Summary](#summary)\
 [Why Write Tests?](#why-write-tests)\
 [Setting up Minitest](#setting-up-minitest)\
-[Minitest Summary](#minitest-summary)\
+[Using Minitest](#using-minitest)\
 [Important Notes on Testing](#important-notes-on-testing)\
 [Assertions](#assertions)\
 [SEAT Approach](#seat-approach)\
 [Testing Equality](#testing-equality)\
-[Code Coverage](#code-coverage)
+[Code Coverage](#code-coverage)\
+[Exercises](#exercises)
 
 ## Summary
 - Minitest is Ruby's default testing library. It comes installed with Ruby.
@@ -605,5 +606,5 @@ Sample Output:
 ## Exercises
 [Practices](../../04_rb130_more_topics/02_testing)\
 [Assertions](../../04_rb130_more_topics/03_exercises/03_easy_testing)\
-[Medium Testing](../../04_rb130_more_topics/03_exercises/05_medium_2_testing)
+[Medium Testing](../../04_rb130_more_topics/03_exercises/05_medium_2_testing)\
 [Challenges](../../04_rb130_more_topics/04_ruby_challenges/01_easy_challenges)

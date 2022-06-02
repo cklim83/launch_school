@@ -43,26 +43,26 @@ This step involves 1 or more of following:
    
    **Example: [Writing Ordinal Numbers](https://www.britannica.com/dictionary/eb/qa/How-To-Write-Ordinal-Numbers)**
 	```ruby
-	first		1st
-	second 		2nd
-	third 		3rd
-	fourth 		4th
-	fifth 		5th
-	sixth 		6th
-	seventh 	7th
-	eighth 		8th
-	ninth 		9th
-	tenth 		10th
-	eleventh 	11th
-	twelfth 	12th
-	thirteenth 	13th
-	fourteenth 	14th
-	fifteenth 	15th
-	sixteenth 	16th
-	seventeenth 17th
-	eighteenth 	18th
-	nineteenth 	19th
-	twentieth 	20th
+	first        1st
+	second       2nd
+	third        3rd
+	fourth       4th
+	fifth        5th
+	sixth        6th
+	seventh      7th
+	eighth       8th
+	ninth        9th
+	tenth        10th
+	eleventh     11th
+	twelfth      12th
+	thirteenth   13th
+	fourteenth   14th
+	fifteenth    15th
+	sixteenth    16th
+	seventeenth  17th
+	eighteenth   18th
+	nineteenth   19th
+	twentieth    20th
 	```
 	Becomes the following rule:
 	
@@ -82,7 +82,7 @@ This step involves 1 or more of following:
 	|---|---|
 	| Vertical | Same column in 8 by 8 board |
 	| Horizontal | Same row in 8 by 8 board |
-	| Diagonal | row_1 - row_2 == col_1 - col_2 |
+	| Diagonal | abs(row_1 - row_2) == abs(col_1 - col_2) |
   
 5. Asking questions to verify your understanding
 	- Will we expect a particular input, range of values? Do we need to validate inputs?

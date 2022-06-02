@@ -473,11 +473,11 @@ Joe_Johnson        # Match John since _\BJohn
 
 - Since `?` can match zero occurrence `/h?/` will match any string since it will also match `""` 
 	```Ruby
-	pattern = `/h?/
-	`
-	his     # matches 'h'
-	is      # matches ""
-	ish     # matches 'h'
+	pattern = /h?/
+	
+	"his".match(pattern)     => #<MatchData "h">
+	"is".match(pattern)      => #<MatchData ""> 
+	"ish".match(pattern)     => #<MatchData ""> as empty string occurs before h 
 	```
 
 - **Note:** The `?` wildcard used in command line is different from the `?` used in regex
@@ -543,7 +543,7 @@ Joe_Johnson        # Match John since _\BJohn
 	```
 
 ### Ruby Regex Application - Splitting Strings
-- `String#split` can both string delimiter or regex as arguments to split a string, returning an array containing the substrings as elements.
+- `String#split` can take both string delimiter or regex as arguments to split a string, returning an array containing the substrings as elements.
 	```Ruby
 	# use str to split for well formatted inputs
 	record = "xyzzy\t3456\t334\tabc"

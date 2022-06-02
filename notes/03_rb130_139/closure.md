@@ -397,7 +397,7 @@ There is a difference when we pass array arguments in method calls vs yielding t
 	end
 	# argument assignment: a = 1, b = [2, 3], c = 4
 	```
-	[Link to pass parameter example](../../../04_rb130_more_topics/03_exercises/04_medium_1/05_pass_parameter_3.rb)
+	[Link to pass parameter example](../../04_rb130_more_topics/03_exercises/04_medium_1/05_pass_parameter_3.rb)
 
 [Back to Top](#section-links)
 
@@ -475,8 +475,8 @@ test { |prefix| puts prefix + "xyz" }
 ```
 In above example, `{ |prefix| puts prefix + "xyz" }` is assigned to method parameter `block` in method `test` when `test` was invoked. `&` then converts `block` into a `Proc` object so that `block` is now referencing a `Proc` object within `test`. `block` is then passed into `display` as an argument (notice we do not need an `&` prefix for block in `display` since the argument passed in is already a `Proc` object). We then invoke this `Proc` using `call` and supply it with `">>>"` as argument.
 
-
 [Back to Top](#section-links)
+
 
 ## Argument To Block Conversion
 Earlier, we show how to convert a block to a `Proc` object by passing it as an explicit block to a method using the `&` operator. 
@@ -614,7 +614,7 @@ puts method_object    # <Method: main.convert_to_base_8(n) (irb):189>
 - `&` then converts the `Proc` to a block that is equivalent to `{ |n| convert_to_base_8(n) }`. 
 - This way, we have a indirect workaround for methods with parameters that cannot use the symbol-to-proc shortcut directly.
 
-[Link to full example](../../../04_rb130_more_topics/03_exercises/04_medium_1/06_method_to_proc.rb)
+[Link to full example](../../04_rb130_more_topics/03_exercises/04_medium_1/06_method_to_proc.rb)
 
 [Back to Top](#section-links)
 

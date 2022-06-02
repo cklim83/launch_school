@@ -232,7 +232,7 @@ pattern = /\(cat\|dog\|rabbit\)/ #match "(cat|dog|rabbit)"
  
 
 ### Character Classes - Range of Characters
-- `-` is used for consecutive and inclusive sequence of characters in a character class. For example, `/[a-z]/` matches any lower case alphabetic character, `/[0-9]/` matches any digits. We can also combine ranges to create more patterns e.g. `/[0-9A-Fa-f]/` to match any alphanumeric. 
+- `-` is used for consecutive and inclusive sequence of characters in a character class. For example, `/[a-z]/` matches any lower case alphabetic character, `/[0-9]/` matches any digits. We can also combine ranges to create more patterns e.g. `/[0-9A-Fa-f]/` to match any hexadecimal. 
 
 - Best practices:
 	- It is not advisable to use range for non-alphanumeric characters

@@ -1,7 +1,7 @@
 # Closures in Ruby
 ## Section Links
 
-[What Is A Closure](#what-is-a-closure)\
+[Closure and Binding](#closure-and-Binding)\
 [Blocks, Procs and Lambda](#blocks-procs-and-lambda)\
 [Calling Methods With Blocks](#calling-methods-with-blocks)\
 [Explicit Block Parameter](#explicit-block-parameter)\
@@ -11,14 +11,152 @@
 
 ---
 
-## What Is A Closure
-A **closure** is an abstract programming concept that exists across multiple languages. It refers to a "chunk of code" that can be saved for execution at a later time, likely from a different location. Closures work by **binding** surrounding artifacts, which can be variables, constants or methods, that are referenced within the code chunk.
+## Closure and Binding
+A **closure** is an abstract programming concept that exists across multiple
+languages. It refers to a "chunk of code" saved for execution at a later time,
+likely from a different location. A closure retain references to its
+surrounding artifacts (i.e. variables, constants or methods), allowing them
+to be accessed whereever the closure is subsequently executed.
 
-This **binding** creates an _virtual enclosure_ (the reason why this construct is called a closure) around the artifacts, allowing them to be referenced and/or updated when the closure is subsequently executed, _even in a code location where these variables are not-in-scope._
-![closure illustration](./images/closure_illustration.png)
+A **binding**, or name binding, **binds a name to a memory reference**, like
+a variable's name to its value. All surrounding artifacts that are **in-scope**
+when the closure was defined are its binding. It **does not matter** whether
+they are accessed within the code chunk. 
+**Note**: Closure parameters are generally not considered part of the closure's
+binding since it does not reference external objects but are local in scope.
+
+**Example: Binding of A Proc Object**
+```ruby
+CONST_NUM = 100
+oos_num = 8
+
+def another_method
+  "007"
+end
+
+def my_test
+  a = 10
+  b = 20
+  @num = 506
+  Proc.new {c = 10}
+end
+
+my_test                                   # => #<Proc:0x00007fbfce1ba0e0 (irb)> 
+my_test.binding                           # => #<Binding:0x00007fbfd2021748>
+my_test.binding.local_variables           # => [:a, :b]
+
+p eval("a * b", my_test.binding)          # => 200
+p eval("CONST_NUM", my_test.binding)      # => 100
+p eval("@num", my_test.binding)           # => 506
+p eval("another_method", my_test.binding) # => "007"
+p eval("oos_num", my_test.binding)        # => NameError (undefined local variable or method `oos_num' for main:Object)
+```
+In above example, `my_test` returns a new `Proc` object, which is a type of 
+closure in Ruby. We call `#binding` to get the binding object associated
+with that closure, then use its instance methods to examine which artifacts
+actually form part of the closure binding.
+
+By calling `Binding#local_variables` on the binding object, we see that local
+variables `a` and `b` within `my_test` are indeed **part of the Proc object's
+binding, even though they are not used** within the `Proc` object. 
+
+`CONST_NUM`, `@num`, `another_method` are also part of the binding since they
+are all in scope when the Proc object was created. However, as they are not
+local variables, they do not appear in the array returned by 
+`Binding#local_variables`. An alternative way to test their presence is using 
+`Kernel#eval`. This function takes in an string expression as first argument,
+and the associated binding as a second argument. As all of these artifacts
+can be evaluated to return the values they are referencing, we confirm they
+are part of the Proc object's binding. 
+
+Since `oos_num` is out of scope in `my_test`, it does not form part of the Proc
+object's binding, resulting in a `NameError` when we try to access it via the
+binding object of the Proc using `#eval`.
+
+**Example: Binding of A Block**
+```ruby
+name = "Thomas"
+msg = "Good Morning"
+
+def test_method
+  "test"
+end
+
+def greeter(greeting)
+  yield(greeting)
+end
+
+greeter(msg) do |greet|
+  # What are the binding for this block?
+end
+
+another_name = "Calvin"
+
+def another_method
+  "another_method"
+end
+```
+In the block example above, the binding for the block passed to 
+the `greeter` method are `name`, `msg` and the `greeter` method since they are
+all in-scope when the block was defined. `another_name` and `another_method`
+are not part of the block's binding since they are not yet defined when
+the block is created. `greet` is a block parameter and not considered part of 
+the binding.
+
+### Out of Scope Artifacts
+Artifacts that are **not in scope** during closure definition are not part
+of the binding and will raise a `NameError` if referenced in the closure.
+The error is not raised during closure definition but on execution.
+```ruby
+def call_chunk(code_chunk)
+  code_chunk.call
+end
+
+say_color = Proc.new { puts "The color is #{color}" }
+color = "blue"
+call_chunk(say_color)
+```
+In the code snippet above, local variable `color` isn't part of the `Proc`
+object's binding since it isn't in scope when the `Proc` object is
+instantiated. This will raise an error when we try to call the `code_chunk`
+closure within the `call_chunk` method, and not during the closure definition.
+We can fix this by making `color` in scope and part of the Proc object's
+binding by placing `color = "blue"` above the closure definition.
+
+
+### A Closure Tracks Its Binding
+A closure **tracks its binding continually** to have up-to-date information
+available during execution. Whenever it is executed, it will drag all of it
+around. Hence any changes in artifacts' values after closure definition will
+be reflected when the closure is executed.
+```ruby
+def call_me(some_code)
+  some_code.call
+end
+
+name = "Robert"
+chunk_of_code = Proc.new {puts "hi #{name}"}
+name = "Griffin III"        # re-assign name after Proc initialization
+
+call_me(chunk_of_code)
+```
+
+The output is:
+```none
+hi Griffin III
+=> nil
+```
+In above example, even though `name` was reassigned to a new value after the
+`Proc` object `chunk_of_code` was created, the `Proc` object was still able
+to output the updated value on execution. This suggest that the **binding is
+not static**: just storing the values of artifacts at `Proc` object creation.
+Instead, the binding allows the `Proc` object to **dynamically reference**
+and retrieve the up-to-date values at point of invocation.
+
 
 ### \[Refresher\] Blocks and Variable Scope
-A block creates a new scope for local variables. Only outer local variables are accessible to inner blocks.
+A block creates a new scope for local variables. Only outer local variables are
+accessible to inner blocks.
 ```ruby
 level_1 = "outer-most variable"
 
@@ -41,40 +179,6 @@ end
 # level_2 is not accessible here
 # level_3 is not accessible here
 ```
-
-### Closure and Binding
-A closure **tracks its bindings continually** to have up-to-date information available during execution. Whenever it is executed, it will drag all of it around. Hence any changes in artifacts' values after closure definition will be reflected when the closure is executed.
-```ruby
-def call_me(some_code)
-  some_code.call
-end
-
-name = "Robert"
-chunk_of_code = Proc.new {puts "hi #{name}"}
-name = "Griffin III"        # re-assign name after Proc initialization
-
-call_me(chunk_of_code)
-```
-
-The output is:
-```none
-hi Griffin III
-=> nil
-```
-In above example, even though `name` was reassigned to a new value after the `Proc` object `chunk_of_code` was created, the `Proc` object was still able to output the updated value on execution. This suggest that the **binding is not static**: just storing the values of artifacts at `Proc` object creation. Instead, the binding allows the `Proc` object to **dynamically reference** and retrieve the up-to-date values at point of invocation.
-
-### Out of Scope Binding
-Artifacts that are **not in scope** during closure definition is not part of the binding and will raise a `NameError`, not during closure definition, but when the closure is executed.
-```ruby
-def call_chunk(code_chunk)
-  code_chunk.call
-end
-
-say_color = Proc.new { puts "The color is #{color}" }
-color = "blue"
-call_chunk(say_color)
-```
-In the code snippet above, local variable `color` isn't part of the `Proc` object's binding since it isn't in scope when the `Proc` object is instantiated. This will raise an error when we try to call the `code_chunk` closure within the `call_chunk` method, and not during the closure definition. This can be fixed by placing `color = "blue"` above the closure definition to make it in-scope.
 
 ### Creating Closures in Ruby
 In Ruby, we can create closures in 3 ways:
@@ -103,16 +207,24 @@ p s2.call           # => 1
 p s1.call           # => 4 (note: this is s1)
 p s2.call           # => 2
 ```
-- `#sequence` method returns a `Proc` object that forms a closure with local variable `counter`.
-- Each time we call the `Proc` object, it increments it own **private copy** of `counter`, returning `1`, `2`, `3` etc on each subsequent call.
-- Every call to `sequence` returns a new `Proc` object, each with its **own copy** of `counter`. Hence the counter values of `s1` and `s2` are independent 
+- When the `#sequence` method is called, it returns a `Proc` object that forms
+  a closure with local variable `counter`. The block `{ counter += 1 }` is not
+  executed. Thus `counter`, the binding of the Proc object, still references `0`.
+- Each time we call the `Proc` object, `{ counter += 1 }` is executed to 
+  increments it own **private copy** of `counter`, returning `1`, `2`, `3` etc
+  on each subsequent call.
+- Every call to `sequence` returns a new `Proc` object, each with its **own
+  copy** of `counter`. Hence the counter values of `s1` and `s2` are
+  independent 
 
 [Back to Top](#section-links)
 
 
 ## Blocks, Procs and Lambda
 ### Blocks
-Blocks are an unnamed chunks of code enclosed by `{ ... }` or `do ... end`. Unlike `Proc` or `Lambda`, they are **not objects** and cannot be the return value of methods or other blocks.
+Blocks are an unnamed chunks of code enclosed by `{ ... }` or `do ... end`.
+Unlike `Proc` or `Lambda`, they are **not objects** and cannot be the return
+value of methods or other blocks.
 ```ruby
 [1, 2, 3].each { |num| puts num }  # single line block
 
@@ -219,7 +331,12 @@ call_lambda
 # inside proc
 # after proc
 ```
-In the example above, the final `puts` in the method `call_proc` was never executed as the `return` statement in the proc dumps us out of both the proc as well as the enclosing method. In `call_lambda` however, the `return` from the lambda only dumps us out of the lambda itself and the enclosing method continues executing. This difference in the way how control flow keywords behave in procs and lambdas is one of the main difference between them. 
+In the example above, the final `puts` in the method `call_proc` was never
+executed as the `return` statement returned by the proc exits **both the proc
+as well as the enclosing method**. In `call_lambda` however, the `return` from
+the lambda **exits only the lambda block but not the enclosing method**.This
+difference in the way how control flow keywords behave in procs and lambdas
+is one of the main difference between them. 
 
 Lambdas can be created in 2 ways:
 - Using `Kernel#lambda`

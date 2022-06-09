@@ -505,9 +505,19 @@ Expected "hi there" (oid=70321861410720) to be the same as "hi there" (oid=70321
 ```
 
 ### Equality with Custom Class
-For standard ruby classes such as strings, arrays and hashes, `==` is already implemented so that `assert_equal` will work as expected i.e. comparing values.
+For standard ruby classes such as strings, arrays and hashes, `==` is already
+implemented so that `assert_equal` will work as expected i.e. comparing values.
 
-For custom classes, for `assert_equal` to work as expected, we will need to implement `==` for the custom class. Otherwise, assert_equal will utilise `BasicObject#==` made available through inheritance, which will fail the test if both objects are not the same. Nonetheless, the test will indicate a failed run and remind us to implement `==` for our custom class.
+For custom classes, for `assert_equal` to work as expected, we will need to
+implement `==` for the custom class. Otherwise, assert_equal will utilise
+`BasicObject#==` made available through inheritance, which will fail the test
+if both objects are not the same. Nonetheless, the test will indicate a failed
+run and remind us to implement `==` for our custom class. 
+**Note:** We should just say that `BasicObject#==` returns false if two objects
+are not one and the same and **not infer that it uses `#equal?` under the hood**. 
+This is because [documentation](https://docs.ruby-lang.org/en/master/BasicObject.html#method-i-3D-3D)
+does not say so and Ruby is coded in a different language.
+
 ```ruby
 class Car
   attr_accessor :wheels, :name

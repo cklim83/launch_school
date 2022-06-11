@@ -9,7 +9,7 @@ we need protocols to govern how data exchanges should take place.
 
 ## What Are Protocols?
 Protocols are essentially a set of rules governing the exchange or transmission
-of data. 
+of data for network communication. 
 
 ## Common Protocols
 

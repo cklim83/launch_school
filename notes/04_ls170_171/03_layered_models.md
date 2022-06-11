@@ -57,8 +57,8 @@ at the immediate layer below.
 
 This arrangement allow protocols at each layer to operate independently with a
 level of abstraction. A lower layer protocol can just encapsulate the entire
-PDU from the upper layer by adding the requisite headers without the need to
-consider what protocols were used in the upper layer. For example TCP segment
+PDU from the upper layer by adding the requisite header without the need to
+consider the protocol used in the upper layer. For example TCP segment
 isn't really concerned whether its data payload is an HTTP request, an SMTP
 command, or some other sort of Application layer data. This creates a system
 where the lower layer effectively provides a **service** to the upper layer.

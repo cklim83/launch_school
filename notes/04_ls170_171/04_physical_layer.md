@@ -1,5 +1,7 @@
 # The Physical Network
 
+![Physical Layer](./images/08_physical_layer.png)
+
 The "physical" network (lowest layer) is made of networked devices, cables
 and wires. Even radio and light waves used in wireless network and fiber optics
 exist in the physical realm and are bounded by physical laws and rules such
@@ -61,10 +63,10 @@ traceroute google.com
 ```
 
 ## Bandwidth
-Bandwidth **varies across the network**. Capacity is much higher at the core
-network then at the last mile (endpoint that connect to hom or office buildings).
-The bandwidth of a connection is the lowest amount at a particular point which
-is called as a bandwidth bottleneck. 
+Bandwidth **varies across the network**. Capacity is much **higher at the core
+network then at the last mile** (endpoint that connects to home or office
+buildings). The bandwidth of a connection is the lowest amount at a particular
+point which is called as a bandwidth bottleneck. 
 
 ## Limitations of Physical Network
 **Low bandwidth** can be an issue when dealing with large volume of data but

@@ -97,5 +97,5 @@ efficiently retrieve a tiny subset of addresses that contain the required
 address. Each routing device will hence need to store all the MAC addresses in
 the world, an impossible task.
 
-A different protocol will be require to scale to a network of networks that 
-spans the world. The Internet Protocol provides that.
+A different protocol will be required to scale to a network of networks that 
+spans the world. The Internet Protocol (IP) provides that.

@@ -19,13 +19,14 @@ transportation medium used.
 We can define the performance of a physical network by its Latency and Bandwidth.
 
 **Latency**: The **time** required to move data from one point to another point
-             in a network.
+             in a network. This is a **measure of delay**.
              
 **Bandwith**: The **maximum amount of data** that can be sent **per unit of time** 
-              and measured in bits per second (e.g. Mbps). This is frequently 
-              misunderstood as speed. An analagous example is the number of
-              lanes on the road. The more lanes available, more cars can be
-              transfered at once with all moving at designated speed.
+              and measured in bits per second (e.g. Mbps). This is a **measure 
+              of capacity** but is frequently misunderstood as speed. An analagous
+              example is the number of lanes on the road, each with same speed
+              limit. The more lanes available, more cars can be transfered at
+              once with all moving at designated speed.
               
 ## Components of Latency
 Latency is a measure of delay. Data starts at point A and takes x millisecs (ms)

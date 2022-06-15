@@ -2,16 +2,17 @@
 
 ![Network Layer](images/13_network_layer.png)
 
-The primary function of protocols at this layer is to facilitate communication
-between hosts (e.g. computers) on different networks.
+The primary function of protocols at this layer is to **facilitate communication
+between hosts** (e.g. computers) on different networks.
 
 The Internet Protocol (IP) is the predominant protocol at this layer. There
-are two versions of IP currently in use: IPv4 and IPv6. Although there
-are slight differences between the two versions, the primary features are the
-same:
-- Routing capability via IP addressing
-- Encapsulate data into packets.
+are two versions of IP currently in use: IPv4 and IPv6. As the primary features
+of both versions are the same:
+- provide routing capability via IP addressing, 
+- encapsulate data into packets.
 
+Notes will be **based on IPv4**, with main differences between IPv4 and IPv6 
+highlighted in a section below.  
 
 ## Data Packets
 The Protocol Data Unit (PDU) for the IP protocol is the **packet**. A packet
@@ -33,8 +34,8 @@ UDP)
 - **Checksum:** error checking value. Destination device will generate a value
 using the same algorithm and it doesnt match with this value, the packet is
 deemed corrupted and is dropped.
-- Source Address: 32-bit IP address of the source (sender)
-- Destination Address: 32-bit IP address of the destination (intended recipient)
+- **Source Address:** 32-bit IP address of the source (sender)
+- **Destination Address:** 32-bit IP address of the destination (intended recipient)
 
 ## IP Addresses (IPv4)
 - IPv4 addresses are 32-bit in length and divided into four sections of eight
@@ -71,17 +72,18 @@ is received by a router, the router examines the destination IP address and
 matches it against a list of network subnets in its routing table to determine 
 the best route to forward the packet to its destination.
 
-### IPv6
+### Difference with IPv6
 - Due to the growing number of internet connected devices, IPv6 was introduced
 to expand the maxium number of IP addresses from ~4.3 billion in IPv4 to ~340 
 undecillion (340 billion billion billion billion). This is achieved by
 increasing the number of bits of an IP address from 32-bit to 128-bit 
 (eight 16-bit blocks).
-- IPv6 also has a different header structure and a lack of error checking (left
+- IPv6 also has a different header structure and removed error checking (left
 to linked layer checksum)
 
 
 ## Networked Applications
-Internet Protocol supports communications between hosts. To support
-communications for applications residing on hosts, we need to solve this
-at the transport layer.
+Internet Protocol supports communications between hosts. As there can be multiple
+applications residing on a single host that needs to communicate with
+applications residing on different hosts simultaneously, we need to solve
+this with another protocol at the transport layer.

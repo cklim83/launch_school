@@ -89,7 +89,7 @@ the concept or its implementation.
 **Conceptually**, a socket is an communication endpoint defined by an 
 IP Address-Port pair used for inter-process communication.
 
-Implementation-wise: it could refer to
+**Implementation-wise**, it could refer to:
 - UNIX socket: a mechanism for communication between local processes running 
 on same machine
 - Internet socket (e.g. TCP/IP): a mechanism for communication between
@@ -128,7 +128,7 @@ four-tuple of (source IP, source port, destination IP, destination port).
 Any messages not matching this four-tuple will be picked up by the original
 socket to instantiate a new socket object for the new connection.
 
-![Connection-Oriented System](images(22_connection_oriented_system.png))
+![Connection-Oriented System](images/22_connection_oriented_system.png)
 
 The advantage of a **connection-oriented system** is that it makes it **easier
 to include rules that will make the communication more reliable**: 

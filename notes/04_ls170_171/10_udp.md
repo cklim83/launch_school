@@ -5,7 +5,7 @@ Destination Port numbers to provide multiplexing.
 
 ![UDP Header](images/31_udp_header.png)
 
-Unlike TCP, UDP does not provide reliable communication.
+Unlike TCP, UDP **does not provide reliable communication**.
 - It does not guarantee message delivery
 - It does not guarantee message delivery order
 - It has no built-in congestion avoidance (i.e. network) or flow-control 

@@ -40,7 +40,7 @@ establish a connection.
 |SYN-SENT |Receives the SYN ACK Segment sent by the server, and sends an ACK in response. The client is now finished with the connection establishment process |ESTABLISHED |SYN-RECEIVED |Waits for an ACK for the SYN it just sent |- |
 |ESTABLISHED |Ready for data transfer. Can start sending application data. |ESTABLISHED |SYN-RECEIVED |Receives the ACK sent in response to its SYN. The server is now finished with the connection establishment process. |ESTABLISHED |
 
-[RFC793](https://www.ietf.org/rfc/rfc793.txt)
+**TCP Reference:** [RFC793](https://www.ietf.org/rfc/rfc793.txt)
 
 The sender cannot send any application data until it has sent the `ACK` segment
 while the recipient cannot start sending data until it has received the `ACK`
@@ -51,7 +51,7 @@ using TCP at the transport layer has to bear.
 
 ![Three Way Handshake To Establish Connection](images/28_tcp_three_way_handshake.png)
 
-Question: What happens when the handshake messages are lost?
+**Question: What happens when the handshake messages are lost?**\
 TCP has a sequence number in all its segments. Hence it's easy to know if a 
 segment was lost or not and retransmission is required.
 
@@ -62,7 +62,7 @@ have an `SEQ` number, so the recipient would know implicitly the sender had
 received its `SYN-ACK` segment to be able to start sending data. The re-send of
 the `SYN-ACK` is only necessary of there no data is received at all.
 
-[Source](https://stackoverflow.com/questions/16259774/what-if-a-tcp-handshake-segment-is-lost)
+**Source:** [Stackoverflow](https://stackoverflow.com/questions/16259774/what-if-a-tcp-handshake-segment-is-lost)
 
 ## Flow Control
 Flow control is a mechanism to **prevent the sender from overwhelming the

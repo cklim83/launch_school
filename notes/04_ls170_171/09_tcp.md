@@ -1,6 +1,12 @@
 # Transmission Control Protocol (TCP)
 The Transmission Control Protocol is a key backbone of the Internet by ensuring
-**reliable** data transfer over an unreliable channel.
+**reliable** data transfer over an unreliable channel. A connection-oriented
+protocol, it ensures the following:
+- It guarantees message delivery through message acknowledgement and retransmission
+- It guarantees message delivery order
+- It has built-in congestion avoidance (i.e. network) and flow-control 
+(recipient) mechanisms
+
 
 ## TCP Segments
 **Segments** are the Protocol Data Unit (PDU) of TCP. Source Port and 
@@ -34,6 +40,7 @@ establish a connection.
 |SYN-SENT |Receives the SYN ACK Segment sent by the server, and sends an ACK in response. The client is now finished with the connection establishment process |ESTABLISHED |SYN-RECEIVED |Waits for an ACK for the SYN it just sent |- |
 |ESTABLISHED |Ready for data transfer. Can start sending application data. |ESTABLISHED |SYN-RECEIVED |Receives the ACK sent in response to its SYN. The server is now finished with the connection establishment process. |ESTABLISHED |
 
+[RFC793](https://www.ietf.org/rfc/rfc793.txt)
 
 The sender cannot send any application data until it has sent the `ACK` segment
 while the recipient cannot start sending data until it has received the `ACK`
@@ -44,7 +51,18 @@ using TCP at the transport layer has to bear.
 
 ![Three Way Handshake To Establish Connection](images/28_tcp_three_way_handshake.png)
 
-What happens when the handshake messages are lost????
+Question: What happens when the handshake messages are lost?
+TCP has a sequence number in all its segments. Hence it's easy to know if a 
+segment was lost or not and retransmission is required.
+
+In the event `ACK` is lost, in most cases, there will be no resending
+for a very simple reason. Directly after the `ACK`, the host that opened the TCP
+protocol is likely to start sending data. That data will, as all TCP segments,
+have an `SEQ` number, so the recipient would know implicitly the sender had 
+received its `SYN-ACK` segment to be able to start sending data. The re-send of
+the `SYN-ACK` is only necessary of there no data is received at all.
+
+[Source](https://stackoverflow.com/questions/16259774/what-if-a-tcp-handshake-segment-is-lost)
 
 ## Flow Control
 Flow control is a mechanism to **prevent the sender from overwhelming the
@@ -80,8 +98,8 @@ window**.
 - TCP connection incur a **latency overhead** due to 3-way handshake
 - **Head-of-Line (HOL) blocking**, which relates to how issues in delivery or
 processing a message can delay or block the delivery or processing of subsequent
-messages. TCP exchanges can suffer from HOL blocking since one aspect of its
-reliability entails in-order delivery. Thus if an earlier sequence segment is
-lost and has to be retransmitted, segments later in the sequence that arrives
+messages. TCP exchanges can suffer from HOL blocking as it need to ensure 
+in-order delivery. Thus if an earlier sequence segment is lost and has to be
+retransmitted, segments later in the sequence that arrives
 first cannot be processed but has to be buffered. This increases
 queuing delay, a [component of latency](04_physical_layer.md#components-of-latency).

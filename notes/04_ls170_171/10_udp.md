@@ -1,12 +1,23 @@
 # User Datagram Protocol (UDP)
+## Section Links
+
+[UDP Overview](#udp-overview)\
+[Pros and Cons of UDP](#pros-and-cons-of-udp)
+
+---
+
+## UDP Overview
 UDP is another popular protocol on the transport layer. The Protocol Data Unit
 (PDU) of UDP is known as a **Datagram**. Similar to TCP, it uses the Source and
 Destination Port numbers to provide multiplexing. 
 
 ![UDP Header](images/31_udp_header.png)
 
+[Back to Top](#section-links)
+
+
 ## Pros and Cons of UDP
-Pros
+**Pros**
 - UDP provides **speed and flexibility** to its applications.
   - Being a connectionless protocol, applications using it can start sending 
   data without incurring the latency involved in establishing a connection
@@ -20,10 +31,12 @@ Pros
   good user experience. Occasional loss of data causing a slight glitch is
   better than significant lag.
 
-Cons
+**Cons**
 - UDP does not provide any of the reliability of TCP. It is just as **inherently
 unreliable** as the layers below it.
   - It does not guarantee message delivery
   - It does not guarantee message delivery order
   - It has no built-in congestion avoidance (i.e. network) or flow-control 
   (recipient) mechanisms
+
+[Back to Top](#section-links)

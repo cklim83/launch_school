@@ -1,4 +1,14 @@
 # The Internet
+## Section Links
+
+[What is the Internet?](#what-is-the-internet)\
+[What happens when you enter a URL in a browser and press enter?](#what-happens-when-you-enter-a-url-in-a-browser-and-press-enter)\
+[What is the web?](#what-is-the-web)\
+[What is a resource?](#what-is-a-resource)\
+[What is a Client-server model?](#what-is-a-client-server-model)\
+[Server Components](#server-components)
+
+---
 
 ## What is the Internet?
 The internet is a "network of networks". A network is any plurality of
@@ -9,17 +19,20 @@ Internet. When we say "The Internet", we are describing both the physical
 infrastructure that facilitates this interconnectivity, and the protocols
 that govern its functionality.
 
-**Smallest Network**
+Smallest Network\
 ![Simplest Network](./images/01_simplest_network_model.png)
 
-**Local Area Network**
+Local Area Network\
 ![LAN](./images/02_lan_model.png)
 
-**Inter-Network**
+Inter-Network\
 ![Inter-network](./images/03_inter_network_model.png)
 
-**Internet**
+Internet\
 ![Internet](./images/04_internet_model.png)
+
+[Back to Top](#section-links)
+
 
 ## What happens when you enter a URL in a browser and press enter?
 
@@ -35,7 +48,7 @@ address with the Domain Name System (DNS) in the following order:
   High Level DNS Workflow for Internet Traffic
   ![DNS Workflow](images/32_dns_diagram.png)
 
-**Initiate TCP Connection**
+**Data Transfer & TCP Handshake**
 - To open a connection for the browser to communicate with the application 
 server hosting the requested  resource, the Transmission Control Protocol
 (TCP) operating at the **Transport layer** creates a TCP Segment to initiate
@@ -104,6 +117,7 @@ before it prepares a `SYN-ACK` Segment as a reply to the client computer. The
 from server to the client. The client TCP then generate a `ACK` Segment to send
 back to the server's TCP to complete the TCP handshake.
 
+**HTTP Request and Response**
 - With connection now established, the browser then generates a HTTP `GET` 
 request in its **Application layer** and pass it down to its transport layer to
 send to the server application. The server application receives this request, 
@@ -117,10 +131,13 @@ used in the HTML file. Once all resources are gathered, the browser refreshs and
 renders the HTML page to the user. The user now sees the HTML page in his/her
 browser.
 
-[What happens when you enter a URL in your browser](https://medium.com/@maneesha.wijesinghe1/what-happens-when-you-type-an-url-in-the-browser-and-press-enter-bb0aa2449c1a)
-[Quora - How a computer know the MAC address of the receiver](https://www.quora.com/How-does-a-computer-know-the-MAC-address-of-its-receiver)
-[What is an ARP table](https://www.auvik.com/franklyit/blog/what-is-an-arp-table/)
+**References**\
+[What happens when you enter a URL in your browser](https://medium.com/@maneesha.wijesinghe1/what-happens-when-you-type-an-url-in-the-browser-and-press-enter-bb0aa2449c1a)\
+[Quora - How a computer know the MAC address of the receiver](https://www.quora.com/How-does-a-computer-know-the-MAC-address-of-its-receiver)\
+[What is an ARP table](https://www.auvik.com/franklyit/blog/what-is-an-arp-table/)\
 [Launch School - Encapsulation and Decapsulation in Packet Routing](https://launchschool.com/posts/b8c4153b)
+
+[Back to Top](#section-links)
 
 
 ## What is the web?
@@ -132,12 +149,16 @@ these reources through the use of HTTP. The Internet provides both the physical
 infrastructure and protocols required to facilitate the transfer of these resource
 from one device to another across the world.
 
+[Back to Top](#section-links)
+
 
 ## What is a resource?
 [URL - What are resources](12_urls.md#what-are-resources)
 
+[Back to Top](#section-links)
 
-## What is a Client-server model?
+
+## What is a Client-Server model?
 - A client-server is a type of networking model where two processes
 communicating over a network each take on a specific role.
 - The client is the party initiating the communication. It is responsible
@@ -157,6 +178,9 @@ intermediary machines e.g. load balancers.
 
 ![Client and Server](images/33a_client_server.png)
 
+[Back to Top](#section-links)
+
+
 ## Server Components
 - The three primary pieces of server components are the web server, the
 application server, and the data store.
@@ -168,3 +192,5 @@ contain application or business logic. Any server-side application code lives he
 retrieval and processing.
 
 ![Server Components](images/33b_server_components.png)
+
+[Back to Top](#section-links)

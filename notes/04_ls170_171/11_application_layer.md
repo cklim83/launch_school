@@ -1,4 +1,13 @@
 # The Application Layer
+## Section Links
+
+[Overview of Application Layer](#overview-of-application-layer)\
+[HTTP and the Web](#http-and-the-web)\
+[HTML URI and HTTP](#html-uri-and-http)
+
+---
+
+## Overview of Application Layer
 The application layer here is **not referring to the application itself**, but
 rather a set of **protocols** that provide communication services 
 **to applications**.
@@ -21,12 +30,18 @@ and server
 - **HTTP** between web browser (client) and web server
 - **FTP** for file transfer between client and server
 
+[Back to Top](#section-links)
+
+
 ## HTTP and the Web
 - The Internet is essentially a network of networks
 - The World Wide Web, or **web** for short, is a **service** accessed over
 the Internet. It is a vast information system comprising resources 
 navigable by an `URL` (Uniform Resource Locator). `HTTP` is the primary
 means applications interact with the resources which make up the web.
+
+[Back to Top](#section-links)
+
 
 ## HTML URI and HTTP
 **Hypertext Markup Language (HTML)** was the means to **standardize how web
@@ -50,3 +65,5 @@ uniformity to **how resources on the web are transferred between applications**.
 HTML and HTTP have both been through several iterations, and resources on the
 web are no longer limited to simple text documents but now include things such
 as images, video, audio files, dynamically generated content, and much more.
+
+[Back to Top](#section-links)

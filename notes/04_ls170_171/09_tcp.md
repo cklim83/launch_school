@@ -1,4 +1,17 @@
 # Transmission Control Protocol (TCP)
+## Section Links
+
+[TCP Overview](#tcp-overview)\
+[TCP Segments](#tcp-segments)\
+[TCP Handshake](#tcp-handshake)\
+[Flow Control](#flow-control)\
+[Congestion Avoidance](#congestion-avoidance)\
+[Advantages of TCP](#advantages-of-tcp)\
+[Disadvantages of TCP](#disadvantages-of-tcp)
+
+---
+
+## TCP Overview
 The Transmission Control Protocol is a key backbone of the Internet by ensuring
 **reliable** data transfer over an unreliable channel. A connection-oriented
 protocol, it ensures the following:
@@ -6,6 +19,8 @@ protocol, it ensures the following:
 - It guarantees message delivery order
 - It has built-in congestion avoidance (i.e. network) and flow-control 
 (recipient) mechanisms
+
+[Back to Top](#section-links)
 
 
 ## TCP Segments
@@ -27,8 +42,10 @@ handle data loss and duplication.
 segment. `SYN`, `ACK`, `FIN` and `RST` flags are used to establish and terminate
 a TCP connection and manage state of connection.
 
+[Back to Top](#section-links)
 
-## TCP Connections
+
+## TCP Handshake
 TCP is a connection-oriented protocol. It uses a three-way handshake to 
 establish a connection. 
 
@@ -64,6 +81,9 @@ the `SYN-ACK` is only necessary of there no data is received at all.
 
 **Source:** [Stackoverflow](https://stackoverflow.com/questions/16259774/what-if-a-tcp-handshake-segment-is-lost)
 
+[Back to Top](#section-links)
+
+
 ## Flow Control
 Flow control is a mechanism to **prevent the sender from overwhelming the
 receiver with too much data at once**. The recipient will process data at 
@@ -81,6 +101,9 @@ Although flow control prevents the sender from overwhelming the receiver,
 it **doesn't prevent either the sender or receiver from overwhelming the
 underlying network**.
 
+[Back to Top](#section-links)
+
+
 ## Congestion Avoidance
 Network Congestion is a situation that occurs when there is more data being
 transmitted on the network than there is network capacity to process and
@@ -94,11 +117,17 @@ As TCP tracks lost segments for retransmission. If the **rate of retransmission
 is high**, it knows the network is congested and **reduce the size of transmission
 window**.
 
+[Back to Top](#section-links)
+
+
 ## Advantages of TCP
 - It guarantees message delivery through message acknowledgement and retransmission
 - It guarantees message delivery order
 - It has built-in congestion avoidance (i.e. network) and flow-control 
 (recipient) mechanisms
+
+[Back to Top](#section-links)
+
 
 ## Disadvantages of TCP
 - TCP connection incur a **latency overhead** due to 3-way handshake
@@ -109,3 +138,5 @@ in-order delivery. Thus if an earlier sequence segment is lost and has to be
 retransmitted, segments later in the sequence that arrives
 first cannot be processed but has to be buffered. This increases
 queuing delay, a [component of latency](04_physical_layer.md#components-of-latency).
+
+[Back to Top](#section-links)

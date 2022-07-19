@@ -1,7 +1,19 @@
 # The Physical Network
+## Section Links
+
+[Function of Physical Layer](#function-of-physical-layer)\
+[Bits and Signals](#bits-and-signals)\
+[Characteristics of a Physical Network](#characteristics-of-a-physical-network)\
+[Components of Latency](#components-of-latency)\
+[Measures of Latency](#measures-of-latency)\
+[Bandwidth](#bandwidth)\
+[Limitations of Physical Network](#limitations-of-physical-network)
+
+---
 
 ![Physical Layer](images/08_physical_layer.png)
 
+## Function of Physical Layer
 The "physical" network (lowest layer) is made of networked devices, cables
 and wires. Even radio and light waves used in wireless network and fiber optics
 exist in the physical realm and are bounded by physical laws and rules such
@@ -10,10 +22,16 @@ as travel speed, losses and maximum range.
 These limitations determine the physical characteristics of a network and
 how the protocols higher up have to function.
 
+[Back to Top](#section-links)
+
+
 ## Bits and Signals
 To transfer information at the physical layer, **binary bits are converted
 to electrical signals, light signals or radio waves**, depending on the
 transportation medium used.
+
+[Back to Top](#section-links)
+
 
 ## Characteristics of a Physical Network
 We can define the performance of a physical network by its Latency and Bandwidth.
@@ -27,7 +45,10 @@ We can define the performance of a physical network by its Latency and Bandwidth
               example is the number of lanes on the road, each with same speed
               limit. The more lanes available, more cars can be transfered at
               once with all moving at designated speed.
-              
+
+[Back to Top](#section-links)
+
+
 ## Components of Latency
 Latency is a measure of delay. Data starts at point A and takes x millisecs (ms)
 to reach another point in the network. Different types of delay add up to
@@ -45,7 +66,10 @@ determine the overall latency of a network connection.
 - **Queuing delay:** Network devices such as routers can only process a certain
   amount of data at a time. Data beyond that time have to be buffers for 
   processing.
-  
+
+[Back to Top](#section-links)
+
+
 ## Measures of Latency
 - **Last-mile latency:** Delays involved in getting network signal from Internet
   Service Provider (ISP) network to home/office network. A lot of delays can
@@ -63,14 +87,22 @@ instead of `traceroute`.
 traceroute google.com
 ```
 
+[Back to Top](#section-links)
+
+
 ## Bandwidth
 Bandwidth **varies across the network**. Capacity is much **higher at the core
 network then at the last mile** (endpoint that connects to home or office
 buildings). The bandwidth of a connection is the lowest amount at a particular
 point which is called as a bandwidth bottleneck. 
 
+[Back to Top](#section-links)
+
+
 ## Limitations of Physical Network
 **Low bandwidth** can be an issue when dealing with large volume of data but
 **latency** tends to impose a more serious limitation on the performance of a
 network application. These physical limitations **have to be handled by higher
 level protocols** and will influence how applications are designed.
+
+[Back to Top](#section-links)

@@ -1,7 +1,16 @@
 # The Link/Data Link Layer
+## Section Links
+
+[Function of Link Layer](#function-of-link-layer)\
+[Ethernet Frames](#ethernet-frames)\
+[MAC Addressing](#mac-addressing)\
+[Problem of Scale](#problem-of-scale)
+
+---
 
 ![Link Layer](images/09_link_layer.png)
 
+## Function of Link Layer
 The physical layer is focussed on converting bits into signals(electrical, 
 light and radio waves) over the physical network. 
 
@@ -17,6 +26,9 @@ and the Ethernet protocol are governed by the
 [IEEE standards](https://standards.ieee.org/ieee/802.3/7071/).
 
 Two important aspects of Ethernet are **framing** and **addressing**.
+
+[Back to Top](#section-links)
+
 
 ## Ethernet Frames
 
@@ -51,6 +63,9 @@ capability of the Ethernet connection. A 100 Mbps Ethernet has a gap of
 to the [transmission delay](04_physical_layer.md/#components-of-latency) 
 highlighted under the notes for physical layer.
 
+[Back to Top](#section-links)
+
+
 ## MAC Addressing
 Every network-enabled device (e.g. a Network Interface Card) has a **unique MAC 
 Address** assigned when it is manufactured. This address is specific to a
@@ -84,6 +99,9 @@ to it using a MAC Address Table
 |3|D8:D3:85:EB:12:E3|
 |4|00:1B:44:11:3A:B7|
 
+[Back to Top](#section-links)
+
+
 ## Problem of Scale
 While MAC Address works for local network supporting a small number of devices,
 it **cannot be scaled to a large network** such network of networks because
@@ -99,3 +117,5 @@ the world, an impossible task.
 
 A different protocol will be required to scale to a network of networks that 
 spans the world. The Internet Protocol (IP) provides that.
+
+[Back to Top](#section-links)

@@ -1,4 +1,17 @@
 # HTTP
+## Section Links
+
+[What is HTTP?](#what-is-http)\
+[HTTP Request](#http-request)\
+[GET and POST Request Methods](#get-and-post-request-methods)\
+[HTTP Response](#http-response)\
+[The HTTP Request Response Cycle](#the-http-request-response-cycle)\
+[Stateful Web Applications](#stateful-web-applications)\
+[Sessions and Cookies](#sessions-and-cookies)\
+[AJAX](#ajax)\
+[HTTP Tools](#http-tools)
+
+---
 
 ## What is HTTP?
 - HTTP stands for **HyperText Transfer Protocol**
@@ -16,6 +29,9 @@ resource or update the client the status/issues encountered in performing
 that request.
 - HTTP is a text-based protocol. All requests and responses are transmitted
 in plain text, making them inherently insecure.
+
+[Back to Top](#section-links)
+
 
 ## HTTP Request
 What is a HTTP request?
@@ -49,6 +65,9 @@ include:
   - This field is mainly used by a `POST` request to house the data to be sent
   to the server.
 
+[Back to Top](#section-links)
+
+
 ### GET and POST Request Methods
 What are `GET` and `POST` requests and their uses?
 - A `GET` request is used to **retrieve resource** from the server. When we
@@ -67,23 +86,22 @@ redirected to a specific page upon successful authentication. The browser will
 see the response header and **automatically** issue a new `GET` request
 to the URL specified in the `Location` header.
 
-#### Examples
-**Page with Web form for POST Request (Triggered by form submit button)**
+**Example - Web form for POST Request Using Submit button**
 ![Page with Web form for POST Request](images/38_browser_webform.png)
 Image above shows a web form with a field and a `play!` web button. Entering
 a name and pressing the button triggers a HTTP `POST` request.
 
-**Examining the Data Parameters Using Web Developer Tool**
+**Example - Examining Data Parameters With Web Developer Tool**
 ![Browser POST Parameters](images/39_browser_post_parameters.png)
 Examining the html file of the page using Inspector tab, we can see that 
 the `player_name` parameter we are sending as part of the POST request is
 embedded in the form via the `name` attribute of the `input` element.
 
-**Redirection to another URL after POST Request**
+**Example - Redirection to another URL after POST Request**
 ![Redirected to New Location](images/40_browser_redirect_after_post.png)
 The response by the web server caused a redirection to a new URL.
 
-**Examining POST Request and Response under HTTP Tool Paw 3**
+**Example - Examining POST Request and Response With HTTP Tool Paw 3**
 ![Post Request and Response under HTTP Tool](images/41_http_tool_post_request.png) 
 Examining the response to the POST request using Paw HTTP tool, we see it 
 has 303 status code and a location field in the response header, indicating
@@ -97,15 +115,18 @@ $ curl -X POST "http://al-blackjack.herokuapp.com/new_player" -d "player_name=Al
 ```
 Here we can also supply the parameter `player_name=albert` using the -d flag.
 
+[Back to Top](#section-links)
+
+
 ## HTTP Response
-What is an HTTP Response?
+**What is an HTTP Response?**
 - HTTP responses are text-based messages sent from the server to the client in
 respond to the client's request. They either:
   - Provide the client with the resource required
   - Inform the client that the action it requested was carried out
   - Inform the client that an error occurred in the process
 
-What does an HTTP Response consist of?
+**What does an HTTP Response consist of?**
 - An HTTP response consists of a **response line**, **headers**, and a **body**
 - The **response line** contains the **status code**, **status text**, and **version**
   - The **status code** is a three-digit number send by server signifying the status
@@ -155,6 +176,9 @@ headers include:
 This might be the HTML of the webpage, or the raw data of any files being
 requested, such as images, videos, or audio files.
 
+[Back to Top](#section-links)
+
+
 ## The HTTP Request Response Cycle
 - The HTTP request-response cycle describes the way client and server
 behaves to facilitate the exchange of information.
@@ -177,7 +201,10 @@ behaves to facilitate the exchange of information.
 - When the browser receives the response, it will process the information within
 and render the resource in a user-friendly manner.
 
-## State
+[Back to Top](#section-links)
+
+
+## Stateful Web Applications
 What is meant by 'state' in the context of the web?
 
 - A "stateful" web application is one that maintains knowledge of past
@@ -196,13 +223,13 @@ any part of the system have to perform any clean up.
 - However, because of the statelessness of HTTP, it can be very difficult to
 simulate a stateful experience and make it seem like a persistent connection
 exists as many modern web apps do.
-
-
-## Stateful Web Applications
-Modern web applications are able to stimulate a stateful experience
+- Modern web applications are able to stimulate a stateful experience
 through the use of sessions and cookies.
 
-### Sessions and Cookies
+[Back to Top](#section-links)
+
+
+## Sessions and Cookies
 - A **session** refers to a contiguous period a client spent browsing a site. 
 It starts the moment a client **first arrives** on a site and ends when it
 stops using the site. Since the latter is non-deterministic, servers close a
@@ -280,6 +307,9 @@ typically impose a shorter expiry session to prevent unauthorised login while
 other apps like facebook may use long expiry sessions to reduce usage friction
 by minimising the need for relogins.
 
+[Back to Top](#section-links)
+
+
 ## AJAX
 - AJAX stands for Asynchronous JavaScript and XML and it utilizes an 
 **asynchronous request-response model** that allows is to develop highly
@@ -306,6 +336,8 @@ of a full page refresh.
 
 ![AJAX Example - Before entering search term](images/44_ajax_example_before.png)
 ![AJAX Example - After entering search term](images/45_ajax_example_after.png)
+
+[Back to Top](#section-links)
 
 
 ## HTTP Tools
@@ -348,13 +380,4 @@ tool will not
 - A browser will render the row response data in a user friendly way, and an
 HTTP tool will not
 
-
-
-
-
-
-
-
-
-
-
+[Back to Top](#section-links)

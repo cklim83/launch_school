@@ -1,7 +1,18 @@
 # The Internet/Network Layer
+## Section Links
+
+[Function of Network Layer](#function-of-network-layer)\
+[Data Packets](#data-packets)\
+[IP Addresses (IPv4)](#ip-addresses-ipv4)\
+[Routing and Routing Tables](#routing-and-routing-tables)\
+[Difference with IPv6](#difference-with-ipv6)\
+[Networked Applications](#networked-applications)
+
+---
 
 ![Network Layer](images/13_network_layer.png)
 
+## Function of Network Layer
 The primary function of protocols at this layer is to **facilitate communication
 between hosts** (e.g. computers) on different networks.
 
@@ -13,6 +24,9 @@ of both versions are the same:
 
 Notes will be **based on IPv4**, with main differences between IPv4 and IPv6 
 highlighted in a section below.  
+
+[Back to Top](#section-links)
+
 
 ## Data Packets
 The Protocol Data Unit (PDU) for the IP protocol is the **packet**. A packet
@@ -36,6 +50,9 @@ using the same algorithm and it doesnt match with this value, the packet is
 deemed corrupted and is dropped.
 - **Source Address:** 32-bit IP address of the source (sender)
 - **Destination Address:** 32-bit IP address of the destination (intended recipient)
+
+[Back to Top](#section-links)
+
 
 ## IP Addresses (IPv4)
 - IPv4 addresses are 32-bit in length and divided into four sections of eight
@@ -66,13 +83,19 @@ ranges further, to create more tiers within the hierarchy.
 
 ![IP Subnetting](images/16_ip_subnetting.png)
 
-### Routing and Routing Tables
+[Back to Top](#section-links)
+
+
+## Routing and Routing Tables
 All routers on the network store a local routing table. When an IP packet
 is received by a router, the router examines the destination IP address and
 matches it against a list of network subnets in its routing table to determine 
 the best route to forward the packet to its destination.
 
-### Difference with IPv6
+[Back to Top](#section-links)
+
+
+## Difference with IPv6
 - Due to the growing number of internet connected devices, IPv6 was introduced
 to expand the maxium number of IP addresses from ~4.3 billion in IPv4 to ~340 
 undecillion (340 billion billion billion billion). This is achieved by
@@ -81,9 +104,14 @@ increasing the number of bits of an IP address from 32-bit to 128-bit
 - IPv6 also has a different header structure and removed error checking (left
 to linked layer checksum)
 
+[Back to Top](#section-links)
+
 
 ## Networked Applications
 Internet Protocol supports communications between hosts. As there can be multiple
 applications residing on a single host that needs to communicate with
 applications residing on different hosts simultaneously, we need to solve
 this with another protocol at the transport layer.
+
+[Back to Top](#section-links)
+

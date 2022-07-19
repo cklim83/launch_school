@@ -1,13 +1,28 @@
 # URL
+## Section Links
+
+[What is an URL?](#what-is-an-url)\
+[What Are Resources?](#what-are-resources)\
+[Components of a URL](#components-of-a-url)\
+[Query Strings/Parameters](#query-stringsparameters)\
+[URL Encoding](#url-encoding)
+
+---
 
 ## What is an URL?
 A Uniform Resource Locator (URL) is akin to an address that allows a user to
 locate a resource on the Internet. It is a type of Uniform Resource Identifier
 (URI).
 
+[Back to Top](#section-links)
+
+
 ## What Are Resources?
 Resource is a generic term for materials we can access using a URL on the
 Internet. It can include images, videos, web pages and other files.
+
+[Back to Top](#section-links)
+
 
 ## Components of a URL
 ```plaintext
@@ -27,6 +42,9 @@ This part of URL is optional.
 - `?item=book&price=50`: The **query string** consists of **query
 parameters**. It is used to send additional data (e.g. filter return data)
 to the server and is optional.
+
+[Back to Top](#section-links)
+
 
 ## Query Strings/Parameters
 ```plaintext
@@ -53,6 +71,9 @@ or password should not be passed in this way.
 - Space and special characters like `&`, `=` cannot be used with query
 strings. They have to be encoded.
 
+[Back to Top](#section-links)
+
+
 ## URL Encoding
 - URL encoding is a technique that replaces characters that aren't allowed
 in a URL with an ASCII code.
@@ -78,3 +99,5 @@ character. Common encoded characters and example URLS as follows:
 | ! | 21 | http://www.thedesignshop.com/moredesigns%21.html |
 | + | 2B | http://www.thedesignshop.com/shops/spencer%2B.html |
 | # | 23 | http://www.thedesignshop.com/%23somequotes%23.html |
+
+[Back to Top](#section-links)

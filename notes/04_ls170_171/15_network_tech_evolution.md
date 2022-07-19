@@ -1,8 +1,10 @@
 # Evolution of Network Technologies
+## Section Links
 
-- Be aware of how and why HTTP is evolving
-- Be aware of functionality that browser APIs can provide
-- Be aware Client-Server is not the only network paradigm
+[HTTP Developments](#http-developments)\
+[Browser Networking APIs](#browser-networking-apis)
+
+---
 
 ## HTTP Developments
 - HTTP has changed considerably and is continuing to change
@@ -32,6 +34,8 @@ and minimize latency through various optimisations
   - Browser Speculative Optimisation: Pre-empt user actions from past behavior
   so that page loading completes faster (e.g. open connection upon hover,
   pre-render frequently visited pages) 
+
+[Back to Top](#section-links)
 
 
 ## Browser Networking APIs
@@ -93,7 +97,6 @@ other nodes. Between nodes, the relationship is P2P.
 - Other issues of a P2P network includes connection negotiation and 
 establishment, security, performance and scaling.
 
-
 ## WebRTC
 - WebRTC is a collection of standards, protocols, and APIs available in most
 modern web browsers. 
@@ -103,3 +106,5 @@ nodes.
 voice or video calling) within browser that acts as a node).
 - It uses other protocols for session establishment and maintenance, security,
 congestion, flow control and certain level of reliability.
+
+[Back to Top](#section-links)

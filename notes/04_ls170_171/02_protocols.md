@@ -1,4 +1,11 @@
 # Protocols
+## Section Links
+
+[Why Do We Need Protocols?](#why-do-we-need-protocols)\
+[What Are Protocols?](#what-are-protocols)\
+[Common Protocols](#common-protocols)
+
+---
 
 ## Why Do We Need Protocols?
 The internet is made up of a **giant myriad of devices** (PCs, laptops, servers, 
@@ -7,9 +14,15 @@ models of **networking equipments** (hubs, switches and routers) that collective
 run a massive variety of **software**. To **allow everything to interoperate**, 
 we need protocols to govern how data exchanges should take place.
 
+[Back to Top](#section-links)
+
+
 ## What Are Protocols?
-Protocols are essentially a set of rules governing the exchange or transmission
-of data for network communication. 
+Protocols are essentially a **set of rules governing the exchange or transmission
+of data** for network communication. 
+
+[Back to Top](#section-links)
+
 
 ## Common Protocols
 
@@ -35,3 +48,5 @@ aspect of communication, the **transfer of messages between applications**, but
 do so in different ways. **TCP and HTTP** would be examples of two protocols that
 address **different aspects** of communication; TCP for the transfer of messages
 between applications, and **HTTP for the structure of those messages**.
+
+[Back to Top](#section-links)

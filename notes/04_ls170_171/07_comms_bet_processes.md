@@ -1,4 +1,13 @@
 # Communications Between Processes
+## Section Links
+
+[Multiplexing and Demultiplexing](#multiplexing-and-demultiplexing)\
+[Ports](#ports)\
+[Netstat](#netstat)\
+[Sockets](#sockets)\
+[Connectionless and Connection Oriented System](#connectionless-and-connection-oriented-system)
+
+---
 
 ## Multiplexing and Demultiplexing
 While the Internet Protocol enables data exchanges between _hosts_(i.e. devices),
@@ -21,6 +30,9 @@ through optical fibers or radio waves transmitted at different frequencies.
 
 At the transport layer, we need a way for multiple applications to 
 share a common IP address which is shown below. 
+
+[Back to Top](#section-links)
+
 
 ## Ports
 A port is an **integer based identifier** assigned to a specific
@@ -59,6 +71,9 @@ specific applications on different machines.
 
 ![Multiple Sockets Example](images/20_multiple_sockets_example.png)
 
+[Back to Top](#section-links)
+
+
 ## Netstat
 We can use the `netstat` command to view all active connections on a system
 
@@ -81,6 +96,9 @@ tcp        0      0 172.16.0.66:43418       104.17.221.204:443      ESTABLISHED 
 tcp        0      0 172.16.0.66:39606       162.125.18.133:443      ESTABLISHED 3118/dropbox
 tcp        0      0 172.16.0.66:58200       3.8.113.63:443          ESTABLISHED 3942/slack      
 ```
+
+[Back to Top](#section-links)
+
 
 ## Sockets
 Sockets can have different meaning depending whether we are referring to
@@ -109,7 +127,10 @@ connection-oriented communication and connectionless communication. This
 is a distinguishing trait between two common protocols of the transport layer,
 TCP and UDP.
 
-## Sockets and Connections
+[Back to Top](#section-links)
+
+
+## Connectionless and Connection Oriented System
 A **connectionless** communication system has **only one** socket object
 defined by the IP address of the host machine and the port assigned to that
 process. This object will use the `listen()` method to wait for any incoming
@@ -136,5 +157,4 @@ to include rules that will make the communication more reliable**:
 - acknowledge received messages and
 - retransmit of lost messages.
 
-
-
+[Back to Top](#section-links)

@@ -1,5 +1,12 @@
 # Network Reliability
+## Section Links
 
+[Unreliable Lower Layers](#unreliable-lower-layers)\
+[Components of a Reliability Protocol](#components-of-a-reliable-protocol)\
+
+---
+
+## Unreliable Lower Layers
 Communication protocols used in the **lower layers of the network system up till
 the network layer is inherently unreliable**. Data can be **corrupted** during
 transportation and be **discarded** when they failed to match with the checksums
@@ -10,7 +17,10 @@ Missing data can cause applications to malfunction e.g. web page not rendering
 correctly, missing content in emails. Hence we need a protocol that can help
 ensure reliability.
 
-## Components of a Reliability Protocol
+[Back to Top](#section-links)
+
+
+## Components of a Reliable Protocol
 1. Having an **acknowledgement message** when original message was successfully 
 received before transmitting the next message.\
 ![Acknowledgement Only](images/23_acknowledgement_only.png)
@@ -32,3 +42,5 @@ known as **pipelining**. This make more efficient use of available bandwidth.\
 
 **Example of Pipeline Approach**
 ![Window Pipeline Example](images/27_window_pipeline_example.png)
+
+[Back to Top](#section-links)

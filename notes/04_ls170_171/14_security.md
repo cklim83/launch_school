@@ -1,6 +1,20 @@
 # Security
 Below are some of the common security issues concerning web developers.
 
+## Section Links
+[Hypertext Transfer Protocol Secure (HTTPS)](#hypertext-transfer-protocol-secure-https)\
+[Transport Layer Security (TLS)](#transport-layer-security-tls)\
+[Encryption](#encryption)\
+[The TLS Handshake](#the-tls-handshake)\
+[Cipher Suites](#cipher-suites)\
+[TLS Authentication](#tls-authentication)\
+[TLS Integrity](#tls-integrity)\
+[Same-origin policy](#same-origin-policy)\
+[Session Hijacking](#session-hijacking)\
+[Cross-Site Scripting (XSS)](#cross-site-scripting-xss)
+
+---
+
 ## Hypertext Transfer Protocol Secure (HTTPS)
 - HTTP requests and responses are transferred in **plain text** and are 
 inherently insecure. Using packet sniffing and other techniques, a hacker
@@ -11,6 +25,9 @@ instead of http.
 and is also known as HTTP over TLS.
 - With HTTPS, all requests and responses are **encrypted** before they are
 transported on the network.
+
+[Back to Top](#section-links)
+
 
 ## Transport Layer Security (TLS)
 - TLS operates between HTTP and TCP in the **Session Layer** (between 
@@ -26,6 +43,9 @@ It provide the following security services:
 
 - An application could choose one or more of these services and is not
 obliged to use all three.
+
+[Back to Top](#section-links)
+
 
 ### Encryption
 - **Symmetry key encryption** uses the **same key** to encrypt and 
@@ -43,6 +63,9 @@ anyone but only the recipient knows it own private key.
 the exchange of the common key between client and server without exposing
 the key itself. A mechanism is needed to protect the symmetric key from 
 exposure.
+
+[Back to Top](#section-links)
+
 
 ### The TLS Handshake
 - The process to setup the secure connection is known as the TLS handshake.
@@ -69,6 +92,9 @@ subsequent message exchanges**.
 - HTTPS has performance overheads as the TLS handshake introduces 2 x round-trip
 delays on top of the 1 x round-trip delay by TCP handshake. 
 
+[Back to Top](#section-links)
+
+
 ### Cipher Suites
 - A cipher is a cryptographic algorithm used in encryption and decryption. 
 - A suite of ciphers are required to accomplish the range of security tasks:
@@ -76,6 +102,9 @@ delays on top of the 1 x round-trip delay by TCP handshake.
   - authentication
   - symmetric key encryption
   - checking message integrity
+
+[Back to Top](#section-links)
+
 
 ### TLS Authentication
 - While it is important to be able to transfer data in encrypted form, it is
@@ -105,6 +134,9 @@ are self-signed.
 ![Certification Path](images/51_certification_path.png)
 ![Chain of Certification](images/52_chain_of_certification.png)
 
+[Back to Top](#section-links)
+
+
 ### TLS Integrity
 - TLS encapsulates the HTTP PDU with its own meta-data to form its own PDU,
 a **record**.
@@ -125,6 +157,9 @@ record has been altered:
   using the symmetric key, then use the pre-agreed hashing algorithm 
   and hash value on subset of payload to recreate the MAC. If the two
   MACs match, message is not tampered. 
+
+[Back to Top](#section-links)
+
 
 ## Same-origin policy
 - This policy only allow unrestricted access between resources from the
@@ -173,6 +208,9 @@ banking information parsed from the page.
 
 [Reference](https://medium.com/swlh/hacking-the-same-origin-policy-f9f49ad592fc)
 
+[Back to Top](#section-links)
+
+
 ## Session Hijacking
 - Session hijacking refers to a malignant action in which a hacker
 uses a stolen session ID to bypass authentication and gain access
@@ -185,7 +223,10 @@ to protected content without the need for username and password
   might been compromised would becomes invalidated.
   - Set expiration time on sessions to narrow access window.
   - Using HTTPS to prevent attacker from gaining access to session ID
- 
+
+[Back to Top](#section-links)
+
+
 ## Cross-Site Scripting (XSS)
 - Cross-site scripting (also known as XSS) is a web security vulnerability
 that could happen when we allow users to **input HTML or Javascript that
@@ -198,12 +239,13 @@ code lives on the site.
 [Referenced from Portswigger](https://portswigger.net/web-security/cross-site-scripting)
 
 To prevent XSS, we could:
-- Sanitize user input to eliminate problematic inputs such as <script>
+- Sanitize user input to eliminate problematic inputs such as `<script>`
 tags, or disallow HTML and Javascript input altogether
 - Escape all user input data when displaying it so that browser do not
 interpret them as code. e.g. `<p>Hello World!<\p>` to 
 `&lt;p&gt;Hello World!&lt;\p&gt;` to display it as plaintext. 
 [HTML entities](https://entitycode.com/#math-content)
 
+[Implementation Reference - Open Web Application Security Project Session Management Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
 
-[Additional Implementation Resource: Open Web Application Security Project Session Management Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html)
+[Back to Top](#section-links)

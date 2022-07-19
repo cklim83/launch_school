@@ -28,17 +28,6 @@ the Internet. It is a vast information system comprising resources
 navigable by an `URL` (Uniform Resource Locator). `HTTP` is the primary
 means applications interact with the resources which make up the web.
 
-## History
-The Web was conceived by Tim Berners-Lee and his colleague, Robert
-Cailliau at CERN in 1989. It was intended to provide researchers a simply way
-to access resources distributed across multiple computers in different cities,
-without the need to login to a specific computer and use commands peculiar to 
-that machine configuration to locate a resource.
-
-The idea was to leverage the internet connectivity, and ensure uniformity in
-resources addressing (URIs), information structuring and rendering (HTML), and
-request and data exchange (HTTP).
-
 ## HTML URI and HTTP
 **Hypertext Markup Language (HTML)** was the means to **standardize how web
 resources are structured and presented**. Early web materials are largely text

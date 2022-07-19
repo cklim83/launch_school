@@ -13,9 +13,9 @@ protocol, it ensures the following:
 Destination Port are key fields in the header and are what provides 
 the multiplexing capability of the protocol.
 
-![TCP PDU](images/29_tcp_pdu.png)
+![TCP PDU](images/28_tcp_pdu.png)
 
-![TCP HEADER](images/30_tcp_header.png)
+![TCP HEADER](images/29_tcp_header.png)
 
 There are TCP variants but all will contain the following important fields:
 - Checksum: Used to detect data corruption. Recipient compute a checksum with 
@@ -49,7 +49,7 @@ application data can be exchanged**. Since the hand-shake process occurs every
 time a TCP connection is made, this connection overhead is what applications
 using TCP at the transport layer has to bear.
 
-![Three Way Handshake To Establish Connection](images/28_tcp_three_way_handshake.png)
+![Three Way Handshake To Establish Connection](images/30_tcp_three_way_handshake.png)
 
 **Question: What happens when the handshake messages are lost?**\
 TCP has a sequence number in all its segments. Hence it's easy to know if a 
@@ -93,6 +93,12 @@ capacity is exceed, excess packets are simply dropped.
 As TCP tracks lost segments for retransmission. If the **rate of retransmission
 is high**, it knows the network is congested and **reduce the size of transmission
 window**.
+
+## Advantages of TCP
+- It guarantees message delivery through message acknowledgement and retransmission
+- It guarantees message delivery order
+- It has built-in congestion avoidance (i.e. network) and flow-control 
+(recipient) mechanisms
 
 ## Disadvantages of TCP
 - TCP connection incur a **latency overhead** due to 3-way handshake

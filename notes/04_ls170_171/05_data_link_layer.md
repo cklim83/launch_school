@@ -1,6 +1,6 @@
 # The Link/Data Link Layer
 
-![Link Layer](./images/09_link_layer.png)
+![Link Layer](images/09_link_layer.png)
 
 The physical layer is focussed on converting bits into signals(electrical, 
 light and radio waves) over the physical network. 
@@ -26,7 +26,7 @@ the PDU from the layer above (TCP/IP - Internet/ OSI - Network).
 They **provide structure to the binary data**, defining which bits are metadata and
 which are data payload from above. 
 
-![Ethernet Frame](./images/10_ethernet_frame.png)
+![Ethernet Frame](images/10_ethernet_frame.png)
 
 - **Preamble and SFD:** Not part of an frame but sent before a frame to
 notify and synchronize with receiving device about incoming frame. 
@@ -48,7 +48,7 @@ described here is based on the most widely used IEEE 802.3.
 Frames are transmitted with a time gap. The gap length varies with the
 capability of the Ethernet connection. A 100 Mbps Ethernet has a gap of
 0.96 microseconds (just under one millionth of a second). This gap contributes
-to the [transmission delay](05_physical_layer.md/#components-of-latency) 
+to the [transmission delay](04_physical_layer.md/#components-of-latency) 
 highlighted under the notes for physical layer.
 
 ## MAC Addressing

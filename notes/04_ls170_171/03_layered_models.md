@@ -15,7 +15,7 @@ OSI and TCP/IP are two of the most popular communication network models.
 There is some rough equivalency, with some overlap, between layers of the two
 models:
 
-![OSI vs TCP/IP Models](./images/05_layered_network_model.png)
+![OSI vs TCP/IP Models](images/05_layered_network_model.png)
 
 The reason both models have different layers because:
 - TCP/IP model divide the layers by the scope of communication within each layer
@@ -34,7 +34,7 @@ In network models, a **Protocol Data Unit (PDU)** refers to a block of data
 to be transferred over a network and consists of **a header, a data payload
 and sometimes a trailer/footer.**
 
-![A PDU](./images/06_pdu.png)
+![A PDU](images/06_pdu.png)
 
 PDUs at each layer have their own unique name:
 - Link/Data Link layer: **Frame**
@@ -53,7 +53,7 @@ This is the data component of the PDU. Data encapsulation works in such a way
 that the entire PDU from the upper layer forms the data payload for a protocol
 at the immediate layer below.
 
-![Data Encapsulation](./images/07_data_encapsulation.png)
+![Data Encapsulation](images/07_data_encapsulation.png)
 
 This arrangement allow protocols at each layer to operate independently with a
 level of abstraction. A lower layer protocol can just encapsulate the entire

@@ -1,6 +1,6 @@
 # The Physical Network
 
-![Physical Layer](./images/08_physical_layer.png)
+![Physical Layer](images/08_physical_layer.png)
 
 The "physical" network (lowest layer) is made of networked devices, cables
 and wires. Even radio and light waves used in wireless network and fiber optics

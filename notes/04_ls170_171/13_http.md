@@ -135,16 +135,16 @@ respond to the client's request. They either:
   status code. Common response status code are:
 
   | Status Code | Status Text | Meaning |
-  |---|---|---|
-  | 200 | OK | The request was handled successfully. |
-  | 302 | Found | The requested resource has changed temporarily. Usually results in redirect to another URL. |
-  | 404 | Not Found | The requested resources cannot be found. |
-  | 500 | Internal Server Error | The server has encountered a generic error. |
+  | --- | --- | --- | 
+  | 200 | OK | The request was handled successfully |
+  | 302 | Found | The requested resource has changed location temporarily. Has `Location` header with the new address for redirection. All 300 level codes indicate some redirect status |
+  | 404 | Not Found | The requested resources cannot be found. All 400 level codes indicate various client errors |
+  | 500 | Internal Server Error | The server has encountered a generic error. All 500 level codes indicate server side errors |
 
   - `302` Found
     - Indicates resource has been moved and new location has been found
     - The new location is provided in the `Location` response header. Browser
-    will then automatically issue a GET request to that new url. An example
+    will automatically issue a GET request to that new url. An example
     of this is trying to access a page that requires authentication 
     e.g `https://github.com/settings/profile`. The server will issue a `302`
     status code response to redirect to the login page 
@@ -155,11 +155,9 @@ respond to the client's request. They either:
     ![Redirect to Login Page](images/42_redirect_login.png)
     ![302 HTTP Response](images/43_302_response.png)
 
-    - All 300 level status code indicate some kind of redirect status.
   
   - `500` Internal Server Error
-  This status code indicate a **server side issue**, and can be caused by mis-configured server
-  setting to misplaced comma in application code. 
+  This status code indicate a **server side issue**, and can be caused by mis-configured server setting to misplaced comma in application code. 
 
 
 - HTTP **response headers** offer more information about the resource being sent. Common

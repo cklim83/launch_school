@@ -75,29 +75,35 @@ strings. They have to be encoded.
 
 
 ## URL Encoding
-- URL encoding is a technique that replaces characters that aren't allowed
-in a URL with an ASCII code.
-- URL only allow certain characters in the standard [128-character ASCII character set](https://en.wikipedia.org/wiki/ASCII).
-- Characters **must be encoded** if:
-  1. They have **no corresponding character** within the standard ASCII character
-  set
-  2. Use of character is **unsafe as it may be misinterpreted**. E.g. `%` is
-  unsafe as it is used for encoding other characters. Other examples include
-  space, quotation marks, `#`, `<`, `>`, `{`, `}`, `[`, `]` and `~` among others.
-  3. Character reserved for special use in URL scheme. E.g. `/`, `?`, `:`, `@`,
-  `&` as they all have special meaning in an url.
+Some characters cannot be part of a URL and some characters have a special meaning in an URL. URL encoding is a technique to translate such characters before they are sent to a web server. 
 
-- Only alphanumeric and `$-_.+!()"` and reserved characters in their reserved
-purpose can be used unencoded in an URL.
-- Encoding is done by replacing the character with `%` followed
-by the two hexadecimal digits that represent the [ASCII code](https://www.asciitable.com/) of the
-character. Common encoded characters and example URLS as follows:
-
-| Character | ASCII Code | URL Example |
+An URL should only contain the following **allowable characters**
+| Set | Characters | URL usage |
 |---|---|---|
-| Space | 20 | http://www.thedesignshop.com/shops/tommy%20hilfiger.html |
-| ! | 21 | http://www.thedesignshop.com/moredesigns%21.html |
-| + | 2B | http://www.thedesignshop.com/shops/spencer%2B.html |
-| # | 23 | http://www.thedesignshop.com/%23somequotes%23.html |
+| Alphanumeric | `A-Z`, `a-z`, `0-9` | Text strings, scheme usage (http), port (8080) etc. |
+| Unreserved | `-_.~` | Text strings |
+| Reserved | `!*'();:@&=+$,/?%#[]` | Control characters and/or Text strings|
+
+Characters that requires encoding if we want to include it in an URL are:
+- Characters **not in** list of allowable characters above
+  - e.g. foreign language characters `上海中國`
+- Reserved characters that we want to use literally i.e. use without its special meaning
+  - e.g. we want to use the string "`time+space`" rather than its special meaning where `+` is interpreted as space i.e. `time space` 
+
+To encode, we replace the character with `%` and a two-character hex value corresponding to their UTF-8/[ASCII](https://www.asciitable.com/) character. Common encoded characters:
+| Character | Hex Value | URL Example |
+|---|---|---|
+| Space | 20 | `http://www.thedesignshop.com/shops/tommy%20hilfiger.html` |
+| ! | 21 | `http://www.thedesignshop.com/moredesigns%21.html` |
+| + | 2B | `http://www.thedesignshop.com/shops/spencer%2B.html` |
+| # | 23 | `http://www.thedesignshop.com/%23somequotes%23.html` |
+
+**Other Examples**
+| String | URL-Encoded form |
+|---|---|
+|`上海+中國` | `%E4%B8%8A%E6%B5%B7%2B%E4%B8%AD%E5%9C%8B` |
+| `? and the Mysterians` | `%3F+and+the+Mysterians` or `%3F%20and%20the%20Mysterians` |
+
+[Reference - Google URL Encoding](https://developers.google.com/maps/url-encoding)
 
 [Back to Top](#section-links)

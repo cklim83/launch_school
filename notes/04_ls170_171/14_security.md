@@ -77,7 +77,7 @@ subsequent message exchanges**.
 - The TLS handshake process:
   - Client sends a `ClientHello` message immediately after the TCP `ACK` 
   message. This message contains the **highest TLS protocol version** and 
-  **the list of [Ciper Suites](#Cipher Suites)** supported by the client.
+  **the list of [Ciper Suites](#cipher-suites)** supported by the client.
   - The server replies with a `ServerHello` that sets the TLS protocol version
   and Cipher Suites. As part of this message, the server also includes its
   certificate containing its public key and sets the `ServerHelloDone` field.

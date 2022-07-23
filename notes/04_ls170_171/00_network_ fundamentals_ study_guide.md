@@ -58,10 +58,10 @@ The internet is a "network of networks". A network is any plurality of devices t
 - The Internet supports not just HTTP but also other protocols such as SMTP (email), FTP (file transfer) etc.
 - Servers differ from Clients (devices we used to access the web) in that servers are directly connected to Internet but clients are not. Clients do so via an Internet Service Provider.
 
-[What is the Internet](01_internet.md#what-is-the-internet)
-[What Happens When You Enter a URL in a Browser and Press Enter?](01_internet.md#what-happens-when-you-enter-a-url-in-a-browser-and-press-enter)
-[How Internet Works - Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work)
-[Video - Internet in 5 Minutes](https://www.youtube.com/watch?v=7_LPdttKXPc)
+[What is the Internet](01_internet.md#what-is-the-internet)\
+[What Happens When You Enter a URL in a Browser and Press Enter?](01_internet.md#what-happens-when-you-enter-a-url-in-a-browser-and-press-enter)\
+[How Internet Works - Mozilla](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work)\
+[Video - Internet in 5 Minutes](https://www.youtube.com/watch?v=7_LPdttKXPc)\
 [Video - Detailed Explanation of How the Internet Works](https://www.youtube.com/watch?v=x3c1ih2NJEg)
 
 [Back to Top](#section-links)
@@ -78,8 +78,8 @@ The performance of the physical network can be defined by its Latency and Bandwi
 
 **Bandwidth** refers to the maximum amount of data that can sent per unit time. It is measured in bits per second. It measures the capacity of a network and is akin to the number of lanes on a road. Bandwith varies across the network. It is higher at the core network but lower at the last mile (endpoint connecting home or buildings).
 
-[Characteristics of a Physical Network](04_physical_layer.md#characteristics-of-a-physical-network)
-[Components of Latency](04_physical_layer.md#components-of-latency)
+[Characteristics of a Physical Network](04_physical_layer.md#characteristics-of-a-physical-network)\
+[Components of Latency](04_physical_layer.md#components-of-latency)\
 [Bandwidth](04_physical_layer.md#bandwidth)
 
 [Back to Top](#section-links)
@@ -88,7 +88,7 @@ The performance of the physical network can be defined by its Latency and Bandwi
 ### Have a basic understanding of how lower level protocols operate
 The link/data link layer is the interface between the physical network and the network/internet layer above it. It is responsible for identifying the device we want to send the data. **Ethernet** is the most common protocol operating in this layer. It helps to **provide structure** to binary data by encapsulating packets from network/internet layer into **Frames**. One of the key headers of a Frame is the **MAC address**. This is in a form of six two-digit hexadecimal numbers e.g. `00:40:96:9d:68:0a`  which are **fixed and uniquely identifies** each network device. They help network devices **identify the right recipient within a network**. 
 
-[Ethernet Frames](05_data_link_layer.md#ethernet-frames)
+[Ethernet Frames](05_data_link_layer.md#ethernet-frames)\
 [MAC Addressing](05_data_link_layer.md#mac-addressing)
 
 [Back to Top](#section-links)
@@ -123,7 +123,7 @@ Note: Above scenario assumes there is no domain name - IP address record for tha
 	- how requests for resources on the web are made and how they should be responded to.
 	- how messages should be structured so that they can be understood by the recipient.
 
-[Client Server Model](01_internet.md#what-is-a-client-server-model)
+[Client Server Model](01_internet.md#what-is-a-client-server-model)\
 [HTTP](13_http.md#what-is-http)
 
 [Back to Top](#section-links)
@@ -145,7 +145,7 @@ Both are protocols working on the transport layer in the layered networking mode
 
 Overall, TCP's many critical features: reliability, in-order delivery, flow control and congestion avoidance makes it a core protocol for most applications on the Internet. Nevertheless, due to UDP simple and light-weight construct, it offers speed and flexibility and is suitable for applications that requires speed (low latency) and can tolerate a certain amount of data losses.
 
-[TCP](04_ls170_171/09_tcp.md)
+[TCP](04_ls170_171/09_tcp.md)\
 [UDP](10_udp.md)
 
 [Back to Top](#section-links)
@@ -165,9 +165,9 @@ A three-way handshake is used to **establish a connection** between a client and
 
 ### Have a broad understanding of flow control and congestion avoidance
 
-See above for summary.
+See previous question for summary. Refer to links for details.
 
-[Flow Control](09_tcp.md#flow-control)
+[Flow Control](09_tcp.md#flow-control)\
 [Congestion Avoidance](09_tcp.md#congestion-avoidance)
 
 [Back to Top](#section-links)
@@ -256,7 +256,7 @@ To encode, we replace the character with `%` and a two-character hex value corre
 - A set of **headers** to provide information about server
 - An optional body containing the requested resource e.g. HTML.
 
-[HTTP Request](13_http.md#http-request)
+[HTTP Request](13_http.md#http-request)\
 [HTTP Response](13_http.md#http-response)
 
 [Back to Top](#section-links)
@@ -306,7 +306,7 @@ The use of sessions and cookies can help a web application simulate state. When 
 
 The server then sends the session ID in the form of a cookie to the user's browser with an expiry date in its response. Subsequent HTTP requests sent by that browser will have that session ID appended as one of its header field. The server will then process these requests, check for the session ID and use it to retrieve the past interactions and recreate the state of that client e.g. logged in status, items added to shopping cart, as its response. This gives the client the impression that the website remembers all its past actions. 
 
-[Stateful Web Applications](13_http.md#stateful-web-applications)
+[Stateful Web Applications](13_http.md#stateful-web-applications)\
 [Sessions and Cookies](13_http.md#sessions-and-cookies)
 
 [Back to Top](#section-links)
@@ -350,9 +350,9 @@ The server then sends the session ID in the form of a cookie to the user's brows
 	- Sanitize user input to eliminate problematic inputs such as `<script>` tags, or disallow HTML and Javascript input altogether
 	- Escape all user input data when displaying it so that browser do not interpret them as code. e.g. `<p>Hello World!<\p>` to `&lt;p&gt;Hello World!&lt;\p&gt;` to display it as plaintext. [HTML entities](https://entitycode.com/#math-content)
 
-[HTTPS](4_security.md#hypertext-transfer-protocol-secure-https)
-[Same-Origin Policy](14_security.md#same-origin-policy)
-[Session Hijacking](14_security.md#session-hijacking)
+[HTTPS](4_security.md#hypertext-transfer-protocol-secure-https)\
+[Same-Origin Policy](14_security.md#same-origin-policy)\
+[Session Hijacking](14_security.md#session-hijacking)\
 [XSS](14_security.md#cross-site-scripting-xss)
 
 [Back to Top](#section-links)
@@ -394,8 +394,8 @@ The TLS integrity service helps ensure that received messages has not been tampe
 - The sender then encypted the data payload using the symmetric key (as part of the encryption process), and encapsulate it into a TLS record and hand it to the transport layer to be transferred to other party
 - The recipient decrypts the data payload of the received TLS record using the symmetric key, then use the pre-agreed hashing algorithm and hash value on subset of payload to recreate the MAC. If the two MACs match, message is not tampered.
 
-[TLS Encryption](14_security.md#encryption)
-[TLS Authentication](14_security.md#tls-authentication)
+[TLS Encryption](14_security.md#encryption)\
+[TLS Authentication](14_security.md#tls-authentication)\
 [TLS Integrity](14_security.md#tls-integrity)
 
 [Back to Top](#section-links)

@@ -3,9 +3,9 @@
 
 [Function of Network Layer](#function-of-network-layer)\
 [Data Packets](#data-packets)\
-[IP Addresses (IPv4)](#ip-addresses-ipv4)\
+[IP Address](#ip-address)\
 [Routing and Routing Tables](#routing-and-routing-tables)\
-[Difference with IPv6](#difference-with-ipv6)\
+[IPv6](#ipv6)\
 [Networked Applications](#networked-applications)
 
 ---

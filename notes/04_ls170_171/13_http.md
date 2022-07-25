@@ -197,13 +197,13 @@ behaves to facilitate the exchange of information.
   (i.e. GET or POST), the host and the path.
   - The request is sent off to the server by means of the lower layer network
   protocols.
-- When the server receives the request, it will analyze it.
-  - This may include actions like verifying the user's session or loading any
-  necessary data from a database
-- Once the server has analysed the request, it will issue a response
+- When the server receives the request, it will process it.
+  - This may include actions like verifying the user's session and dynamically
+  generate a HTML file based on given path and parameters.
+- Next, the server will generate a response
   - This includes the status field, a numeric field that tells if the response
   was successful, headers which contain important meta-data that helps the
-  client process the response, and the body which contains the raw data of the
+  client process the response, and the body which contains the raw data of any
   resource being sent.
 - When the browser receives the response, it will process the information within
 and render the resource in a user-friendly manner.

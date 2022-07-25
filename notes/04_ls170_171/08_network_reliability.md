@@ -2,7 +2,7 @@
 ## Section Links
 
 [Unreliable Lower Layers](#unreliable-lower-layers)\
-[Components of a Reliability Protocol](#components-of-a-reliable-protocol)\
+[Components of a Reliability Protocol](#components-of-a-reliable-protocol)
 
 ---
 

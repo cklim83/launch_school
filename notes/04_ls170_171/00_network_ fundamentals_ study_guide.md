@@ -13,7 +13,7 @@
 [Be able to construct a valid URL](#be-able-to-construct-a-valid-url)\
 [Have an understanding of what URL encoding is and when it might be used](#have-an-understanding-of-what-url-encoding-is-and-when-it-might-be-used)\
 [Be able to explain what HTTP requests and responses are, and identify the components of each](#be-able-to-explain-what-http-requests-and-responses-are-and-identify-the-components-of-each)\
-[Be able to describe the HTTP request/response cycle](#be-able-to-describe-the-http-request-response-cycle)\
+[Be able to describe the HTTP request/response cycle](#be-able-to-describe-the-http-requestresponse-cycle)\
 [Be able to explain what status codes are, and provide examples of different status code types](#be-able-to-explain-what-status-codes-are-and-provide-examples-of-different-status-code-types)\
 [Understand what is meant by 'state' in the context of the web, and be able to explain some techniques that are used to simulate state](#understand-what-is-meant-by-state-in-the-context-of-the-web-and-be-able-to-explain-some-techniques-that-are-used-to-simulate-state)\
 [Explain the difference between `GET` and `POST`, and know when to choose each](#explain-the-difference-between-get-and-post-and-know-when-to-choose-each)\
@@ -89,7 +89,7 @@ The performance of the physical network can be defined by its Latency and Bandwi
 The link/data link layer is the interface between the physical network and the network/internet layer above it. It is responsible for identifying the device we want to send the data. **Ethernet** is the most common protocol operating in this layer. It helps to **provide structure** to binary data by encapsulating packets from network/internet layer into **Frames**. One of the key headers of a Frame is the **MAC address**. This is in a form of six two-digit hexadecimal numbers e.g. `00:40:96:9d:68:0a`  which are **fixed and uniquely identifies** each network device. They help network devices **identify the right recipient within a network**. 
 
 [Ethernet Frames](05_data_link_layer.md#ethernet-frames)\
-[MAC Addressing](05_data_link_layer.md#mac-addressing)
+[MAC Address](05_data_link_layer.md#mac-address)
 
 [Back to Top](#section-links)
 
@@ -145,7 +145,7 @@ Both are protocols working on the transport layer in the layered networking mode
 
 Overall, TCP's many critical features: reliability, in-order delivery, flow control and congestion avoidance makes it a core protocol for most applications on the Internet. Nevertheless, due to UDP simple and light-weight construct, it offers speed and flexibility and is suitable for applications that requires speed (low latency) and can tolerate a certain amount of data losses.
 
-[TCP](04_ls170_171/09_tcp.md)\
+[TCP](09_tcp.md)\
 [UDP](10_udp.md)
 
 [Back to Top](#section-links)
@@ -158,7 +158,7 @@ A three-way handshake is used to **establish a connection** between a client and
 - The client, upon receiving the `SYN-ACK` segment, transits to a `Established` state and sends a `ACK` segment back to server in response. It can start sending application data immediately after sending the `ACK` segment.
 - The server will also transit to `Established` state. Connection is fully establiahed on both ends at this point and the server can also start sending application data.
 
-[TCP Handshake](04_ls170_171/09_tcp.md#tcp-handshake)
+[TCP Handshake](09_tcp.md#tcp-handshake)
 
 [Back to Top](#section-links)
 
@@ -237,6 +237,8 @@ To encode, we replace the character with `%` and a two-character hex value corre
 |`上海+中國` | `%E4%B8%8A%E6%B5%B7%2B%E4%B8%AD%E5%9C%8B` |
 | `? and the Mysterians` | `%3F+and+the+Mysterians` or `%3F%20and%20the%20Mysterians` |
 
+
+[URL Encoding](12_urls.md#url-encoding)\
 [Reference - Google URL Encoding](https://developers.google.com/maps/url-encoding)
 
 [Back to Top](#section-links)
@@ -288,21 +290,21 @@ the status code
 - The HTTP request-response cycle describes the way client and server behaves to
 facilitate the exchange of information.
 - It begins with the client making an HTTP request.
-	- This typically involves a browser issuing a HTTP request to a server in
-	response to some kind of user action or event (i.e. typing a url into an
-	address bar, clicking a link, submitting a form, etc).
-    - The request consists of, at minimum, a request line consists of the method
-    (i.e. GET or POST), the host and the path.
-    - The request is sent off to the server by means of the lower layer network
-    protocols.
-- When the server receives the request, it will analyze it.
-    - This may include actions like verifying the user's session or loading any
-    necessary data from a database
-- Once the server has analysed the request, it will issue a response
-    - This includes the status field, a numeric field that tells if the response
-    was successful, headers which contain important meta-data that helps the
-    client process the response, and the body which contains the raw data of the
-    resource being sent.
+  - This typically involves a browser issuing a HTTP request to a server in
+  response to some kind of user action or event (i.e. typing a url into an
+  address bar, clicking a link, submitting a form, etc).
+  - The request consists of, at minimum, a request line consists of the method
+  (i.e. GET or POST), the host and the path.
+  - The request is sent off to the server by means of the lower layer network
+  protocols.
+- When the server receives the request, it will process it.
+  - This may include actions like verifying the user's session and dynamically
+  generate a HTML file based on given path and parameters.
+- Next, the server will generate a response
+  - This includes the status field, a numeric field that tells if the response
+  was successful, headers which contain important meta-data that helps the
+  client process the response, and the body which contains the raw data of any
+  resource being sent.
 - When the browser receives the response, it will process the information within
 and render the resource in a user-friendly manner.
 
@@ -382,7 +384,7 @@ The server then sends the session ID in the form of a cookie to the user's brows
 	- Sanitize user input to eliminate problematic inputs such as `<script>` tags, or disallow HTML and Javascript input altogether
 	- Escape all user input data when displaying it so that browser do not interpret them as code. e.g. `<p>Hello World!<\p>` to `&lt;p&gt;Hello World!&lt;\p&gt;` to display it as plaintext. [HTML entities](https://entitycode.com/#math-content)
 
-[HTTPS](4_security.md#hypertext-transfer-protocol-secure-https)\
+[HTTPS](14_security.md#hypertext-transfer-protocol-secure-https)\
 [Same-Origin Policy](14_security.md#same-origin-policy)\
 [Session Hijacking](14_security.md#session-hijacking)\
 [XSS](14_security.md#cross-site-scripting-xss)

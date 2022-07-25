@@ -89,7 +89,7 @@ address with the Domain Name System (DNS) in the following order:
 The web (aka World Wide Web) is a service that can be accessed via the internet.
 It is vast information system comprised of resources that are accessible with
 the use of an URL. Applications such as browsers are able to interact with
-these reources through the use of HTTP. The Internet provides both the physical
+these resources through the use of HTTP. The Internet provides both the physical
 infrastructure and protocols required to facilitate the transfer of these resource
 from one device to another across the world.
 

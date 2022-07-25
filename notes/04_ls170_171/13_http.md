@@ -134,7 +134,7 @@ respond to the client's request. They either:
 
 **What does an HTTP Response consist of?**
 - An HTTP response consists of a **response line \[mandatory\]**, **headers
-\[optional\]**, and a **body\[option\]**
+\[optional\]**, and a **body\[optional\]**
 - The **response line** contains the **status code**, **status text**,
 and **version**
   - The **status code** is a three-digit number that the server sends back

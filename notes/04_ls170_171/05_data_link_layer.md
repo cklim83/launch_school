@@ -3,7 +3,7 @@
 
 [Function of Link Layer](#function-of-link-layer)\
 [Ethernet Frames](#ethernet-frames)\
-[MAC Addressing](#mac-addressing)\
+[MAC Address](#mac-address)\
 [Problem of Scale](#problem-of-scale)
 
 ---
@@ -66,13 +66,16 @@ highlighted under the notes for physical layer.
 [Back to Top](#section-links)
 
 
-## MAC Addressing
-Every network-enabled device (e.g. a Network Interface Card) has a **unique MAC 
-Address** assigned when it is manufactured. This address is specific to a
-specific physical device and doesn't change. 
+## MAC Address
+A MAC address is a **burned-in** (i.e. fixed and doesn't change) address that
+**uniquely identifies** a Network Interface Card (NIC) installed in a device to
+enable them to connect to a network.
 
-MAC Address takes the form of six two-digit hexadecimal numbers 
-e.g. `00:40:96:9d:68:0a`
+They are formatted as a sequence of six two-digit hexadecimal numbers, e.g. 
+`00:40:96:9d:68:0a`, with different ranges of addresses being assigned to
+different network hardware manufacturers.
+
+MAC addresses are used for **intra-network routing** of Frames.
 
 
 For hub (a simple network hardware) connected devices, a sent message will be

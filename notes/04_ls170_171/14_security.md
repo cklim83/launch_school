@@ -71,9 +71,10 @@ exposure.
 - The process to setup the secure connection is known as the TLS handshake.
 - As TLS uses **TCP** as the transport layer protocol, the TLS handshake 
 immediately **dovetails** the 3-way TCP handshake. 
-- TLS handshake uses **asymmetric key encryption to securely exchange the 
-common symmetric key**, then **transit to symmetric key encryption for 
-subsequent message exchanges**.
+- TLS handshake uses **asymmetric key encryption** to securely exchange a
+pre-cursor between client and server which is then used to generate a
+common symmetric key. After TLS handshake, it **transits to symmetric key
+encryption for subsequent message exchanges**.
 - The TLS handshake process:
   - Client sends a `ClientHello` message immediately after the TCP `ACK` 
   message. This message contains the **highest TLS protocol version** and 
@@ -125,7 +126,11 @@ the TLS handshake:
 - To confirm a certificate is authentic, we trace the Certificate Hierarchy 
 to find the chain of **Certificate Authorities (CA)** that certify the 
 certificate.
-- Site certificates are issued by Intermediate CA, whose certificates are in
+- A certificate authority is a trusted organization that verifies websites
+so that you know who you’re communicating with online. They are a key
+stakeholder in the authentication service offered by TLS.
+- Site certificates are issued by Intermediate CA to websites that can pass
+their identification tests. Certificates of these intermediate CAs are in
 turn issued by Root CA in increasing level of authority. Root CA's certificate
 are self-signed. 
 - To verify a certificate, we use the public key in its Issuer's certificate. 

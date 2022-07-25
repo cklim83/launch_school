@@ -54,7 +54,7 @@ The internet is a "network of networks". A network is any plurality of devices t
 - A large complex network of fiber optical cables form the backbone of the Internet. These cables straddle long swathes of land and sea connecting countries. They carry data in the form of light impulses from data centers to one's doorstep where they are connected to a router. The router converts these light signals to electrical signals and EM waves. A laptop can then receive the electrical signals from router via an Ethernet cable or the EM waves via Wi-Fi. If one is accessing the Internet using cellular network, from the optical cable the signal has to be sent to a cell tower. And from the cell tower, the signal reaches one's phone/mobile device in the form of electromagnetic waves.
 - These infrastructure are collectively owned and operated by large global organisations such as AT&T, Orange, Google and Verizon. 
 - Since the internet is a global network, it is important to have an organisation to manage things like IP address assignment, domain name registration etc. This is all managed by an institution called Internet Corportion for Assigned Names and Numbers (ICANN) located in the USA.
-- The data e.g. a youtube video one is requesting from a Data Center is sent  in the form of huge collection of zeros and ones. These zeros and ones are chopped up into small chunks known as packets and transmitted. Along with the bits of the video, each packet also consists of the sequence number and the IP addresses of the server and client device. With this information, the packets are routed towards the client device. Its not necessary that all packets are routed the same path and each packet independently takes the best route available at that time. Upon reaching the client device, the packets are reassembled according to their sequence number. If any packets are lost in the transfer, an acknowledgement is sent from the client to resend the lost packets.
+- The data e.g. a youtube video one is requesting from a Data Center is sent  in the form of huge collection of zeros and ones. These zeros and ones are chopped up into small chunks known as packets and transmitted. Along with the bits of the video, each packet also consists of the sequence number and the IP addresses of the server and client device. With this information, the packets are routed towards the client device. It is not necessary that all packets are routed the same path and each packet independently takes the best route available at that time. Upon reaching the client device, the packets are reassembled according to their sequence number. If any packets are lost in the transfer, an acknowledgement is sent from the client to resend the lost packets.
 - The Internet supports not just HTTP but also other protocols such as SMTP (email), FTP (file transfer) etc.
 - Servers differ from Clients (devices we used to access the web) in that servers are directly connected to Internet but clients are not. Clients do so via an Internet Service Provider.
 
@@ -181,7 +181,12 @@ See previous question for summary. Refer to links for details.
 - `http`: an **URL scheme**, that identifies the protocol group in use, 
 - `example.com`: a **domain name**, 
 - `775`: a **port number** (**optional** and only if it deviates from the default), 
-- `/`: a **path** (**optional**) that shows where on the host the resource is located,
+- `/`: a **path** (**optional**) that **identifies the resource**. Note: It is more accurate
+to say "a path identifies the resource" rather than a "path shows the location of a
+resource". This is because modern webpages are often dynamically created meaning the page
+is created and not stored on the server. We should also avoid saying the server searches for
+the resource using the path because these dynamic pages are created on demand and can't be
+searched for.
 - `item=book&price=50`: **query string** (**optional** and consists of query parameters in the form of `name=value`)
 
 [Components of a URL](12_urls.md#components-of-a-url)
@@ -207,11 +212,16 @@ If any characters outside this list or any reserved characters are to be use lit
 
 Some characters cannot be part of a URL and some characters have a special meaning in an URL. URL encoding is a technique to translate such characters before they are sent to a web server. 
 
-Characters that requires encoding if we want to include it in an URL are:
-- Characters not in list of [allowable characters](#be-able-to-construct-a-valid-url) above
-	- e.g. foreign language characters `上海中國`
-- Reserved characters that we want to use literally i.e. use without its special meaning
-	- e.g. we want to use the string "`time+space`" rather than its special meaning where `+` is interpreted as space i.e. `time space` 
+The three reasons to encode a character in an URL are:
+- They have no corresponding character within the standard ASCII character set 
+i.e. **not in** list of allowable characters above
+  - e.g. foreign language characters `上海中國`
+- The use of the character is unsafe because it may be misinterpreted, or even
+possibly modified by some systems. 
+  - e.g. `%` is unsafe because it can be used for encoding other characters. 
+- The character is reserved for special use within the URL scheme but that we
+want to use literally i.e. use without its special meaning
+  - e.g. we want to use the string "`time+space`" rather than its special meaning where `+` is interpreted as space i.e. `time space` 
 
 To encode, we replace the character with `%` and a two-character hex value corresponding to their UTF-8/[ASCII](https://www.asciitable.com/) character. Common encoded characters:
 | Character | Hex Value | URL Example |
@@ -237,24 +247,36 @@ To encode, we replace the character with `%` and a two-character hex value corre
 ### Be able to explain what HTTP requests and responses are, and identify the components of each
 
 **HTTP Request**
-- A HTTP request is a text-based message sent from a client to a server to access a resource on the server or perform an action on the server end.
-- A HTTP request is sent when we enter a URL in a browser address bar, click a link on a page, submit a web form or interact with web elements in a way designed to send out a request (e.g. hover over an item may retrieve a preview)
+- A HTTP request is a text-based message sent from a client to a server to
+access a resource on the server or perform an action on the server end.
+- A HTTP request is sent upon an event such as entering an URL in a browser
+address bar and pressing enter, clicking on a page link, submitting a web
+form or interacting with web elements in a way designed to send out a request
+(e.g. hover over an item may retrieve a preview)
 
 **Components of a HTTP Request**
-- A **request line** comprising a request **method**, **path**, and **protocol version**. e.g. `GET / HTTP/1.1`
-- A set of **headers** (name-value pairs) to provide information about client to server
+- A **mandatory request line** comprising a request **method**, **path**,
+and **protocol version**. e.g. `GET / HTTP/1.1`
+- A set of **headers** (name-value pairs) to provide information
+about client to server. Note: At a minimum, the `Host` header is
+**mandatory** as of HTTP/1.1
 - An **optional body**, used mainly by POST methods.
 
 **HTTP Response**
-- HTTP responses are text-based messages sent from the server to the client in respond to the client's request. They either:
+- HTTP responses are text-based messages sent from the server to the client in
+respond to the client's request. They either:
 	- Provide the client with the resource required
 	- Inform the client that the action it requested was carried out
 	- Inform the client that an error occurred in the process
 
 **Components of a HTTP Response**
-- A response line containing **Status Code**, **Status Text** and **Protocol Version**
-- A set of **headers** to provide information about server
-- An optional body containing the requested resource e.g. HTML.
+- A **mandatory** response line containing **Status Code**, **Status Text**
+and **Protocol Version**. The **status code** is a three-digit number that the
+server sends back after receiving a request to signify the status of the
+request while the accompanying **status text** gives more description of
+the status code
+- An **optional** set of **headers** to provide information about server
+- An **optional** body containing the requested resource e.g. HTML.
 
 [HTTP Request](13_http.md#http-request)\
 [HTTP Response](13_http.md#http-response)
@@ -263,16 +285,26 @@ To encode, we replace the character with `%` and a two-character hex value corre
 
 
 ### Be able to describe the HTTP request/response cycle
-- The HTTP request-response cycle describes the way client and server behaves to facilitate the exchange of information.
+- The HTTP request-response cycle describes the way client and server behaves to
+facilitate the exchange of information.
 - It begins with the client making an HTTP request.
-	- This typically involves a browser issuing a HTTP request to a server in response to some kind of user action or event (i.e. typing a url into an address bar, clicking a link, submitting a form, etc).
-    - The request consists of, at minimum, a request line consists of the method (i.e. GET or POST), the host and the path.
-    - The request is sent off to the server by means of the lower layer network protocols.
+	- This typically involves a browser issuing a HTTP request to a server in
+	response to some kind of user action or event (i.e. typing a url into an
+	address bar, clicking a link, submitting a form, etc).
+    - The request consists of, at minimum, a request line consists of the method
+    (i.e. GET or POST), the host and the path.
+    - The request is sent off to the server by means of the lower layer network
+    protocols.
 - When the server receives the request, it will analyze it.
-    - This may include actions like verifying the user's session or loading any necessary data from a database
+    - This may include actions like verifying the user's session or loading any
+    necessary data from a database
 - Once the server has analysed the request, it will issue a response
-    - This includes the status field, a numeric field that tells if the response was successful, headers which contain important meta-data that helps the client process the response, and the body which contains the raw data of the resource being sent.
-- When the browser receives the response, it will process the information within and render the resource in a user-friendly manner.
+    - This includes the status field, a numeric field that tells if the response
+    was successful, headers which contain important meta-data that helps the
+    client process the response, and the body which contains the raw data of the
+    resource being sent.
+- When the browser receives the response, it will process the information within
+and render the resource in a user-friendly manner.
 
 [HTTP Request Response Cycle](13_http.md#the-http-request-response-cycle)
 
@@ -370,8 +402,11 @@ A secure communication channel is established following a TLS handshake. During 
 - Decide which cipher suites to use
 - Authenticate the identity of the server
 - Securely exchange a symmetric key using asymmetric encryption
+  - Asymmetric key encryption is used to securely exchange a pre-cursor between client and server
+  which is then used to generate a common symmetric key.
 
-After TLS handshake, all messages exchanged between client and server will be encrypted before transfer. Upon receipt, the recipient will use the common key to decrypt the message before processing the content.
+After TLS handshake, all messages exchanged between client and server will be encrypted using the symmetric key 
+before transfer. Upon receipt, the recipient will use the common key to decrypt the message before processing the content.
 
 **Authentication**
 TLS authentication allows the client to verify the identity of the server. It does this in two steps:
@@ -382,6 +417,8 @@ To confirm the server is indeed the owner of the certificate:
 - The server will send its security certificate which includes its public key to the client. 
 - The server will also send over a message containing some source data and a digital signature formed by encrypting the source data with its own private key. 
 - The client will then decrypt the digital signature using the server's public key and compare it with the source data. If they matches, it can be sure the server **owns the certificate**. 
+
+A **certificate authority** is a trusted organization that verifies websites so that you know who you’re communicating with online. They issue site certificates to websites that can pass their identification tests. They are a key stakeholder in the authentication service offered by TLS.
 
 To confirm the certificate is issued by a trusted certificate authority,
 - The client can will look up the certificate path to find the intermediate CA and its certificate. 

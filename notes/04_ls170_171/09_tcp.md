@@ -12,13 +12,18 @@
 ---
 
 ## TCP Overview
-The Transmission Control Protocol is a key backbone of the Internet by ensuring
-**reliable** data transfer over an unreliable channel. A connection-oriented
-protocol, it ensures the following:
-- It guarantees message delivery through message acknowledgement and retransmission
-- It guarantees message delivery order
-- It has built-in congestion avoidance (i.e. network) and flow-control 
-(recipient) mechanisms
+The Transmission Control Protocol (TCP) is a key backbone of the Internet 
+as it allows **reliable** data transfer over an unreliable channel. It is
+able to do this because: 
+- It can **handle data loss**. By assuming data that are not acknowledged 
+within a specified time window to be lost and retransmitting them, it ensures
+all data will eventually be successfully transmitted.
+- It can **detect error** in transmitted data using checksum.
+- It can detect and **eliminate duplicate data** and also ensure they are
+arranged in the **right order** through the use of sequence numbers.
+
+Besides reliability features, it also has **flow control** and **network 
+congestion avoidance** mechanisms for **network efficiency** purposes.
 
 [Back to Top](#section-links)
 
@@ -85,11 +90,11 @@ the `SYN-ACK` is only necessary of there no data is received at all.
 
 
 ## Flow Control
-Flow control is a mechanism to **prevent the sender from overwhelming the
-receiver with too much data at once**. The recipient will process data at 
-certain rate. Data that cannot be processed immediately is stored in a buffer.
-The buffer size is function of memory allocated by the OS according to
-configuration and phsyical resources available.
+Flow control is a network efficiency mechanism to **prevent the sender from
+overwhelming the receiver with too much data at once**. The recipient will
+process data at certain rate. Data that cannot be processed immediately is
+stored in a buffer. The buffer size is function of memory allocated by the OS
+according to configuration and phsyical resources available.
 
 Each side of a connection uses the **WINDOW** field of the TCP header to **inform 
 the other the amount of data it can handle**. This number is dynamic, and can
@@ -115,7 +120,7 @@ capacity is exceed, excess packets are simply dropped.
 
 As TCP tracks lost segments for retransmission. If the **rate of retransmission
 is high**, it knows the network is congested and **reduce the size of transmission
-window**.
+window** accordingly to enhance network efficiency.
 
 [Back to Top](#section-links)
 

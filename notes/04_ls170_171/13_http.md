@@ -45,13 +45,19 @@ What are the components of a HTTP request?
 - A **request line** containing the **method**, **path** and **protocol version**
   - The **method** indicates the type of action to be performed for the request. `GET`
   and `POST` are the most common methods.
-  - The **path** indicates the location of the resource on the server.
-  - The **version** indicates the version of HTTP being used 
+  - The **path** identifies the resource. Note: It is more accurate
+to say "a path identifies the resource" rather than a "path shows the location of a
+resource". This is because modern webpages are often dynamically created meaning the page
+is created and not stored on the server. We should also avoid saying the server searches for
+the resource using the path because these dynamic pages are created on demand and can't be
+searched for.
+  - The **version** indicates the version of HTTP used by client 
   ```plaintext
   GET / HTTP/1.1
   ```
 - A **set of headers** (name-value pairs) to give the server more information
-about the client and the resource being requested. Common request headers 
+about the client and the resource being requested. Header fields are **optional
+except for `Host`**, which is mandatory as of HTTP/1.1. Common request headers 
 include:
   | Field Name | Description | Example |
   |---|---|---|
@@ -127,10 +133,12 @@ respond to the client's request. They either:
   - Inform the client that an error occurred in the process
 
 **What does an HTTP Response consist of?**
-- An HTTP response consists of a **response line**, **headers**, and a **body**
-- The **response line** contains the **status code**, **status text**, and **version**
-  - The **status code** is a three-digit number send by server signifying the status
-  of the request. 
+- An HTTP response consists of a **response line \[mandatory\]**, **headers
+\[optional\]**, and a **body\[option\]**
+- The **response line** contains the **status code**, **status text**,
+and **version**
+  - The **status code** is a three-digit number that the server sends back
+  after receiving a request to signify the status of the request
   - The accompanying **status text** gives more description of the
   status code. Common response status code are:
 
@@ -157,11 +165,12 @@ respond to the client's request. They either:
 
   
   - `500` Internal Server Error
-  This status code indicate a **server side issue**, and can be caused by mis-configured server setting to misplaced comma in application code. 
+  This status code indicate a **server side issue**, and can be caused by
+  mis-configured server setting to misplaced comma in application code. 
 
 
-- HTTP **response headers** offer more information about the resource being sent. Common
-headers include:
+- HTTP **response headers** are **optional** and offer more information about
+the resource being sent. Common headers include:
 
   | Header Name | Description | Example |
   |---|---|---|
@@ -170,9 +179,9 @@ headers include:
   | Location | Notify client of new resource location. | Location: https://www.github.com/login |
   | Content-Type | Type of data the response contains to help client render it correctly. | Content-Type: text/html; charset=UTF-8 |
 
-- HTTP **response body** consists of the raw data for the requested resource
-This might be the HTML of the webpage, or the raw data of any files being
-requested, such as images, videos, or audio files.
+- HTTP **response body** are **optional** and consists of the raw data for the
+requested resource This might be the HTML of the webpage, or the raw data
+of any files being requested, such as images, videos, or audio files.
 
 [Back to Top](#section-links)
 
@@ -212,9 +221,8 @@ interactions.
   e.g. Facebook.
   - Stateful apps can also keep track of items a user has placed in an online
   "shopping cart", even over multiple days
-- **HTTP is a stateless protocol**, meaning that no information is kept on the
-server between request/response cycles. Each request/response cycle is 
-independent, and has no effect on previous or subsequent cycles.
+- **HTTP is a stateless protocol**: each request/response pair is completely
+independent of the previous one.
 - Stateless protocols are resilient, fast, and flexible as the server doesn't
 have to retain any information between each request/response cycle nor does
 any part of the system have to perform any clean up.

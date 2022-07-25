@@ -84,10 +84,15 @@ An URL should only contain the following **allowable characters**
 | Unreserved | `-_.~` | Text strings |
 | Reserved | `!*'();:@&=+$,/?%#[]` | Control characters and/or Text strings|
 
-Characters that requires encoding if we want to include it in an URL are:
-- Characters **not in** list of allowable characters above
+The three reasons to encode a character in an URL are:
+- They have no corresponding character within the standard ASCII character set 
+i.e. **not in** list of allowable characters above
   - e.g. foreign language characters `上海中國`
-- Reserved characters that we want to use literally i.e. use without its special meaning
+- The use of the character is unsafe because it may be misinterpreted, or even
+possibly modified by some systems. 
+  - e.g. `%` is unsafe because it can be used for encoding other characters. 
+- The character is reserved for special use within the URL scheme but that we
+want to use literally i.e. use without its special meaning
   - e.g. we want to use the string "`time+space`" rather than its special meaning where `+` is interpreted as space i.e. `time space` 
 
 To encode, we replace the character with `%` and a two-character hex value corresponding to their UTF-8/[ASCII](https://www.asciitable.com/) character. Common encoded characters:

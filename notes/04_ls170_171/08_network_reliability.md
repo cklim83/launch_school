@@ -32,8 +32,8 @@ acknowledgement not received **within a certain time**.\
 3. Having 1) and 2) above could meant result in situation where message was received but
 acknowledgement was lost or not received on time, causing sender to resend 
 original message. In this scenario, we need a **sequence number for recipient to
-identify duplicate message** and respond accordingly (e.g. resend acknowledgement,
-but discard the duplicate message)\
+identify and discard duplicate message** and resend acknowledgement. The sequence
+number also the recipient to keep received message in the right order\
 ![Ack With Timeout & Sequence Number](images/25_acknowledgement_timeout_sequence_number.png)
 
 4. To improve performance, we can send **multiple messages in each batch**. This is 

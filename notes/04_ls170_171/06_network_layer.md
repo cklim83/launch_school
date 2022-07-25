@@ -54,15 +54,33 @@ deemed corrupted and is dropped.
 [Back to Top](#section-links)
 
 
-## IP Addresses (IPv4)
-- IPv4 addresses are 32-bit in length and divided into four sections of eight
-bits. When converted from binary to decimal, each section have a range between
-`0` to `255`. An example IP address is `109.156.106.57`.
-- Unlike MAC addresses, IP addresses are **logical** in nature. They are not tied
-to any devices but are **dynamically assigned** when they join a network. 
-- The actual IP address must fall within a range of addresses available to the
-local network the device is joining. This range is determine by a network
-hierarchy, where an overall network is split into logical subnetworks. 
+## IP Address
+- An IP address is an address that **uniquely identifies** a device connected to
+the Internet or local network. Similar to how postal addresses are used for the
+delivery of parcels and mails, an IP address is used for the delivery of data
+packets on the Internet. 
+- Unlike MAC addresses, IP addresses are **logical** in nature i.e. they are
+not tied to any devices like a serial number. Instead, they are **dynamically
+assigned** when a device join a network. The assigned value must fall within
+the IP range managed by that network's router.
+- **IPv4** addresses are 32-bit in length and divided into four sections of eight
+bits (octet). When converted from binary to decimal, each section have a range
+between `0` to `255`. An example IP address is `141.213.127.13`.
+- IP addresses are hierachical in nature. The first sequence of bits identifies
+the  network and the final bits identify the individual node in the network. For
+example `141.213.127.13` can be broken into 3 parts:
+
+  | 141.213 | 127 | 13 |
+  |---|---|---|
+  | UMich network | Medicine department | Lab computer |
+
+- Their logical and hierarchical nature greatly speeds up packet routing since 
+a router need not track the IP addresses of all devices in its routing table. 
+Instead, it's routing table just need to contain the network range of its 
+neighbouring routers. From there, it can very quickly determine which of these 
+network range subsumes a packet's destination IP address and forward the packet
+to it. This allows IP addressing to scale to very large networks, something that
+MAC addressing is not suited to.
 
 ### Network Hierarchy Example
 A local network could be assigned the addresses between `109.105.106.0` to
@@ -79,7 +97,8 @@ of every single devices within that addressable range.
 ![IP Network Hierachy](images/15_ip_network_hierarchy.png)
 
 We can further split a network into smaller subnets by dividing IP address
-ranges further, to create more tiers within the hierarchy.
+ranges further, to create more tiers within the hierarchy to improve 
+efficiency.
 
 ![IP Subnetting](images/16_ip_subnetting.png)
 
@@ -95,12 +114,12 @@ the best route to forward the packet to its destination.
 [Back to Top](#section-links)
 
 
-## Difference with IPv6
+## IPv6
 - Due to the growing number of internet connected devices, IPv6 was introduced
 to expand the maxium number of IP addresses from ~4.3 billion in IPv4 to ~340 
 undecillion (340 billion billion billion billion). This is achieved by
-increasing the number of bits of an IP address from 32-bit to 128-bit 
-(eight 16-bit blocks).
+increasing the number of bits of an IP address from 32-bit to 128-bit, organized 
+into eight 16-bit blocks.
 - IPv6 also has a different header structure and removed error checking (left
 to linked layer checksum)
 

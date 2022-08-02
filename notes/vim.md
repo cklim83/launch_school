@@ -126,17 +126,17 @@ There are 3 commonly used modes in Vim. They are:
 - See [Set Options](#set-options) for options related to search e.g. case insensitive match
 
 ## Find and Replace
-`:s/old/new` will substitute new for the first old on a line
-`:s/old/new/g` will substitute new for all olds on a line
-`:%s/old/new/g` will substitute all occurrences in the file 
-`:%s/old/new/gc` will ask for confirmation before substituting each occurrence in the file
-`:num1,num2s/old/new/g` will substitute new for olds between lines num1 and num2
+- `:s/old/new` will substitute new for the first old on a line
+- `:s/old/new/g` will substitute new for all olds on a line
+- `:%s/old/new/g` will substitute all occurrences in the file 
+- `:%s/old/new/gc` will ask for confirmation before substituting each occurrence in the file
+- `:num1,num2s/old/new/g` will substitute new for olds between lines num1 and num2
 
 [Back to Top](#section-links)
 
 
 ## Execute External Command
--`:!command` will execute an external comand. Examples include:
+- `:!command` will execute an external comand. Examples include:
 	- `:!ls` will show directory listing
 	- `:!rm Filename` will remove file Filename
 - `:w Filename` writes the current Vim filw to disk with name Filename

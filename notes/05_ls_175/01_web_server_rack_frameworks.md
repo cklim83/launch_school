@@ -1,7 +1,7 @@
 # Web Server, Rack and Web Frameworks
 
 ## Section Links
-[Role of Server In HTTP Request - Response Cycle](#role-of-server-in-http-request-response-cycle)\
+[Role of Server In HTTP Request - Response Cycle](#role-of-server-in-http-request---response-cycle)\
 [Web Servers](#web-servers)\
 [Rack](#rack)\
 [Web Frameworks](#web-frameworks)\

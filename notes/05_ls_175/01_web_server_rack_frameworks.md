@@ -98,7 +98,7 @@
 - Web frameworks are a collection of libraries/code that work well together for a specific purpose: building command line apps, building web apps, parsing data, writing tests, working with images, working with music etc. 
 - Sinatra and Rails are two popular Ruby based web frameworks for building Rack web applications. Sinatra is lightweight while Rails has more features.
 
-	| ![Web Framework Schematic](web_framework_schematic.png) | 
+	| ![Web Framework Schematic](images/web_framework_schematic.png) | 
 	| :--: |
 	| <b>Image Credit - Launch School Course Material</b> |
 - Sinatra provides conventions for where to place application code, and built-in capabilities for routing, view templates and many other convenient features that you will otherwise have to code up yourself. 

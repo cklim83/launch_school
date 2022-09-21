@@ -1,0 +1,50 @@
+body {
+  padding: 1em;
+  font-family: sans-serif;
+}
+
+.message {
+  padding: 10px;
+  background-color: #FFFF99;
+}
+
+label.block {
+  display: block;
+}
+
+form.inline {
+  display: inline;
+}
+
+.user-status {
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+form.registration {
+  padding: 10px;
+  display: table;
+}
+
+div.registration {
+  display: table-row;
+}
+
+label, input {
+  display: table-cell;
+  margin-bottom: 5px;
+}
+
+label {
+  padding-right: 10px;
+}
+
+div.error {
+  background-color: pink;
+  color: red;
+  padding: 5px;
+}
+
+li.error {
+  font-size: 12px;
+}

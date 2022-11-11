@@ -11,6 +11,7 @@
 - [View Helpers](#view-helpers)
 - [Not Found](#not-found)
 - [Redirect](#redirect)
+- [Headers](#headers)
 - [Putting It All Together](#putting-it-all-together)
 
 [File Types](#file-types)\
@@ -233,6 +234,21 @@ gem "webrick" # if using Ruby 3.0 or higher
 	  erb :chapter
 	end
 	```
+
+[Back to Top](#section-links)
+
+
+### Headers
+- We can use the `headers` method to alter the value of response headers
+```ruby
+# changing page from html to plaintext
+get "/:filename" do
+  file_path = root + "/data/" + params[:filename]
+
+  headers["Content-Type"] = "text/plain"
+  File.read(file_path)
+end
+```
 
 [Back to Top](#section-links)
 

@@ -31,7 +31,8 @@ Course: Launch School Open Bookshelf
 [Ruby Application - Matching Strings](#ruby-regex-application---matching-strings)\
 [Ruby Application - Splitting Strings](#ruby-regex-application---splitting-strings)\
 [Ruby Application - Capture Groups](#ruby-regex-application---capture-groups)\
-[Ruby Application - Transformations in Ruby](#ruby-regex-application---transformations-in-ruby)
+[Ruby Application - Transformations in Ruby](#ruby-regex-application---transformations-in-ruby)\
+[Advanced  Anchors - Lookahead/Lookbehind](#advanced-anchors---lookaheadlookbehind)
 
 ---
 
@@ -633,3 +634,21 @@ puts "strawberry" if "strawberry".match(pattern) #not printed
 ```
 
 
+# Advanced Anchors - Lookahead/Lookbehind
+-   `(?=`_pat_`)` - _Positive lookahead_ assertion: ensures that the following characters match _pat_, but doesn’t include those characters in the matched text
+    
+-   `(?!`_pat_`)` - _Negative lookahead_ assertion: ensures that the following characters do not match _pat_, but doesn’t include those characters in the matched text
+    
+-   `(?<=`_pat_`)` - _Positive lookbehind_ assertion: ensures that the preceding characters match _pat_, but doesn’t include those characters in the matched text
+    
+-   `(?<!`_pat_`)` - _Negative lookbehind_ assertion: ensures that the preceding characters do not match _pat_, but doesn’t include those characters in the matched text
+
+Note: Since this matches ahead/behind, the regex engine does not move forward or backward after a match. When we say the match doesn't include those characters in matched text, the actual character is actual "" i.e. the boundary before the pattern.
+
+```ruby
+pattern = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/ 
+# (?=.*[a-z]) forward match any string at least 1 lower case letter
+# (?=.*[A-Z]) forward match any string with at least 1 upper case letter
+# (?=.*\d) forward march any string with at least 1 digit
+# Taken together, pattern matches a string that has at least 1 of lower case letter, upper case letter and number.
+```

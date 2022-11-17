@@ -229,18 +229,22 @@ Keys and constraints **are optional rules** that define what values a column can
 - `\d $table_name` will display the schema of `$table_name`
 
 	```sql
-	sql_book=# CREATE TABLE users (                                            id serial PRIMARY KEY,                                                  username CHAR(25),                                                      enabled BOOLEAN DEFAULT true                                          );
+	sql_book=# CREATE TABLE users (
+	  id serial PRIMARY KEY,
+	  username CHAR(25),
+	  enabled BOOLEAN DEFAULT true
+	  );
 	CREATE TABLE
 
 	sql_book=# \d users
-	                                Table "public.users"
-  Column  |     Type      | Collation | Nullable |              Default              
-----------+---------------+-----------+----------+-----------------------------------
- id       | integer       |           | not null | nextval('users_id_seq'::regclass)
- username | character(25) |           |          | 
- enabled  | boolean       |           |          | true
-Indexes:
-    "users_pkey" PRIMARY KEY, btree (id)
+	               Table "public.users"
+	Column  | Type         | Nullable| Default 
+	--------+--------------+---------+--------------
+    id      | integer      | not null| nextval('users_id_seq'::regclass)
+    username| character(25)|         | 
+    enabled | boolean      |         | true
+    Indexes:
+    "users_pkey" PRIMARY KEY, btree (id)
 	```
 	- `id` column is originally defined as type `serial`, a shortcut in PostgreSQL that actually defines an `integer` data type with `NOT NULL` and  `DEFAULT` constraint. `DEFAULT` uses the value of `nextval` function applied to the integer sequence `users_id_seq` that begins with `1` to return an auto-incrementing integer.
 	- `users` table also has an index `user_id_key` that was created when we add the `UNIQUE` constaint. Indexes are a way to store quick references to values in a particular column. 

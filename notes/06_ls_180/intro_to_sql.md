@@ -6,12 +6,12 @@
 [Create, List and Delete Databases](#create-list-and-delete-databases)\
 [Create A Table](#create-a-table)\
 [Alter A Table ](#alter-a-table)\
-[Database Design - Multiple Tables](#database-design-multiple-tables)\
+[Database Design - Multiple Tables](#database-design---multiple-tables)\
 [Insert Data Into A Table](#insert-data-into-a-table)\
 [Update Data In A Table](#update-data-in-a-table)\
 [Delete Data From A Table](#delete-data-from-a-table)\
-[Select Query](#select-query)\
-[Subqueries](#subqueries)
+[Select Queries](#select-queries)\
+[Subqueries](#subqueries)\
 [Optimizing SQL Queries](#optimizing-sql-queries)\
 [Comparing SQL Statements](#comparing-sql-statements)
 
@@ -144,9 +144,9 @@ CREATE TABLE table_name (
 
  -- Example
 CREATE TABLE users (
-       id serial UNIQUE NOT NULL,
-       username char(25),
-       enabled boolean DEFAULT TRUE
+    id serial UNIQUE NOT NULL,
+    username char(25),
+    enabled boolean DEFAULT TRUE
 );
 ```
 
@@ -212,7 +212,7 @@ CREATE TABLE users (
 		(2 rows)
 		```
 
-- `NULL` is a special value in SQL which symbolizes the absence of any other value. We should not use any comparison operators such as `=` ,`<`, `>=` on `NULL` as that will return `NULL` and not the expected boolean result. For example, `NULL` = `NULL` returns `NULL` and not `true`. Instead, use `IS` or `IS NOT` when we want to compare something with `NULL`.
+- `NULL` is a special value in SQL which symbolizes the absence of any other value. We should not use any comparison operators such as `=` ,`<`, `>=` on `NULL` as that will return `NULL` rather than the boolean result we wanted. For example, `NULL` = `NULL` returns `NULL` rather than `true`. Instead, use `IS` or `IS NOT` when we want to compare something with `NULL`.
 - `timestamptz` data type is available if we need to store a timestamp with timezone.
 - Consult [PostgreSQL data type documentation](https://www.postgresql.org/docs/current/datatype.html) for details.
 
@@ -229,22 +229,18 @@ Keys and constraints **are optional rules** that define what values a column can
 - `\d $table_name` will display the schema of `$table_name`
 
 	```sql
-	sql_book=# CREATE TABLE users (
-	sql_book(#   id serial PRIMARY KEY,
-	sql_book(#   username CHAR(25),
-	sql_book(#   enabled BOOLEAN DEFAULT true
-	sql_book(# );
+	sql_book=# CREATE TABLE users (                                            id serial PRIMARY KEY,                                                  username CHAR(25),                                                      enabled BOOLEAN DEFAULT true                                          );
 	CREATE TABLE
 
 	sql_book=# \d users
-                                Table "public.users"
-	  Column  |     Type      | Collation | Nullable |              Default 
-	----------+---------------+-----------+----------+-----------------------------------
-		 id       | integer       |           | not null | nextval('users_id_seq'::regclass)
-	 username | character(25) |           |          | 
-	 enabled  | boolean       |           |          | true
-	Indexes:
-	    "users_pkey" PRIMARY KEY, btree (id)
+	                                Table "public.users"
+  Column  |     Type      | Collation | Nullable |              Default              
+----------+---------------+-----------+----------+-----------------------------------
+ id       | integer       |           | not null | nextval('users_id_seq'::regclass)
+ username | character(25) |           |          | 
+ enabled  | boolean       |           |          | true
+Indexes:
+    "users_pkey" PRIMARY KEY, btree (id)
 	```
 	- `id` column is originally defined as type `serial`, a shortcut in PostgreSQL that actually defines an `integer` data type with `NOT NULL` and  `DEFAULT` constraint. `DEFAULT` uses the value of `nextval` function applied to the integer sequence `users_id_seq` that begins with `1` to return an auto-incrementing integer.
 	- `users` table also has an index `user_id_key` that was created when we add the `UNIQUE` constaint. Indexes are a way to store quick references to values in a particular column. 
@@ -299,7 +295,7 @@ Keys and constraints **are optional rules** that define what values a column can
     ALTER TABLE todos
       ADD COLUMN status boolean NOT NULL;
 	```
-		This last example will also throw an error since `status` column already exist and we will not be allowed to add another column with the same name.
+	This last example will also throw an error since `status` column already exist and we will not be allowed to add another column with the same name.
 
 - For a column with `UNIQUE` constraint, an index holding unique values will be created. This index will be used to ensure any new value to be inserted in that column does not already exist in the index.
 
@@ -924,7 +920,7 @@ DELETE FROM table_name WHERE expression;
 [Back to Top](#section-links)
 
 
-## Select Query
+## Select Queries
 - We use the `SELECT` statement to retrieve rows from a table that meets certain conditions
 	``` sql
 	SELECT column_name, ...

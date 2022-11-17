@@ -693,16 +693,17 @@ CREATE TABLE books_categories (
 - **Modality** determines if the relationship is required (1) or optional (0)
 <br>
 **Event Ticketing Example**\
-	![Ticketing Example Crow's Foot Notation](images/ticketing_crows_foot.png)
-	- Ticket must belong to one event but an event can have 0 or more tickets
-	- Ticket must be associated with one seat but a seat can have 0 or more tickets
-	- A seat must belong to one section but a section can have 1 or more seats
-	- A ticket must belong to one customer but a customer can have 0 or more tickets
-	<br>
-	**Book Author Example**\
-	![Book Author Example Crow's Foot](images/book_author_crows_foot.png)
-	- A book can belong to 0 or more categories and a category can have 0 or more books
-	- A book must have 1 author but an author can have 1 or more books.
+![Ticketing Example Crow's Foot Notation](images/ticketing_crows_foot.png)
+- Ticket must belong to one event but an event can have 0 or more tickets
+- Ticket must be associated with one seat but a seat can have 0 or more tickets
+- A seat must belong to one section but a section can have 1 or more seats
+- A ticket must belong to one customer but a customer can have 0 or more tickets
+
+
+**Book Author Example**\
+![Book Author Example Crow's Foot](images/book_author_crows_foot.png)
+- A book can belong to 0 or more categories and a category can have 0 or more books
+- A book must have 1 author but an author can have 1 or more books.
 
 
 ### Join

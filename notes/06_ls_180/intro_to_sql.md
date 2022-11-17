@@ -707,7 +707,7 @@ CREATE TABLE books_categories (
 - A book must have 1 author but an author can have 1 or more books.
 
 
-### Join
+### JOIN
 ```sql
 SELECT ... FROM table_a [JOIN TYPE] table_b ON join_condition
 ```
@@ -742,9 +742,8 @@ SELECT ... FROM table_a [JOIN TYPE] table_b ON join_condition
 ### INSERT INTO ... VALUES
 - `INSERT INTO ... VALUES` statements are used to append rows into a table:
 	```sql
-	INSERT INTO table_name
-	            [(column_A, column_B, ...)]
-	     VALUES (col_A_data, col_B_data, ...);
+	INSERT INTO table_name [(column_A, column_B, ...)]
+	  VALUES (col_A_data, col_B_data, ...);
 	```
 	- When inserting data into a table, we may specify either **all the columns**, a **subset of columns**, or **none at all**. Specifying all or a subset of columns allows to enter the data values in a different order from that set during the schema definition. Not specifying at all will assume the same column order as that set during the schema definition but could sometimes lead to unexpected errors. Hence it is best to specify which columns we want to insert data into.
 	- When columns are specified, each specified column have be supplied with a corresponding value in the `VALUES` clause. If a column has a default value defined, we can enter `DEFAULT` if we want to use that value. 
@@ -802,7 +801,7 @@ SELECT ... FROM table_a [JOIN TYPE] table_b ON join_condition
 	    "tools_pkey" PRIMARY KEY, btree (id)
 	```
 
-		We want to add some rows of data to the table, using the default value for the `discount` column and having the values for the `comments` column as `NULL`. Which of the following SQL statements would successfully add data into the table?
+	We want to add some rows of data to the table, using the default value for the `discount` column and having the values for the `comments` column as `NULL`. Which of the following SQL statements would successfully add data into the table?
 
 	**Correct**
 	```sql
@@ -1035,18 +1034,21 @@ DELETE FROM table_name WHERE expression;
 
 ### Common Functions
 - String Functions
+
 | Function | Example | Notes |
 | --- | --- | --- |
 | `length` | `SELECT length(full_name) FROM users;` | This returns the length of every user's name. You could also use `length` in a `WHERE` clause to filter data based on name length. |
 | `trim` |  `SELECT trim(leading ' ' from full_name) FROM users;` | If any of the data in our `full_name` column had a space in front of the name, using the `trim` function like this would remove that leading space. |
 	
 - Date / Time Functions
+
 | Function | Example | Notes |
 | --- | --- | --- |
 | `date_part` | `SELECT full_name, date_part('year', last_login) FROM users;` |  `date_part` allow us to view a table that only contains a part of a user's timestamp that we specify. The above query allows us to see each user's name along with the year of the `last_login` date. Sometimes having date/time data down to the second isn't needed |
 | `age` |  `SELECT full_name, age(last_login) FROM users;` | The `age` function, when passed a single `timestamp` as an argument, calculates the time elapsed between that timestamp and the current time. The above query allows us to see how long it has been since each user last logged in. |
 
-- Aggregate Functions:
+- Aggregate Functions
+
 | Function | Example | Notes |
 | --- | --- | --- |
 | `count` | `SELECT count(id) FROM users;` | Returns the number of values in the column passed in as an argument. This type of function can be very useful depending on the context. We could find the number of users who have enabled an account, or even how many users have certain last names if we use the above statement with other clauses. |

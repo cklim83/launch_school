@@ -431,7 +431,7 @@ Database diagrams are used to represent entities and their relationships and can
 		
 - **Normalization** is the process of designing relations' schema to minimize the occurrences of these anomalies. It involves extracting data into additional relations and then use foreign keys to tie back associated data.
 - In the `calls` example, by separating a single denormalized `calls` relation into separate `contacts` and `calls`, we eliminate data duplication by only storing unique contacts in the `contacts` table and referencing them in the normalized `calls` table. Insertion and deletion anomaly are also not avoided as we can now delete calls without loss of contact information and also insert contacts that have yet to make any calls.
-	![Normalized Tables](04_normalized_calls.png)
+	![Normalized Tables](images/04_normalized_calls.png)
 	![Normalized Tables Schema](images/05_normalized_calls_schematic.png)
 
 ### Key
@@ -630,14 +630,14 @@ There are three types of relationships between entities (relations).
 	-   The `FOREIGN KEY` constraint prevents us from inserting a row in `addresses` with a `user_id` value that does not exist in the `id` column of the `users` table. **Note**: We can add a user without an address but not an address without a user since it is `addresses` that references `users`
 	-   The `ON DELETE CASCADE` meant that if the row being referenced is deleted, the row referencing it is also deleted. Alternatives to `CASCADE` are `SET NULL` or `SET DEFAULT`
 	
-	![One-to-one Relationship](07_one-to-one_relationship.png)
+	![One-to-one Relationship](images/07_one-to-one_relationship.png)
 
 #### One to Many Relationship
 ![One to Many Entity Diagram](images/08_one_to_many_entity_diagram.png)
 - An instance from the first entity (relation) can be associated with one instance of the second entity (relation) but an instance of the second entity can be associated to more than one instance of the first entity: A `call` can only be made by 1 `contact` but a `contact` can make many `calls` (**1:M**).
 - **One to many** relationship are implemented with the entity on the many end having a foreign key that references the primary key of the entity on the one end.
-![Normalized 'calls' Table Schematic](05_normalized_calls_schematic.png)
-	![Normalized 'calls' tables](04_normalized_calls.png)
+![Normalized 'calls' Table Schematic](images/05_normalized_calls_schematic.png)
+	![Normalized 'calls' tables](images/04_normalized_calls.png)
 ```sql
 CREATE TABLE contacts (
   id serial PRIMARY KEY,

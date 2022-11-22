@@ -32,7 +32,7 @@
 ### Relational Database Management Systems
 - While a spreadsheet is good enough to manage a small amount of data, they do not scale well, especially if one need to check for duplicates and errors, support concurrent users or find data quickly. At this point, it is likely better to move to a relational database.
 - A relational database is a database organized according to the relational model of data. The relational model defines a set of relations (i.e. tables) and describes the relationships between tables.
-- A Relational Database Management System is a software application for managing relational databases
+- A Relational Database Management System (RDBMS) is a software application for managing relational databases
 - **SQLite**, **MS SQL**, **PostgresSQL** and **MySQL** are amongst the most popular relational model based RDMS. Non relational model systems also exist. For example, MongoDB is a popular 'NoSQL' system that uses a document oriented data storage model.
 
 ### What is SQL?
@@ -411,19 +411,19 @@ ALTER TABLE airlines
 - A **relation** is usually another way to mean a table. However, it could also refer to a sequence or a view.
 - A **relationship** is an association between data stored in two relations.
 
-	![Relationships](images/03_table_relationships.png)
+	![Relationships](images/01_table_relationships.png)
 
 
 ### Database Diagrams
 Database diagrams are used to represent entities and their relationships and can have different levels of details.
 - **Conceptual**: This is a high level design focussed on identifying relations and their relationships.
 - **Logical**: A expanded version of conceptual diagram that include data fields and types within a relation.
-- **Physical**: A RDMS specific detailed design that include rules such as constraints.
+- **Physical**: A RDBMS specific detailed design that include rules such as constraints.
 
-	![Level of Schema](images/level_of_schema.png)
+	![Level of Schema](images/02_level_of_schema.png)
 
 ### Entity Normalization
-![Denormalized 'calls' Table](images/denormalized_calls.png)
+![Denormalized 'calls' Table](images/03_denormalized_calls.png)
 - While it might seem a good idea to have all related data fields in one table i.e. in **denormalized** form, this actually poses several problems:
 	- **Data duplication** could occur when different values of one field have the same value for another field. Data duplication also make it susceptible to **update anomalies** if affected rows are missed out during the update process;
 	- **Insertion anomaly** is also an issue since we cannot just insert a subset of data. In the `calls` example, we cannot just store contacts that have never made a call;
@@ -431,14 +431,15 @@ Database diagrams are used to represent entities and their relationships and can
 		
 - **Normalization** is the process of designing relations' schema to minimize the occurrences of these anomalies. It involves extracting data into additional relations and then use foreign keys to tie back associated data.
 - In the `calls` example, by separating a single denormalized `calls` relation into separate `contacts` and `calls`, we eliminate data duplication by only storing unique contacts in the `contacts` table and referencing them in the normalized `calls` table. Insertion and deletion anomaly are also not avoided as we can now delete calls without loss of contact information and also insert contacts that have yet to make any calls.
-	![Normalized Tables](images/normalized_calls.png)
-	![Normalized Tables Schema](images/normalized_calls_schematic.png)
+	![Normalized Tables](04_normalized_calls.png)
+	![Normalized Tables Schema](images/05_normalized_calls_schematic.png)
 
 ### Key
 - Within a table (relation) in a database, a **key** is used to uniquely identify each row of data. 
 - There are two types of keys:
-	- **natural key**: a naturally occuring column or combination of columns (**composite key**) in a dataset whose values uniquely identifies each row of data.
-	- **surrogate key**: a column **specially created** to contain values that uniquely identify each row of data. We often use a field with an auto-incrementing integer as a surrogate key.
+	- **natural key**: column or combination of columns (**composite** key) that are part of a dataset whose values can uniquely identify each row of data in the dataset. For example, a national identification number serves as natural keys in a citizenry database to uniquely identify each citizen of a country.
+	- **surrogate key**: a column **specially created** to contain values that uniquely identify each row of data. We often create an `id` field with an auto-incrementing integer as a surrogate key.
+	- A surrogate key is **preferred over** natural keys because most values that seem like good candidates for natural keys turn out to not be. For example, a phone number and email address can change hands. A social security number shouldn't change but only some people have them. And products often go through multiple revisions while retaining the same product number.
 - The **`serial`** datatype in PostgreSQL, which creates a field with default auto-incrementing integers, provides a convenient way to create a surrogate key for a table. Declaring a column **`serial`** is **functionally equivalent** to declaring it an **integer type with both `NOT NULL` and `DEFAULT` constraints**. The default value corresponds to a sequence of integers, beginning with 1.
 	```sql
 	-- This statement:
@@ -603,7 +604,7 @@ Database diagrams are used to represent entities and their relationships and can
 
 ### Entity Relationships
 There are three types of relationships between entities (relations).
-![Entity Relationship Model](images/entity-relationship_model.png)
+![Entity Relationship Model](images/06_entity-relationship_model.png)
 
 #### One to One Relationship
 - Each instance from one entity can only be associated with one instance from the related entity. One to one relationships are rare in practice. As an example, we can assume a user can only have only one address in our application.
@@ -629,14 +630,14 @@ There are three types of relationships between entities (relations).
 	-   The `FOREIGN KEY` constraint prevents us from inserting a row in `addresses` with a `user_id` value that does not exist in the `id` column of the `users` table. **Note**: We can add a user without an address but not an address without a user since it is `addresses` that references `users`
 	-   The `ON DELETE CASCADE` meant that if the row being referenced is deleted, the row referencing it is also deleted. Alternatives to `CASCADE` are `SET NULL` or `SET DEFAULT`
 	
-	![One-to-one Relationship](images/04_one-to-one_relationship.png)
+	![One-to-one Relationship](07_one-to-one_relationship.png)
 
 #### One to Many Relationship
-![One to Many Entity Diagram](images/one_to_many_entity_diagram.png)
+![One to Many Entity Diagram](images/08_one_to_many_entity_diagram.png)
 - An instance from the first entity (relation) can be associated with one instance of the second entity (relation) but an instance of the second entity can be associated to more than one instance of the first entity: A `call` can only be made by 1 `contact` but a `contact` can make many `calls` (**1:M**).
 - **One to many** relationship are implemented with the entity on the many end having a foreign key that references the primary key of the entity on the one end.
-![Normalized 'calls' Table Schematic](images/normalized_calls_schematic.png)
-	![Normalized 'calls' tables](images/normalized_calls.png)
+![Normalized 'calls' Table Schematic](05_normalized_calls_schematic.png)
+	![Normalized 'calls' tables](04_normalized_calls.png)
 ```sql
 CREATE TABLE contacts (
   id serial PRIMARY KEY,
@@ -659,10 +660,10 @@ CREATE TABLE calls (
 ```
 
 #### Many to Many Relationship
-![Many-to-Many Relationship Entity Diagram](images/book_category_many_to_many_entity_relationship.png)
+![Many-to-Many Relationship Entity Diagram](images/09_book_category_many_to_many_entity_relationship.png)
 - Instances from one entity can be associated to more than 1 instance from the other entity and vice versa: a `book` can fall under multiple `categories` while a `category` can contain multiple `books` (**M:M**).
 - Translating above entity relationship diagram into a physical schema, we get:
-	![Book - Category Physical Schema](images/book_category_physical_schema.png)
+	![Book - Category Physical Schema](images/10_book_category_physical_schema.png)
 - Many-to-many relationships are implemented using an **additional table** to store the relationships between instances of the two tables. This table, called a _join table_, contains **two** `FOREIGN KEY`s referencing the `PRIMARY KEY` of each table having the many-to-many relationship. By convention, the name of the join table is formed by concatenating the names of the two tables in alphabetical order e.g. `books_categories` in this example.
 - **Important Note**: Although foreign keys should not have `NULL` values, the `Foreign Key` constraint does not enforce that. To enforce that, we need to add both `NOT NULL` and `ON DELETE CASCADE` constraints on foreign keys. 
 ```sql
@@ -685,7 +686,7 @@ CREATE TABLE books_categories (
 ```
 
 ### Cardinality and Modality
-| ![Cardinality and Modality](images/cardinality_and_modality_symbols.png) |
+| ![Cardinality and Modality](images/11_cardinality_and_modality_symbols.png) |
 | :--: |
 | <b> Crow's Foot Notation </b> |
 
@@ -694,7 +695,7 @@ CREATE TABLE books_categories (
 
 
 **Event Ticketing Example**\
-![Ticketing Example Crow's Foot Notation](images/ticketing_crows_foot.png)
+![Ticketing Example Crow's Foot Notation](images/12_ticketing_crows_foot.png)
 - Ticket must belong to one event but an event can have 0 or more tickets
 - Ticket must be associated with one seat but a seat can have 0 or more tickets
 - A seat must belong to one section but a section can have 1 or more seats
@@ -702,7 +703,7 @@ CREATE TABLE books_categories (
 
 
 **Book Author Example**\
-![Book Author Example Crow's Foot](images/book_author_crows_foot.png)
+![Book Author Example Crow's Foot](images/13_book_author_crows_foot.png)
 - A book can belong to 0 or more categories and a category can have 0 or more books
 - A book must have 1 author but an author can have 1 or more books.
 
@@ -1394,8 +1395,8 @@ FROM/JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> LI
 
 ### When to use an  index?
 - While index speeds up searches and make reads faster, there is a cost involved as indexes have to be updated whenever a row is updated or inserted.
-	![Book Index](images/book_index.png)
-	![Database Table Index](images/database_table_index.png)
+	![Book Index](images/14_book_index.png)
+	![Database Table Index](images/15_database_table_index.png)
 - Some rule of thumb when assessing trade-offs include:
 	- Indexes are best used when sequential reading is inadequate. Examples include columns that are used in mapped relationships (e.g. Foreign Keys) or columns frequently used as part of `ORDER BY` clauses.
 	- Indexes are best used in tables and/or columns where data are read more frequently than they are created or updated.

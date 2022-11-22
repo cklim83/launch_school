@@ -227,4 +227,4 @@ We have 3 levels of schema, in increasing order of detail. They are:
 ### Be able to draw database diagrams using crow's foot notation.
 
 **Example**\
-![Ticketing Example Crow's Foot Notation](images/ticketing_crows_foot.png)
+![Ticketing Example Crow's Foot Notation](12_ticketing_crows_foot.png)

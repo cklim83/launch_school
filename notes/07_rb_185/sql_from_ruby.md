@@ -59,7 +59,7 @@
 **Note**: all the values in the `result` object will be of the string type. They need to be converted to the appropriate type before handing over to the application code.
 
 ### Usage Examples
-Import this [file](sql_files/films_7.sql) into a database before continuing. 
+Import this [file](sql_files/films7.sql) into a database before continuing. 
 ```terminal
 createdb films
 psql -d films < films7.sql
@@ -310,7 +310,7 @@ There is 1 expense.
 Total                      0.01
 ```
 
-[Unsafe version using #exec](https://github.com/cklim83/expense_tracker/tree/v0.1)
+[Unsafe version using #exec](https://github.com/cklim83/expense_tracker/tree/v0.1)\
 [Safe version using #exec_params](https://github.com/cklim83/expense_tracker/tree/v0.2)
 
 [Back to Top](#section-links)

@@ -1,6 +1,7 @@
 # Introduction To SQL
 
 ## Section Links
+[Setup](#setup)\
 [Introduction](#introduction)\
 [PostgreSQL Interfaces](#postgresql-interfaces)\
 [Create, List and Delete Databases](#create-list-and-delete-databases)\
@@ -16,6 +17,80 @@
 [Comparing SQL Statements](#comparing-sql-statements)
 
 ---
+## Setup
+### Installation of PostgreSQL on Cloud9
+If you are using AWS Cloud9 with Amazon Linux 2, use the following commands to install PostgreSQL:
+```shell
+$ sudo yum install postgresql postgresql-server
+$ sudo service postgresql initdb
+```
+
+Use this command to **start PostgreSQL** everytime before we use it:
+```shell
+$ sudo service postgresql start
+```
+
+The default user name on Cloud 9 is `ec2-user`. Hence if we try to run the `psql` console directly using the `psql` command, we'll receive an error which looks something like this:
+
+```shell
+$ psql
+psql: FATAL:  role "ec2-user" does not exist
+```
+
+This happens because Postgres automatically tries to run using the local user, but there is no user role defined for `ec2-user` yet within Postgres.
+
+**Running Postgres as the postgres user**
+By default, Postgres will create a `postgres` user role in all installation. Thus, we are assume the role of `postgres` by prepending any command we are running with `sudo -u postgres`. For instance, to run the psql command, type:
+```shell
+$ sudo -u postgres psql
+```
+
+To create a new database, type:
+```shell
+$ sudo -u postgres createdb my_database
+```
+
+**Creating a Postgres role for the local user**
+If prepending `sudo -u postgres` before any command is a chore, another option is to create a Postgres role for the local user. This is done by passing the `-s` flag to `createuser` and supplying it with the username of the local user to create a superuser role:
+```shell
+$ sudo -u postgres createuser -s $LOGNAME
+```
+
+Note: When we run this command, `bash` will automatically replace the `$LOGNAME` variable with whatever name used for the local user. Its value is usually `ec2-user`.
+
+When running that command, we may see a message along these lines of `could not change directory to "/home/ec2-user/environment": Permission denied`. Don't worry about this as the user should still be created.
+
+With the new user role created, we are now able to run Postgres commands from the terminal without the need to prepend them with `sudo -u postgres`.
+
+It is also usually a good idea to also create a database of the same name as the user role. This is because Postgres automatically tries to connect to a database of the same name as the user running the command whenever we run the `psql` command without any database specified:
+```shell
+$ psql
+psql: FATAL:  database "ec2-user" does not exist
+$ createdb $LOGNAME
+$ psql
+psql (9.6.11)
+Type "help" for help.
+
+ec2-user=#
+```
+
+### Mac OSX install
+One option for installing PostgreSQL on a Mac is to use Postgres.app. There are instructions for installing Postgres.app on the [its homepage](https://postgresapp.com/). The site also has instructions for using the Postgres.app [command line tools](https://postgresapp.com/documentation/cli-tools.html).
+
+Alternatively you can use [Homebrew](https://www.postgresql.org/docs/9.6/static/app-psql.html) to install PostgreSQL. If you don't have Homebrew installed, follow the installation instructions on its homepage.
+
+First, we ensure that Homebrew is up to date
+
+```shell
+$ brew update
+$ brew doctor
+$ brew upgrade
+```
+
+Next, follow the instructions listed in [this blog post](https://launchschool.com/blog/how-to-install-postgresql-on-a-mac/).When reading this article, you only need to follow instructions for installing PostgreSQL; skip the section on Rails.
+
+Homebrew may complain that there is "No available formula with the name "postgres" when you try to run `brew install postgres`. If you see this message, try installing one of the specific versions listed, preferring one of the most recent versions. For instance, to install version 14, you would run `brew install postgresql@14`.
+
 ## Introduction
 ### What Is Structured Data?
 - Structured data is data with well-formatted fields that can be stored in a table.

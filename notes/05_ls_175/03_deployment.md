@@ -56,7 +56,7 @@
 	run Sinatra::Application
 	```
 
-5. **Create a `Procfile`** in the root of project. Heroku uses the `Profile` to determine
+5. **Create a `Procfile`** in the root of project. Heroku uses the `Procfile` to determine
 	- which processes to run when a user uses the application
 	- the web server on which the application runs
 	- the port number that the web server will use for the application.  

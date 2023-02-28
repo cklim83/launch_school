@@ -4,8 +4,8 @@
 [Floats](#floats)\
 [Positioning](#positioning)\
 [Flex and Grid](#flex-and-grid)\
-[What Are CSS Frameworks?](#what-are-css-frameworks)
-[Responsive Design](#responsive-design)\
+[What Are CSS Frameworks?](#what-are-css-frameworks)\
+[Responsive Design](#responsive-design)
 
 
 ---

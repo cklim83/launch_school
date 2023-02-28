@@ -5,12 +5,12 @@
 [Common HTML Terms](#common-html-terms)\
 [HTML Skeleton](#html-skeleton)\
 [HTML Elements](#html-elements)\
-[Identifying Elements - Class, ID and Name Attributes](#identifying-elements-class-id-and-name-attributes)\
+[Identifying Elements - Class, ID and Name Attributes](#identifying-elements---class-id-and-name-attributes)\
 [HTML Style Guide](#html-style-guide)\
 [What is CSS?](#what-is-css)\
 [Common CSS Terms](#common-css-terms)\
 [The Cascade](#the-cascade)\
-[Selectors](#selectors)\
+[Types of Selectors](#types-of-selectors)\
 [Calculating Specificity](#calculating-specificity)\
 [Combining Selectors](#combining-selectors)\
 [Layering Styles with Multiple Classes](#layering-styles-with-multiple-classes)\
@@ -20,6 +20,7 @@
 [Inline, Internal and External CSS](#inline-internal-and-external-css)\
 [Guidelines to Styling a Page](#guidelines-to-styling-a-page)\
 [Using Chrome Inspector](#using-chrome-inspector)\
+[HTML and CSS Validation](#html-and-css-validation)\
 [References](#references)
 
 ---
@@ -496,7 +497,7 @@ Note: the **value for a `for` attribute must be the `id` value of the form eleme
 [Back to Top](#section-links)
 
 
-## Selectors
+## Types of Selectors
 ### Type Selectors
 - Type selectors target elements by their element type
 ```css
@@ -936,8 +937,14 @@ Note: The `color` property is **inheritable**: applying `color` to an element al
 ## Using Chrome Inspector
 - We can use a tool called the **Inspector** that is part of the **Developer Tools** umbrella in Chrome to view what styles an element on a page uses and how it got those styles. We can even change them temporarily and see the effects.
 - We open the tools by right-clicking any page element and select Inspect.
-- Read the [documentation](https://developers.google.com/web/tools/chrome-devtools/), starting with [Get Started With Viewing And Changing The DOM](https://developers.google.com/web/tools/chrome-devtools/dom/) section. See the [Chrome Devtools Documentation](https://developer.chrome.com/docs/devtools/) for information on how to configure the docking state of the Tools.
+- Read the [documentation](https://developers.google.com/web/tools/chrome-devtools/), starting with [Get Started With Viewing And Changing The DOM](https://developer.chrome.com/docs/devtools/dom/) section. See the [Chrome Devtools Documentation](https://developer.chrome.com/docs/devtools/) for information on how to configure the docking state of the Tools.
 - The documentation talks about **DOM nodes** or **nodes**. We can view them as another way to refer to HTML elements.
+
+[Back to Top](#section-links)
+
+
+## HTML and CSS Validation
+- Always validate your HTML and CSS with [W3C's HTML Validator](https://validator.w3.org/#validate_by_input) and [W3C's CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) respectively to ensure their syntax are correct during development.
 
 [Back to Top](#section-links)
 

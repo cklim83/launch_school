@@ -9,6 +9,7 @@
 ---
 ## Douglas Crockford Lecture
 [JavaScript Programming Language](https://www.youtube.com/watch?v=RO1Wnu-xKoY&t=2327s)
+
 [JavaScript - The Good Parts](https://www.youtube.com/watch?v=hQVTIJBZook)
 
 [Back to Top](#section-links)

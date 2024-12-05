@@ -6,7 +6,7 @@
 [Functional Scopes and Lexical Scoping](#functional-scopes-and-lexical-scoping)\
 [Function Declarations and Function Expressions](#function-declarations-and-function-expressions)\
 [Hoisting](#hoisting)\
-[Objects vs Primitives](#objects-vs-primitives)\
+[Objects vs Primitive Values](#objects-vs-primitive-values)\
 [Variables as Pointers](#variables-as-pointers)\
 [Pass by Reference vs Pass by Value](#pass-by-reference-vs-pass-by-value)\
 [Closures](#closures)
@@ -552,7 +552,7 @@ const baz = 3.1415;
 	function foo() {
 	  var a;
 	  if (false) {
-		a = 1;
+	    a = 1;
 	  }
 	
 	  console.log(a);
@@ -757,7 +757,7 @@ ReferenceError: bar is not defined
 
 Hence, we should **avoid** nesting function declarations inside non-function blocks. If we can't avoid it, use a function expression instead.
 
-### Hosting for Function Expressions
+### Hoisting for Function Expressions
 Function expression usually involves assigning a function to a declared variable. Hence, the **declared variable** being assigned to the function **will be hoisted**:
 
 ```javascript
@@ -893,7 +893,7 @@ In essence, declare variable in such a way to without the need to apply hoisting
 ### Hoisting Isn't Real
 Hoisting is actually just a **mental model** to help us explain the observed result. It is not real in the sense that no code shifting actual occur. 
 
-This mental model is not perfect as there remain edge cases that are not explained by hoisting (see [Edge Case](#sample-edge-case-for-hoisting-model)).
+This mental model is not perfect as there remain edge cases that are not explained by hoisting (see [Edge Case](#sample-edge-case-for-hoisting-mental-model) below).
 
 The hoisting behavior happens because of JavaScript two phases:
 - The **creation phase** where JavaScript comb through the entire code from **top to bottom** in sequence to **discover declaration statements** of all variables, functions and class to build a library of all identifiers in the program. Based on where and how those declaration occurs, these identifiers are added to either the global or local (function or block) scope. When creation completes, all identifiers and their scope are known.

@@ -322,4 +322,4 @@ console.log(sum(1, 2, 3, 4));
 // Expected output: 10
 ```
 
-[Back to Top](section-links)
+[Back to Top](#section-links)

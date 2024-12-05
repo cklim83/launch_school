@@ -3,7 +3,7 @@
 [Brief History of JavaScript](#brief-history-of-javascript)\
 [JavaScript Versions](#javascript-versions)\
 [Abstraction Layers of JavaScript (jQuery and React)](#abstraction-layers-of-javascript-jquery-and-react)\
-[Runtime Environments](#runtime-environmens)\
+[Runtime Environments](#runtime-environments)\
 [Running JavaScript Code](#running-javascript-code)\
 [Style Guide](#style-guide)\
 [References](#references)
@@ -121,6 +121,7 @@ Hello
 	</html>
 	```
 - Avoid using both methods. If the `src` attribute of a script tag is specified, there should be no embedded JavaScript code. If **both exists**, only JavaScript code from file is executed.
+
 [Back to Top](#section-links)
 
 

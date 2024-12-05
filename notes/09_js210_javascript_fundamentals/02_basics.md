@@ -227,12 +227,14 @@ let firstName = 'John';
 let lastName = 'Doe';
 firstName + ' ' + lastName;  // "John Doe"
 ```
-- If both operands are numbers, a mathematical addition is performed instead.
-- If one operand is a string while the other is a number, JavaScript will **automatically coerce** the number into a string and perform a string concatenation.
-	```js
-    > 4 + '4'
-	= '44'
-	```
+
+If both operands are numbers, a mathematical addition is performed instead.
+
+If one operand is a string while the other is a number, JavaScript will **automatically coerce** the number into a string and perform a string concatenation.
+```js
+> 4 + '4'
+= '44'
+```
 
 #### String Interpolation
 JavaScript use **backticks (\`)** for string interpolation: the expression between `${...}` will be replaced with its evaluated value.
@@ -294,6 +296,7 @@ sunt in culpa qui officia deserunt mollit anim id.';
 ```
 
 **Negative Example**
+
 This example has two issues:
 ```javascript
 const paragraph = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed \
@@ -356,27 +359,29 @@ They are frequently the result of comparison operations:
 ```
 
 ### Undefined
-- The value `undefined` is used to represent the **absence of a value**. When a variable is not defined, it has a value of `undefined`.
-- The `console.log` function is an example of a function that returns `undefined`
-	```node
-    > console.log("Hello, World!")
-	Hello, World!
-	= undefined
+The value `undefined` is used to represent the **absence of a value**. When a variable is not defined, it has a value of `undefined`.
+
+The `console.log` function is an example of a function that returns `undefined`
+```node
+> console.log("Hello, World!")
+Hello, World!
+= undefined
 	```
-- `undefined` also arises when declaring variables without an explicit value
-	```node
-    > let foo
-	= undefined
-	
-    > foo
-	= undefined
-	
-    > let bar = 3
-	= undefined
-	
-    > bar
-	= 3
-	```
+
+`undefined` also arises when declaring variables without an explicit value
+```node
+> let foo
+= undefined
+
+> foo
+= undefined
+
+> let bar = 3
+= undefined
+
+> bar
+= 3
+```
 
 ### Null
 `null` is similar to `undefined` in that both represents an intentional absence of a value. The main difference between the two is `null` is used explicitly while `undefined` can arise implicitly.

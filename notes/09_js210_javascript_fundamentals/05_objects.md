@@ -18,34 +18,34 @@ JavaScript is an _object-oriented_ language; the code uses objects to organise c
 ### Standard Built-in Objects
 `String`, `Array`, `Object`, `Math` and `Date` are some commonly used standard built-in objects in JavaScript.
 
-Some built-in objects share the **same names** as primitive data types e.g. `String` and `Number`. While the name may be the same, objects are actually different from primitive values:
+Some built-in objects share the **same names** as primitive data types e.g. `String` and `Number`. While the name may be the same, objects are **different** from primitive values: methods can only be called on objects and not on primitive values.
 
-1. Methods can only be called on objects but not on primitive values.
-	```javascript
-	'hi'.toUpperCase();     // "HI"
-	```
 
-2. While the code snippet above suggest method calls also work for primitive string `hi`. What actually happens is that under the hood, JavaScript automatically and temporarily coerce the string primitive `hi` to its `String` object counterpart prior to the method call. This process is known as **auto-boxing**. This allow us to use primitive values as though they are objects without the need to create their object forms.
+```javascript
+'hi'.toUpperCase();     // "HI"
+```
+Above code snippet seemed to suggest method calls also work for primitive string `hi`. What actually happens is that under the hood, JavaScript automatically and temporarily coerce the string primitive `hi` to its `String` object counterpart prior to the method call. This process is known as **auto-boxing**. This allow us to use primitive values as though they are objects without the need to create their object forms.
 
-	```javascript
-	let a = 'hi';                 // Create a primitive string with value "hi"
-	typeof a;                     // "string"; This is a primitive string value
-	
-	let stringObject = new String('hi'); // Create a string object
-	typeof stringObject;          // "object"; This is a String object
-	
-	a.toUpperCase();              // "HI" (auto-boxing takes place)
-	stringObject.toUpperCase();   // "HI"
-	
-	typeof a;                     // "string"; The coercion is only temporary
-	typeof stringObject;          // "object"
-	```
+```javascript
+let a = 'hi';                 // Create a primitive string with value "hi"
+typeof a;                     // "string"; This is a primitive string value
 
-3. The same is true for other primitive types except `null` or `undefined`.
-	```javascript
-	42.5639.toFixed(2);           // "42.56" (auto-boxing takes place)
-	true.toString();              // "true" (auto-boxing takes place)
-	```
+let stringObject = new String('hi'); // Create a string object
+typeof stringObject;          // "object"; This is a String object
+
+a.toUpperCase();              // "HI" (auto-boxing takes place)
+stringObject.toUpperCase();   // "HI"
+
+typeof a;                     // "string"; The coercion is only temporary
+typeof stringObject;          // "object"
+```
+
+
+The same is true for other primitive types except `null` or `undefined`.
+```javascript
+42.5639.toFixed(2);           // "42.56" (auto-boxing takes place)
+true.toString();              // "true" (auto-boxing takes place)
+```
 
 ### Create Custom Objects
 We can use the object **literal notation** to create our own objects.
@@ -114,6 +114,7 @@ let myObj = {
   prop2: 'sample data',
 };
 ```
+
 ```javascript
 // Method as last
 let myObj = {
@@ -121,13 +122,11 @@ let myObj = {
   prop2: 'sample data',
   method1: function () {},
 };
-	```
+```
 
 The trailing comma for the last object item confers two benefits:
-
-1. No need to add/remove comma when we reorder the object contents
-
-2. `git diff` will register only 1 line of change when we add a new item (since there is no need to add trailing comma to the previous line).
+- No need to add/remove comma when we reorder the object contents
+- `git diff` will register only 1 line of change when we add a new item (since there is no need to add trailing comma to the previous line).
 	```javascript
 	// no trailing comma
 	let myObj = {
@@ -145,7 +144,7 @@ The trailing comma for the last object item confers two benefits:
 	};
 	```
 
-No trailing commas needed for one-line literals
+No trailing commas are needed for one-line literals
 ```javascript
 let coordinates = { x: 25, y: 50 };
 ```
@@ -289,7 +288,7 @@ delete foo.a;
 foo;                      // { b: "world" }
 ```
 
-[Back to Top](section-links)
+[Back to Top](#section-links)
 
 
 ## Stepping Through Object Properties
@@ -321,6 +320,9 @@ let nicknames = {
 
 Object.keys(nicknames);  // [ 'joseph', 'margaret' ]
 ```
+
+[Back to Top](#section-links)
+
 
 ## Arrays and Objects
 Arrays and Objects are both data structures to represent compound data. 
